@@ -1,0 +1,31 @@
+# secrets
+.env
+.env.local
+*.env
+
+# node
+node_modules/
+.next/
+out/
+dist/
+*.tsbuildinfo
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# ingestion working files
+ingest/.checkpoints/
+ingest/.cache/
+ingest/data/raw/
+!ingest/data/raw/.gitkeep
+
+# editors / os
+.DS_Store
+.idea/
+.vscode/

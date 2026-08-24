@@ -1,0 +1,470 @@
+slug	declared	top	topKind	topRef	flag
+how-do-i-become-muslim	A	0.0407	fiqh	Fatawa Qadi Khan 3:357	ok
+do-i-need-witnesses-shahada	A	0.8994	quran	Qur'an 6:19	ok
+do-i-need-a-mosque-to-convert	A	0.4451	fiqh	Al-Mughni 9:29-30	ok
+does-shahada-need-arabic	A	0.8198	quran	Qur'an 6:19	ok
+what-happens-to-my-past-sins	A	0.0121	fiqh	Majmu' al-Fatawa 22:9-10	ok
+do-i-need-a-new-name	A	0.0553	hadith	Sahih Muslim 3:1688	ok
+do-i-have-to-be-circumcised	A	0.2434	fiqh	Al-Bahr al-Ra'iq 5:216	ok
+ghusl-after-converting	A	0.8154	fiqh	Al-Mughni 1:132-133	ok
+what-do-i-learn-first	A	0.1857	fiqh	Majmu' al-Fatawa 23:54-55	ok
+how-do-i-learn-to-pray	A	0.6475	fiqh	Kanz al-Daqa'iq 1:160-165	ok
+cant-read-arabic-yet	A	0.7598	fiqh	Al-Mughni 1:283-284	ok
+how-long-to-learn-fatihah	A	0.0027	fiqh	Al-Fatawa al-Hindiyya 1:71	ok
+was-my-old-marriage-valid	B	0.0839	fiqh	Al-Fatawa al-Hindiyya 1:337	ok
+spouse-not-muslim-after-i-convert	B	0.0156	fiqh	Al-Majmu' Sharh al-Muhadhdhab 18:246-247	ok
+telling-my-family-i-converted	A	0.0974	hadith	Sunan Abi Dawud 2:75	ok
+family-rejected-me	A	0.0125	quran	Qur'an 71:28	CHECK
+do-i-owe-missed-prayers-before-islam	A	0.3669	fiqh	Al-Mabsut 3:77	ok
+do-i-owe-missed-fasts-before-islam	A	0.0271	fiqh	Al-Mughni 3:24	ok
+feeling-like-a-fake-muslim	A	0.0172	fiqh	Majmu' al-Fatawa 4:514-516	ok
+alone-no-muslim-community	A	0.0018	fiqh	Majmu' al-Fatawa 1:147-148	ok
+reverting-back-and-forth	A	0.0471	quran	Qur'an 2:209	CHECK
+how-to-make-wudu	A	0.1161	tafsir	Tafsir Ibn Kathir 3:49-50	CHECK
+fard-parts-of-wudu	A	0.1941	fiqh	Fatawa Qadi Khan 1:15	ok
+bismillah-before-wudu	A	0.2494	fiqh	Al-Majmu' Sharh al-Muhadhdhab 1:466	ok
+order-of-wudu	A	0.4446	tafsir	Tafsir Ibn Kathir 3:51-52	ok
+what-breaks-wudu	A	0.3508	fiqh	Fatawa Qadi Khan 1:17	ok
+does-sleeping-break-wudu	A	0.5806	fiqh	Al-Bahr al-Ra'iq 1:74	ok
+does-touching-spouse-break-wudu	A	0.6416	fiqh	Al-Mughni 1:123-124	ok
+does-bleeding-break-wudu	A	0.1857	fiqh	Fatawa Qadi Khan 1:17	ok
+does-vomiting-break-wudu	A	0.4087	fiqh	Majmu' al-Fatawa 21:227	ok
+does-laughing-break-wudu	A	0.9263	fiqh	Fatawa Qadi Khan 1:29	ok
+does-touching-private-parts-break-wudu	A	0.2576	fiqh	Majmu' al-Fatawa 21:231	ok
+does-changing-clothes-break-wudu	A	0.0578	fiqh	Al-Majmu' Sharh al-Muhadhdhab 2:537	ok
+doubt-whether-wudu-broke	A	0.3201	fiqh	Al-Fatawa al-Hindiyya 1:3	ok
+nail-polish-and-wudu	A	0.0129	tafsir	Ahkam al-Qur'an (al-Jassas) 4:23	ok
+makeup-and-wudu	A	0.0511	fiqh	Al-Majmu' Sharh al-Muhadhdhab 1:466	ok
+contact-lenses-wudu	A	0.0667	fiqh	Al-Majmu' Sharh al-Muhadhdhab 1:466	ok
+wudu-with-a-cast-or-bandage	A	0.1708	fiqh	Al-Majmu' Sharh al-Muhadhdhab 2:328	ok
+wiping-over-socks	A	0.7808	fiqh	Al-Mabsut 1:104	ok
+what-kind-of-socks-count	A	0.6802	fiqh	Al-Mabsut 1:104	ok
+how-long-can-i-wipe-socks	A	0.8379	fiqh	Al-Mughni 1:177	ok
+wiping-over-shoes	A	0.0192	fiqh	Fatawa Qadi Khan 1:22	ok
+wiping-over-hijab-or-turban	A	0.2185	fiqh	Fatawa Qadi Khan 1:16	ok
+wudu-in-a-public-bathroom	A	0.0490	fiqh	Fatawa Qadi Khan 1:15	ok
+how-much-water-for-wudu	A	0.1776	fiqh	Al-Mabsut 1:110	ok
+waswas-repeating-wudu	A	0.1639	fiqh	Al-Majmu' Sharh al-Muhadhdhab 1:466	ok
+when-is-ghusl-required	A	0.4399	fiqh	Majmu' al-Fatawa 21:469	ok
+how-to-do-ghusl	A	0.5088	fiqh	Al-Mughni 1:138	ok
+does-ghusl-replace-wudu	A	0.1661	hadith	Al-Minhaj (Sharh Sahih Muslim) 3:229	ok
+wet-dream-ghusl	A	0.4807	fiqh	Fatawa Qadi Khan 1:20	ok
+ghusl-with-hair-braids	A	0.3621	tafsir	Tafsir al-Qurtubi 5:212	ok
+what-is-tayammum	A	0.6763	fiqh	Al-Mughni 1:170	ok
+how-to-do-tayammum	A	0.7837	fiqh	Mukhtasar al-Quduri 1:15-16	ok
+tayammum-no-water-at-work	B	0.9380	fiqh	Al-Mabsut 1:112	ok
+tayammum-when-ill	B	0.7021	fiqh	Al-Mughni 1:170	ok
+how-to-clean-after-toilet	A	0.1646	fiqh	Fatawa Qadi Khan 1:15	ok
+is-toilet-paper-enough	A	0.1460	fiqh	Fatawa Qadi Khan 1:15	ok
+what-is-najis	A	0.5269	fiqh	Al-Majmu' Sharh al-Muhadhdhab 2:599	ok
+is-blood-najis	A	0.5557	fiqh	Al-Mughni 1:49	ok
+dog-saliva	A	0.0485	hadith	Musnad Ahmad 13:112	ok
+baby-urine-on-clothes	A	0.5322	hadith	Al-Tamhid 10:194-196	ok
+how-to-clean-najasa-from-clothes	A	0.0379	fiqh	Al-Mughni 1:49	ok
+praying-in-clothes-with-a-stain	A	0.7422	fiqh	Majmu' al-Fatawa 21:455-456	ok
+madhiy-vs-maniy	A	0.4280	fiqh	Al-Mughni 1:129	ok
+discharge-and-wudu-women	A	0.0844	fiqh	Al-Hidaya 1:32	ok
+incontinence-and-prayer	B	0.3943	fiqh	Kanz al-Daqa'iq 1:160-165	ok
+shoes-in-prayer-area	A	0.7246	quran	Qur'an 20:12	ok
+is-alcohol-in-perfume-najis	B	0.1097	tafsir	Ahkam al-Qur'an (al-Jassas) 5:208	ok
+praying-on-period	A	0.7607	hadith	Al-Tamhid 22:107	ok
+fasting-on-period	A	0.7422	hadith	Al-Tamhid 22:107	ok
+quran-on-period	A	0.8594	fiqh	Mukhtasar al-Quduri 1:19-20	ok
+mosque-on-period	A	0.9277	fiqh	Al-Mabsut 3:153	ok
+dhikr-and-dua-on-period	A	0.6221	hadith	Al-Tamhid 22:107	ok
+ghusl-after-period	A	0.4036	hadith	Al-Minhaj (Sharh Sahih Muslim) 4:25-26	ok
+how-do-i-know-period-ended	A	0.7192	hadith	Al-Tamhid 22:107	ok
+spotting-after-period	A	0.4043	hadith	Al-Tamhid 22:107	ok
+irregular-bleeding-istihada	B	0.4412	fiqh	Kanz al-Daqa'iq 1:160-165	ok
+bleeding-after-childbirth	A	0.2028	fiqh	Al-Mabsut 3:215	ok
+miscarriage-bleeding	B	0.0084	fiqh	Radd al-Muhtar (Fatawa Shami) 3:192-193	ok
+period-starts-mid-prayer	A	0.5376	hadith	Al-Tamhid 22:107	ok
+period-ends-before-prayer-time-ends	A	0.4551	fiqh	Al-Mabsut 3:153	ok
+birth-control-to-delay-period	B	0.3296	fiqh	Majmu' al-Fatawa 22:29-31	ok
+intimacy-during-period	A	0.7886	fiqh	Mukhtasar al-Quduri 1:19-20	ok
+intercourse-after-period-before-ghusl	A	0.6328	fiqh	Al-Mughni 1:205	ok
+how-to-pray-step-by-step	A	0.5684	fiqh	Kanz al-Daqa'iq 1:160-165	ok
+what-are-the-five-prayers	A	0.1422	hadith	Sunan Abi Dawud 2:498	ok
+prayer-times-explained	A	0.4421	fiqh	Kanz al-Daqa'iq 1:160-165	ok
+what-to-recite-in-prayer	A	0.4517	fiqh	Mukhtasar al-Quduri 1:27-28	ok
+minimum-to-recite	A	0.4438	fiqh	Kanz al-Daqa'iq 1:160-165	ok
+what-invalidates-prayer	A	0.2162	fiqh	Kanz al-Daqa'iq 1:172-175	ok
+moving-during-prayer	A	0.3982	fiqh	Al-Mughni 2:139-140	ok
+talking-during-prayer	A	0.1528	fiqh	Al-Mabsut 1:171	ok
+phone-rings-during-prayer	A	0.3342	fiqh	Al-Hidaya 1:46	ok
+someone-walks-in-front	A	0.9336	fiqh	Al-Mughni 2:41	ok
+forgot-a-rakah	A	0.8682	fiqh	Al-Mughni 1:386-387	ok
+sujud-al-sahw	A	0.1138	fiqh	Al-Mughni 1:382-383	ok
+praying-with-eyes-closed	A	0.2449	fiqh	Kanz al-Daqa'iq 1:160-165	ok
+crying-in-prayer	A	0.2583	fiqh	Al-Fatawa al-Hindiyya 1:101	ok
+mind-wanders-in-prayer	A	0.3342	fiqh	Al-Bahr al-Ra'iq 2:173-174	ok
+which-direction-is-qibla	A	0.1539	fiqh	Majmu' al-Fatawa 22:206-208	ok
+wrong-qibla-direction	A	0.2406	quran	Qur'an 3:135	ok
+praying-on-a-chair	A	0.5737	fiqh	Majmu' al-Fatawa 22:173-175	ok
+praying-lying-down	A	0.0798	fiqh	Fatawa Qadi Khan 1:84	ok
+prayer-mat-necessary	A	0.2966	fiqh	Al-Bahr al-Ra'iq 2:315	ok
+where-can-i-pray	A	0.6172	fiqh	Bada'i al-Sana'i 1:82	ok
+slept-through-fajr	A	0.1860	fiqh	Al-Fatawa al-Hindiyya 1:121	ok
+missed-prayer-on-purpose	A	0.5986	fiqh	Al-Mughni 1:366-367	ok
+years-of-missed-prayers	B	0.0089	fiqh	Al-Majmu' Sharh al-Muhadhdhab 3:71	ok
+making-up-prayers-order	A	0.2104	fiqh	Al-Mabsut 3:77	ok
+praying-at-work	A	0.1021	fiqh	Mukhtasar al-Quduri 1:27-28	ok
+cant-take-a-break-to-pray	B	0.1329	hadith	Fath al-Bari 2:145	ok
+combining-prayers-at-work	B	0.0228	fiqh	Majmu' al-Fatawa 22:38	ok
+shortening-prayer-travelling	A	0.7305	fiqh	Al-Mughni 2:47	ok
+how-far-counts-as-travel	A	0.8872	fiqh	Al-Mughni 2:49	ok
+how-long-can-i-shorten	A	0.4402	fiqh	Majmu' al-Fatawa 24:17	ok
+combining-prayers-travelling	A	0.9448	fiqh	Al-Majmu' Sharh al-Muhadhdhab 4:370	ok
+praying-on-a-plane	B	0.4460	fiqh	Bada'i al-Sana'i 1:109	ok
+praying-in-a-car-or-train	A	0.3218	fiqh	Kanz al-Daqa'iq 1:160-165	ok
+is-congregation-obligatory	A	0.5503	fiqh	Majmu' al-Fatawa 31:255	ok
+praying-behind-imam-joining-late	A	0.3887	hadith	Al-Minhaj (Sharh Sahih Muslim) 4:107	ok
+two-people-congregation	A	0.3042	hadith	Fath al-Bari 2:119	ok
+women-praying-in-mosque	A	0.3958	fiqh	Al-Majmu' Sharh al-Muhadhdhab 4:197	ok
+woman-leading-prayer	B	0.3894	fiqh	Kanz al-Daqa'iq 1:160-165	ok
+praying-behind-someone-who-makes-mistakes	A	0.4482	fiqh	Majmu' al-Fatawa 23:368-369	ok
+what-are-sunnah-prayers	A	0.0190	fiqh	Al-Fatawa al-Hindiyya 1:112	ok
+how-to-pray-witr	A	0.1377	fiqh	Al-Mughni 1:453	ok
+tahajjud-how	A	0.2170	fiqh	Radd al-Muhtar (Fatawa Shami) 2:25-26	ok
+duha-prayer	A	0.1134	tafsir	Tafsir al-Qurtubi 15:160	ok
+istikhara-how	A	0.2791	fiqh	Al-Majmu' Sharh al-Muhadhdhab 4:54	ok
+salat-al-tawbah	A	0.1603	quran	Qur'an 25:71	ok
+times-you-cannot-pray-nafl	A	0.2771	fiqh	Al-Mughni 1:360-361	ok
+is-jumuah-obligatory	A	0.7715	fiqh	Al-Majmu' Sharh al-Muhadhdhab 4:514	ok
+women-and-jumuah	A	0.7222	fiqh	Al-Bahr al-Ra'iq 2:257	ok
+missed-jumuah-what-now	A	0.4900	fiqh	Al-Mughni 2:91-92	ok
+talking-during-khutbah	A	0.0761	fiqh	Al-Majmu' Sharh al-Muhadhdhab 4:525	ok
+arriving-late-to-jumuah	A	0.8403	fiqh	Al-Hidaya 1:83	ok
+jumuah-at-work	B	0.7622	fiqh	Al-Mughni 2:91-92	ok
+friday-sunnah-acts	A	0.0287	fiqh	Al-Majmu' Sharh al-Muhadhdhab 19:285-286	ok
+why-do-we-fast	A	0.5103	fiqh	Al-Mughni 3:3-4	ok
+who-must-fast	A	0.3176	quran	Qur'an 2:185	ok
+how-do-i-start-fasting	A	0.3159	tafsir	Ahkam al-Qur'an (al-Jassas) 1:241	ok
+what-breaks-the-fast	A	0.8149	fiqh	Majmu' al-Fatawa 25:219-221	ok
+forgot-and-ate	A	0.6812	fiqh	Al-Majmu' Sharh al-Muhadhdhab 6:324	ok
+swallowing-saliva	A	0.6758	fiqh	Majmu' al-Fatawa 25:244-246	ok
+toothpaste-and-fasting	A	0.2006	fiqh	Al-Mughni 3:17	ok
+mouthwash-fasting	A	0.4622	fiqh	Al-Mughni 3:17	ok
+does-vomiting-break-fast	A	0.5444	fiqh	Kanz al-Daqa'iq 1:221-224	ok
+blood-test-while-fasting	B	0.3489	fiqh	Majmu' al-Fatawa 25:219-221	ok
+inhaler-while-fasting	B	0.3130	fiqh	Al-Mughni 3:17	ok
+injections-and-fasting	B	0.4827	fiqh	Majmu' al-Fatawa 25:244-246	ok
+tablets-while-fasting	C	0.0721	fiqh	Al-Majmu' Sharh al-Muhadhdhab 6:258	ok
+intimacy-while-fasting	A	0.2042	fiqh	Al-Majmu' Sharh al-Muhadhdhab 6:392	ok
+intercourse-during-fasting-day	A	0.5410	quran	Qur'an 2:187	ok
+kissing-while-fasting	A	0.2742	fiqh	Al-Hidaya 1:123	ok
+does-smoking-break-fast	A	0.4832	fiqh	Fatawa Qadi Khan 1:100	ok
+perfume-while-fasting	A	0.0659	fiqh	Majmu' al-Fatawa 25:250-252	ok
+swimming-while-fasting	A	0.6489	fiqh	Majmu' al-Fatawa 21:463	ok
+what-time-do-i-stop-eating	A	0.3389	fiqh	Kanz al-Daqa'iq 1:219-220	ok
+missed-suhoor	A	0.2927	fiqh	Al-Mughni 3:11-12	ok
+breaking-fast-time	A	0.5752	fiqh	Majmu' al-Fatawa 25:250-252	ok
+what-to-say-when-breaking-fast	A	0.0582	hadith	Al-Tamhid 3:286	ok
+making-up-missed-fasts	A	0.2556	fiqh	Al-Mabsut 3:77	ok
+deadline-for-makeup-fasts	A	0.1451	fiqh	Al-Majmu' Sharh al-Muhadhdhab 6:365	ok
+fidyah-when-cannot-fast	B	0.5366	fiqh	Al-Mughni 3:38	ok
+fasting-while-pregnant	B	0.3428	tafsir	Ahkam al-Qur'an (al-Jassas) 1:226	ok
+fasting-long-summer-days	B	0.0147	quran	Qur'an 73:20	CHECK
+voluntary-fasts	A	0.0404	fiqh	Al-Fatawa al-Hindiyya 1:201-202	ok
+fasting-mondays-thursdays	A	0.1163	fiqh	Al-Majmu' Sharh al-Muhadhdhab 6:440	ok
+ashura-fasting	A	0.6089	fiqh	Al-Majmu' Sharh al-Muhadhdhab 6:383	ok
+six-fasts-of-shawwal	A	0.2332	hadith	Jami' al-Tirmidhi 2:123-124	ok
+breaking-a-voluntary-fast	A	0.2239	fiqh	Bada'i al-Sana'i 2:117	ok
+taraweeh-what-is-it	A	0.1636	fiqh	Al-Mughni 1:455-456	ok
+laylat-al-qadr	A	0.5669	tafsir	Ahkam al-Qur'an (Ibn al-'Arabi) 4:427	ok
+itikaf-what-is-it	A	0.0534	fiqh	Al-Mughni 3:63	ok
+zakat-al-fitr	A	0.3301	hadith	Fath al-Bari 3:212	ok
+eid-what-do-i-do	A	0.0555	fiqh	Bada'i al-Sana'i 1:279	ok
+what-is-zakat	A	0.1390	fiqh	Al-Mughni 6:326	ok
+how-much-is-nisab	B	0.3105	fiqh	Al-Bahr al-Ra'iq 2:392-393	ok
+zakat-on-savings	A	0.0307	fiqh	Al-Mughni 2:342	ok
+zakat-on-salary	A	0.1378	fiqh	Al-Mughni 6:326	ok
+zakat-on-gold-jewellery	A	0.3916	fiqh	Al-Mughni 2:324	ok
+zakat-if-i-have-debt	B	0.5044	fiqh	Al-Mughni 2:342-343	ok
+zakat-on-property	B	0.3254	fiqh	Al-Mughni 5:372-373	ok
+zakat-on-shares-investments	B	0.0206	fiqh	Al-Mabsut 2:203	ok
+zakat-on-pension	C	0.0067	quran	Qur'an 2:110	ok
+when-is-zakat-due	A	0.1120	fiqh	Fatawa Qadi Khan 1:113-114	ok
+who-can-receive-zakat	A	0.2673	fiqh	Majmu' al-Fatawa 25:90	ok
+zakat-to-family	A	0.5933	fiqh	Majmu' al-Fatawa 25:90	ok
+zakat-to-non-muslims	A	0.8638	hadith	Al-Tamhid 14:263-264	ok
+zakat-vs-sadaqah	A	0.1987	fiqh	Al-Hidaya 1:103	ok
+forgot-to-pay-zakat-years	B	0.1394	fiqh	Al-Mabsut 3:38	ok
+how-to-give-charity-best	A	0.1749	hadith	Al-Tamhid 8:385-386	ok
+charity-anonymously	A	0.8438	tafsir	Tafsir al-Qurtubi 3:332	ok
+is-hajj-obligatory-on-me	A	0.6367	fiqh	Al-Mughni 3:85-86	ok
+hajj-if-i-cant-afford	A	0.3840	hadith	Al-Tamhid 9:125-126	ok
+what-happens-at-hajj	A	0.1417	fiqh	Al-Mughni 3:85-86	ok
+what-is-umrah	A	0.3577	fiqh	Al-Bahr al-Ra'iq 3:31	ok
+what-is-ihram	A	0.1525	fiqh	Bada'i al-Sana'i 2:211	ok
+women-hajj-without-mahram	B	0.9517	fiqh	Al-Majmu' Sharh al-Muhadhdhab 8:342-344	ok
+hajj-on-behalf-of-someone	A	0.4099	fiqh	Al-Mabsut 4:148	ok
+broke-ihram-rules	B	0.1678	fiqh	Al-Mughni 9:282	ok
+period-during-hajj	A	0.4338	hadith	Al-Tamhid 22:107	ok
+what-is-udhiyah	A	0.0119	fiqh	Al-Mabsut 12:10	ok
+touching-quran-without-wudu	A	0.1678	fiqh	Bada'i al-Sana'i 1:19	ok
+quran-on-phone-without-wudu	A	0.1000	fiqh	Al-Mabsut 1:62	ok
+reading-quran-in-translation	A	0.6187	fiqh	Al-Majmu' Sharh al-Muhadhdhab 3:381	ok
+quran-in-the-bathroom-on-phone	A	0.0167	fiqh	Fatawa Qadi Khan 1:15	ok
+non-muslim-touching-quran	A	0.1400	tafsir	Ahkam al-Qur'an (al-Jassas) 2:324	ok
+how-to-start-memorising	A	0.1855	fiqh	Al-Majmu' Sharh al-Muhadhdhab 1:38	ok
+which-translation-should-i-read	B	0.1724	fiqh	Majmu' al-Fatawa 4:115-117	ok
+disposing-of-old-quran	A	0.0078	hadith	Musnad Ahmad 38:38-43	ok
+reciting-quran-out-loud	A	0.2739	tafsir	Ahkam al-Qur'an (al-Jassas) 4:216	ok
+making-mistakes-in-recitation	A	0.0510	hadith	Al-Minhaj (Sharh Sahih Muslim) 5:21	ok
+quran-order-of-revelation	A	0.2744	quran	Qur'an 25:32	ok
+abrogation-in-quran	A	0.1584	quran	Qur'an 2:106	ok
+what-is-tawhid	A	0.0452	fiqh	Majmu' al-Fatawa 1:367-369	ok
+what-are-the-pillars-of-islam	A	0.0370	fiqh	Al-Bahr al-Ra'iq 1:19	ok
+what-are-the-pillars-of-faith	A	0.6982	hadith	Jami' al-Tirmidhi 4:360-361	ok
+what-is-shirk	A	0.6611	quran	Qur'an 22:31	ok
+what-is-kufr	A	0.4614	quran	Qur'an 16:106	ok
+does-faith-go-up-and-down	A	0.8608	hadith	Al-Tamhid 9:252	ok
+what-happens-when-we-die	A	0.4299	quran	Qur'an 57:17	ok
+what-is-barzakh	A	0.0029	fiqh	Majmu' al-Fatawa 4:276	ok
+what-is-the-day-of-judgement	A	0.7725	quran	Qur'an 82:15	ok
+paradise-and-hell	A	0.0506	hadith	Sahih al-Bukhari 8:180	ok
+is-hell-forever	A	0.4561	quran	Qur'an 4:93	ok
+what-is-qadar	A	0.6118	fiqh	Majmu' al-Fatawa 8:466-468	ok
+why-does-god-allow-suffering	A	0.5063	fiqh	Majmu' al-Fatawa 8:323-325	ok
+purpose-of-life	A	0.4148	quran	Qur'an 57:20	ok
+what-are-angels	A	0.4478	quran	Qur'an 74:31	ok
+what-are-jinn	A	0.3323	tafsir	Ahkam al-Qur'an (Ibn al-'Arabi) 4:314	ok
+who-is-shaytan	A	0.2120	hadith	Fath al-Bari 10:169	ok
+jesus-in-islam	A	0.6030	quran	Qur'an 2:136	ok
+previous-scriptures	A	0.6025	tafsir	Ahkam al-Qur'an (al-Jassas) 4:282	ok
+can-i-read-the-bible	A	0.2944	quran	Qur'an 7:157	ok
+why-muhammad	A	0.1099	fiqh	Majmu' al-Fatawa 19:101-102	ok
+are-prophets-sinless	A	0.8594	fiqh	Majmu' al-Fatawa 35:69-70	ok
+what-are-the-names-of-allah	A	0.5034	fiqh	Majmu' al-Fatawa 6:379-381	ok
+can-i-question-my-faith	A	0.5234	quran	Qur'an 24:50	ok
+what-is-bidah	A	0.3965	hadith	Fath al-Bari 13:256	ok
+sunni-shia-difference	C	0.0242	fiqh	Majmu' al-Fatawa 13:209-210	ok
+which-madhhab-should-i-follow	C	0.0083	quran	Qur'an 2:145	ok
+do-i-have-to-follow-a-madhhab	B	0.4724	fiqh	Majmu' al-Fatawa 20:202-204	ok
+is-this-person-a-kafir	C	0.0284	fiqh	Al-Bahr al-Ra'iq 5:125-127	ok
+what-food-is-forbidden	A	0.4463	quran	Qur'an 5:3	ok
+what-does-halal-mean	A	0.4678	fiqh	Al-Majmu' Sharh al-Muhadhdhab 2:575	ok
+alcohol-and-intoxicants	A	0.9580	fiqh	Majmu' al-Fatawa 34:186-188	ok
+can-i-eat-at-my-parents-house	A	0.6294	quran	Qur'an 24:61	ok
+food-cooked-by-non-muslims	A	0.1212	fiqh	Majmu' al-Fatawa 35:216-218	ok
+eating-out-at-restaurants	B	0.2064	fiqh	Majmu' al-Fatawa 35:216-218	ok
+is-supermarket-meat-halal	B	0.0115	fiqh	Majmu' al-Fatawa 35:216-218	ok
+meat-from-christians-jews	A	0.1395	fiqh	Majmu' al-Fatawa 35:212-214	ok
+stunning-before-slaughter	C	0.0096	fiqh	Majmu' al-Fatawa 35:236-238	ok
+is-gelatin-halal	C	0.0302	fiqh	Al-Majmu' Sharh al-Muhadhdhab 9:15-16	ok
+e-numbers-additives	C	0.0038	fiqh	Majmu' al-Fatawa 29:273	ok
+vanilla-extract-alcohol	C	0.1466	fiqh	Al-Mabsut 24:26	ok
+halal-certification-labels	C	0.0006	fiqh	Al-Fatawa al-Hindiyya 1:303	ok
+alcohol-in-cooking	B	0.0634	fiqh	Majmu' al-Fatawa 34:220	ok
+non-alcoholic-beer	B	0.0162	fiqh	Majmu' al-Fatawa 34:193	ok
+is-seafood-halal	A	0.9004	fiqh	Bada'i al-Sana'i 5:35	ok
+is-shellfish-halal	A	0.0799	fiqh	Al-Majmu' Sharh al-Muhadhdhab 9:72	ok
+what-if-i-ate-pork-by-accident	A	0.5347	tafsir	Tafsir Ibn Kathir 3:16-17	ok
+cross-contamination-kitchen	B	0.1838	tafsir	Tafsir Ibn Kathir 3:16-17	ok
+cooking-pork-for-family	B	0.4688	tafsir	Tafsir Ibn Kathir 3:16-17	ok
+eating-etiquette	A	0.0294	fiqh	Al-Fatawa al-Hindiyya 5:336	ok
+is-it-wrong-to-waste-food	A	0.1583	fiqh	Radd al-Muhtar (Fatawa Shami) 1:143-144	ok
+vegetarianism-in-islam	A	0.7002	fiqh	Majmu' al-Fatawa 22:135-137	ok
+is-hijab-obligatory	A	0.3618	hadith	Al-Tamhid 6:376-378	ok
+what-counts-as-proper-hijab	A	0.7441	fiqh	Al-Majmu' Sharh al-Muhadhdhab 3:165	ok
+is-face-covering-required	A	0.7690	fiqh	Al-Mughni 3:154	ok
+hijab-in-front-of-family	A	0.5278	fiqh	Al-Majmu' Sharh al-Muhadhdhab 3:165	ok
+not-ready-to-wear-hijab	A	0.1936	fiqh	Majmu' al-Fatawa 26:111-113	ok
+hijab-at-work-or-school	B	0.1698	tafsir	Ahkam al-Qur'an (al-Jassas) 4:206	ok
+mens-dress-code	A	0.0386	fiqh	Al-Mughni 3:155-156	ok
+awrah-for-men	A	0.6636	fiqh	Majmu' al-Fatawa 22:149-151	ok
+can-men-wear-gold	A	0.6523	hadith	Al-Tamhid 14:249-250	ok
+can-men-wear-shorts	A	0.0660	fiqh	Al-Mughni 3:137-138	ok
+is-the-beard-obligatory	A	0.0024	hadith	Musnad Ahmad 34:559	ok
+trimming-eyebrows	A	0.0048	hadith	Fath al-Bari 10:316	ok
+removing-body-hair	A	0.1023	fiqh	Al-Majmu' Sharh al-Muhadhdhab 7:247	ok
+tattoos-before-islam	A	0.2568	hadith	Al-Minhaj (Sharh Sahih Muslim) 14:106	ok
+getting-a-tattoo	A	0.7734	tafsir	Ahkam al-Qur'an (Ibn al-'Arabi) 1:630-631	ok
+piercings	A	0.0505	hadith	Al-Minhaj (Sharh Sahih Muslim) 14:31	ok
+hair-dye	A	0.4353	hadith	Fath al-Bari 10:300	ok
+makeup-in-public	B	0.0114	hadith	Al-Tamhid 20:119	ok
+high-heels	A	0.1176	fiqh	Al-Mabsut 10:152	ok
+wearing-perfume-outside	A	0.1560	tafsir	Tafsir Ibn Kathir 6:49-50	ok
+imitating-non-muslim-dress	A	0.3960	fiqh	Majmu' al-Fatawa 22:153-155	ok
+how-to-treat-non-muslim-parents	A	0.3884	hadith	Al-Minhaj (Sharh Sahih Muslim) 16:102-104	ok
+obeying-parents-who-arent-muslim	A	0.7822	tafsir	Ahkam al-Qur'an (al-Jassas) 3:156	ok
+parents-tell-me-to-stop-praying	A	0.6729	tafsir	Ahkam al-Qur'an (al-Jassas) 3:156	ok
+can-i-make-dua-for-non-muslim-family	A	0.1095	fiqh	Al-Majmu' Sharh al-Muhadhdhab 5:230	ok
+non-muslim-parent-died	B	0.6768	fiqh	Bada'i al-Sana'i 1:303	ok
+inheriting-from-non-muslim-parents	C	0.5957	fiqh	Al-Majmu' Sharh al-Muhadhdhab 16:58	ok
+rights-of-parents	A	0.4634	tafsir	Ahkam al-Qur'an (al-Jassas) 3:156	ok
+cutting-off-toxic-family	B	0.3025	hadith	Al-Minhaj (Sharh Sahih Muslim) 16:112	ok
+keeping-family-ties	A	0.0309	hadith	Fath al-Bari 10:353	ok
+raising-children-muslim	B	0.2922	fiqh	Al-Mughni 6:44	ok
+naming-a-baby	A	0.1536	hadith	Sunan Abi Dawud 7:308	ok
+aqiqah-what-is-it	A	0.3718	fiqh	Al-Mughni 9:362-363	ok
+when-do-children-start-praying	A	0.2466	fiqh	Al-Majmu' Sharh al-Muhadhdhab 3:11	ok
+adoption-in-islam	B	0.0930	fiqh	Al-Majmu' Sharh al-Muhadhdhab 15:301-302	ok
+is-dating-allowed	A	0.0683	fiqh	Al-Fatawa al-Hindiyya 1:337	ok
+how-do-muslims-meet-to-marry	A	0.0145	hadith	Musnad Ahmad 27:112	ok
+talking-to-someone-before-marriage	A	0.7104	tafsir	Tafsir al-Qurtubi 14:222-223	ok
+what-makes-a-nikah-valid	A	0.0906	fiqh	Al-Bahr al-Ra'iq 3:232	ok
+do-i-need-a-wali	B	0.4150	fiqh	Bada'i al-Sana'i 2:232	ok
+revert-woman-no-muslim-wali	B	0.8506	fiqh	Al-Mughni 7:21	ok
+what-is-mahr	A	0.3281	fiqh	Al-Bahr al-Ra'iq 3:249	ok
+can-a-muslim-man-marry-non-muslim	A	0.5220	fiqh	Fatawa Qadi Khan 1:180	ok
+can-a-muslim-woman-marry-non-muslim	A	0.6870	fiqh	Al-Mughni 7:21	ok
+marrying-someone-my-family-hates	B	0.0290	hadith	Musnad Ahmad 27:112	ok
+online-nikah	B	0.2494	fiqh	Al-Fatawa al-Hindiyya 1:269	ok
+registering-marriage-legally	B	0.1257	fiqh	Bada'i al-Sana'i 2:253	ok
+rights-of-husband-and-wife	A	0.5552	fiqh	Majmu' al-Fatawa 32:74	ok
+is-obedience-required-of-wife	A	0.6992	fiqh	Majmu' al-Fatawa 32:274-275	ok
+financial-responsibility-in-marriage	A	0.5854	fiqh	Bada'i al-Sana'i 4:22	ok
+does-wife-have-to-do-housework	A	0.2703	fiqh	Bada'i al-Sana'i 4:24	ok
+intimacy-in-marriage-limits	A	0.4236	hadith	Al-Tamhid 6:192-193	ok
+contraception	B	0.1176	fiqh	Majmu' al-Fatawa 34:160-161	ok
+polygamy-in-islam	A	0.1110	fiqh	Al-Majmu' Sharh al-Muhadhdhab 16:137-138	ok
+how-does-divorce-work	A	0.2010	fiqh	Al-Mabsut 5:47	ok
+did-my-divorce-count	C	0.5688	fiqh	Al-Mughni 7:296-297	ok
+khul-woman-initiated-divorce	A	0.2810	quran	Qur'an 2:229	ok
+iddah-waiting-period	A	0.4070	fiqh	Al-Mughni 1:188-189	ok
+custody-after-divorce	C	0.5615	fiqh	Al-Bahr al-Ra'iq 4:342	ok
+zina-what-if-i-did-it	A	0.0663	hadith	Musnad Ahmad 38:38-43	ok
+masturbation-ruling	B	0.0395	fiqh	Majmu' al-Fatawa 34:222-223	ok
+pornography	A	0.0073	fiqh	Majmu' al-Fatawa 15:419-421	ok
+being-gay-in-islam	B	0.0090	hadith	Sahih al-Bukhari 1:9	ok
+friendship-with-opposite-gender	A	0.0546	fiqh	Radd al-Muhtar (Fatawa Shami) 6:685-686	ok
+shaking-hands-opposite-gender	A	0.3567	hadith	Fath al-Bari 11:47	ok
+hugging-relatives	A	0.3853	tafsir	Tafsir al-Qurtubi 12:233	ok
+who-is-a-mahram	A	0.6362	fiqh	Al-Majmu' Sharh al-Muhadhdhab 16:134-135	ok
+being-alone-with-opposite-gender	A	0.1318	fiqh	Radd al-Muhtar (Fatawa Shami) 6:685-686	ok
+what-is-riba	A	0.0204	fiqh	Al-Mughni 4:25	ok
+savings-account-interest	B	0.0053	tafsir	Ahkam al-Qur'an (al-Jassas) 2:188	ok
+what-do-i-do-with-interest-money	B	0.0414	fiqh	Al-Mabsut 14:35	ok
+is-a-mortgage-allowed	B	0.0061	fiqh	Al-Mughni 4:211	ok
+student-loans	B	0.0179	fiqh	Majmu' al-Fatawa 29:533-535	ok
+credit-cards	B	0.0039	fiqh	Al-Mughni 4:209	ok
+car-finance	B	0.0053	fiqh	Al-Mughni 4:206	ok
+is-insurance-allowed	C	0.0076	quran	Qur'an 2:282	ok
+is-crypto-halal	C	0.0027	hadith	Fath al-Bari 12:292	ok
+stocks-and-shares	C	0.0017	hadith	Al-Muwatta 2:709-712	ok
+pension-scheme-at-work	C	0.0055	quran	Qur'an 2:282	ok
+working-at-a-bank	B	0.0044	fiqh	Majmu' al-Fatawa 7:496-498	ok
+working-where-alcohol-is-served	B	0.1791	fiqh	Al-Mabsut 24:15	ok
+working-in-a-supermarket-selling-pork	B	0.2593	fiqh	Bada'i al-Sana'i 7:147	ok
+haram-income-what-do-i-do	B	0.0818	fiqh	Majmu' al-Fatawa 28:596-597	ok
+is-my-job-halal	C	0.0877	fiqh	Majmu' al-Fatawa 29:311	ok
+gambling-and-lottery	A	0.0615	fiqh	Al-Majmu' Sharh al-Muhadhdhab 20:228-229	ok
+is-trading-forex-allowed	C	0.0021	fiqh	Al-Fatawa al-Hindiyya 3:236	ok
+buying-on-instalments	A	0.0060	fiqh	Al-Majmu' Sharh al-Muhadhdhab 14:131-132	ok
+buy-now-pay-later	C	0.0083	hadith	Al-Tamhid 16:343-344	ok
+debt-obligations	A	0.5186	fiqh	Al-Mabsut 10:80	ok
+someone-owes-me-money	B	0.0277	fiqh	Al-Mughni 4:265	ok
+honesty-in-business	A	0.2135	fiqh	Majmu' al-Fatawa 28:104-105	ok
+bribery-vs-gift	A	0.0621	fiqh	Al-Bahr al-Ra'iq 6:470-471	ok
+working-with-opposite-gender	B	0.0010	fiqh	Al-Mughni 10:389	ok
+cutting-corners-at-work	A	0.0179	hadith	Fath al-Bari 11:254	ok
+is-freelancing-for-a-haram-client-ok	B	0.0013	fiqh	Al-Fatawa al-Hindiyya 4:292	ok
+earning-from-ads	C	0.0006	tafsir	Ahkam al-Qur'an (al-Jassas) 3:295	ok
+is-music-haram	A	0.6680	tafsir	Tafsir al-Qurtubi 14:56-57	ok
+is-singing-allowed	A	0.0593	fiqh	Majmu' al-Fatawa 30:213-215	ok
+musical-instruments	A	0.1116	fiqh	Al-Majmu' Sharh al-Muhadhdhab 20:230-231	ok
+watching-films-and-tv	B	0.0016	fiqh	Majmu' al-Fatawa 31:54-56	ok
+photographs-and-selfies	A	0.6191	hadith	Al-Minhaj (Sharh Sahih Muslim) 14:81	ok
+posting-photos-on-social-media	B	0.0029	fiqh	Majmu' al-Fatawa 7:137-139	ok
+drawing-and-art	A	0.2583	hadith	Al-Minhaj (Sharh Sahih Muslim) 14:81	ok
+video-games	B	0.0670	hadith	Al-Minhaj (Sharh Sahih Muslim) 6:184-185	ok
+social-media-and-gossip	A	0.0076	fiqh	Majmu' al-Fatawa 7:137-139	ok
+backbiting-online	A	0.0571	quran	Qur'an 49:12	CHECK
+is-ai-use-allowed	C	0.0021	hadith	Fath al-Bari 6:119	ok
+wasting-time-on-phone	A	0.1729	quran	Qur'an 17:7	ok
+dancing	B	0.2260	fiqh	Majmu' al-Fatawa 11:605	ok
+sports-and-exercise	A	0.3650	fiqh	Al-Majmu' Sharh al-Muhadhdhab 15:132-133	ok
+chess-and-card-games	B	0.0518	fiqh	Al-Mughni 10:171	ok
+friends-who-arent-muslim	A	0.3198	quran	Qur'an 3:28	ok
+going-to-the-pub-with-friends	B	0.2891	fiqh	Al-Mabsut 24:15	ok
+attending-a-christmas-dinner	B	0.0117	fiqh	Majmu' al-Fatawa 25:329-331	ok
+saying-merry-christmas	A	0.0258	fiqh	Majmu' al-Fatawa 25:329-331	ok
+accepting-christmas-gifts	A	0.0217	hadith	Jami' al-Tirmidhi 3:504	ok
+giving-gifts-to-non-muslims	A	0.2394	fiqh	Bada'i al-Sana'i 7:341	ok
+celebrating-birthdays	B	0.7979	fiqh	Majmu' al-Fatawa 25:329-331	ok
+mothers-day	A	0.6865	fiqh	Majmu' al-Fatawa 25:329-331	ok
+new-year-celebrations	A	0.8369	fiqh	Majmu' al-Fatawa 25:329-331	ok
+attending-a-non-muslim-wedding	B	0.1602	fiqh	Al-Mabsut 5:38	ok
+attending-a-non-muslim-funeral	B	0.4819	hadith	Fath al-Bari 3:144	ok
+going-into-a-church	B	0.2020	fiqh	Kanz al-Daqa'iq 1:330-332	ok
+greeting-non-muslims	A	0.3635	hadith	Al-Minhaj (Sharh Sahih Muslim) 14:140	ok
+talking-about-islam-to-others	A	0.3323	fiqh	Majmu' al-Fatawa 15:157-159	ok
+what-does-islam-say-about-other-religions	A	0.0426	fiqh	Majmu' al-Fatawa 7:269-270	ok
+dealing-with-islamophobia	A	0.2290	fiqh	Majmu' al-Fatawa 8:329-330	ok
+what-to-do-when-someone-dies	A	0.9521	fiqh	Al-Mughni 2:209-210	ok
+how-to-pray-janazah	A	0.7842	fiqh	Al-Bahr al-Ra'iq 2:315	ok
+how-are-muslims-buried	A	0.4866	fiqh	Al-Majmu' Sharh al-Muhadhdhab 5:285	ok
+cremation	A	0.5854	fiqh	Majmu' al-Fatawa 24:295-296	ok
+visiting-graves	A	0.8726	fiqh	Al-Fatawa al-Hindiyya 5:350	ok
+praying-for-the-dead	A	0.9180	fiqh	Al-Mughni 2:209-210	ok
+offering-condolences	A	0.0684	quran	Qur'an 3:154	CHECK
+mourning-period	A	0.5884	fiqh	Al-Mabsut 3:153	ok
+writing-a-will	B	0.7422	fiqh	Al-Mabsut 27:178	ok
+inheritance-shares	C	0.6650	fiqh	Al-Majmu' Sharh al-Muhadhdhab 16:53	ok
+organ-donation	C	0.0283	fiqh	Bada'i al-Sana'i 6:6	ok
+how-do-i-make-dua	A	0.0620	tafsir	Tafsir al-Qurtubi 2:312	ok
+can-i-make-dua-in-english	A	0.1226	fiqh	Al-Majmu' Sharh al-Muhadhdhab 3:471	ok
+when-is-dua-answered	A	0.1991	hadith	Fath al-Bari 11:119	ok
+why-isnt-my-dua-answered	A	0.1686	tafsir	Tafsir al-Qurtubi 2:312	ok
+what-is-dhikr	A	0.0027	fiqh	Al-Mabsut 18:40	ok
+morning-and-evening-adhkar	A	0.7598	quran	Qur'an 76:25	ok
+what-is-tawakkul	A	0.2452	quran	Qur'an 39:38	ok
+patience-in-hardship	A	0.6304	quran	Qur'an 70:5	ok
+how-do-i-repent	A	0.6006	hadith	Al-Minhaj (Sharh Sahih Muslim) 17:25	ok
+same-sin-over-and-over	A	0.9316	hadith	Al-Minhaj (Sharh Sahih Muslim) 17:75-78	ok
+does-allah-forgive-everything	A	0.9702	quran	Qur'an 63:6	ok
+feeling-spiritually-empty	A	0.1437	fiqh	Al-Mabsut 1:171	ok
+increasing-iman	A	0.8369	hadith	Al-Minhaj (Sharh Sahih Muslim) 1:146	ok
+dealing-with-waswas	A	0.0240	hadith	Al-Minhaj (Sharh Sahih Muslim) 2:153-154	ok
+evil-eye-protection	A	0.0039	hadith	Al-Minhaj (Sharh Sahih Muslim) 18:59-60	ok
+black-magic	B	0.5317	tafsir	Ahkam al-Qur'an (al-Jassas) 1:61	ok
+what-is-ruqyah	A	0.0659	hadith	Fath al-Bari 10:166	ok
+amulets-and-taweez	A	0.0781	fiqh	Fatawa Qadi Khan 1:29	ok
+astrology-and-horoscopes	A	0.2350	fiqh	Majmu' al-Fatawa 35:192-194	ok
+dreams-and-their-meaning	B	0.0218	hadith	Fath al-Bari 12:353	ok
+how-to-give-salam	A	0.6191	hadith	Al-Minhaj (Sharh Sahih Muslim) 14:140	ok
+what-do-i-say-when	A	0.0055	fiqh	Al-Majmu' Sharh al-Muhadhdhab 1:13	ok
+bathroom-etiquette	A	0.0702	hadith	Al-Minhaj (Sharh Sahih Muslim) 3:163	ok
+sleeping-etiquette	A	0.2661	hadith	Sunan Abi Dawud 2:513	ok
+entering-and-leaving-home	A	0.1953	quran	Qur'an 24:61	ok
+sneezing-and-yawning	A	0.5112	hadith	Musnad Ahmad 39:274-276	ok
+is-lying-ever-allowed	A	0.5205	fiqh	Radd al-Muhtar (Fatawa Shami) 6:749-750	ok
+keeping-promises	A	0.1122	quran	Qur'an 48:10	CHECK
+swearing-by-allah	A	0.9204	quran	Qur'an 48:10	ok
+expiation-for-broken-oath	A	0.0825	fiqh	Fatawa Qadi Khan 1:107	ok
+anger-management-in-islam	A	0.0256	hadith	Fath al-Bari 10:431	ok
+dealing-with-jealousy	A	0.0883	fiqh	Majmu' al-Fatawa 10:125-126	ok
+swearing-and-bad-language	A	0.3687	quran	Qur'an 5:3	ok
+keeping-a-dog	B	0.1310	fiqh	Al-Majmu' Sharh al-Muhadhdhab 9:235	ok
+keeping-pets	A	0.0180	hadith	Al-Minhaj (Sharh Sahih Muslim) 10:236	ok
+treatment-of-animals	A	0.0820	fiqh	Al-Majmu' Sharh al-Muhadhdhab 1:241-242	ok
+is-smoking-haram	B	0.0334	fiqh	Al-Majmu' Sharh al-Muhadhdhab 2:579	ok
+vaping	C	0.0157	fiqh	Majmu' al-Fatawa 34:210-212	ok
+neighbours-rights	A	0.7100	tafsir	Tafsir al-Qurtubi 5:184	ok
+seeking-knowledge	A	0.0053	fiqh	Al-Mustasfa 0:343	ok
+seeking-medical-treatment	A	0.0165	fiqh	Majmu' al-Fatawa 10:143-144	ok
+medicine-containing-alcohol	C	0.4084	fiqh	Al-Fatawa al-Hindiyya 5:414	ok
+medicine-containing-gelatin	C	0.0014	fiqh	Al-Mughni 9:323-324	ok
+vaccines	C	0.0420	fiqh	Majmu' al-Fatawa 18:12	ok
+mental-health-and-islam	B	0.0124	hadith	Fath al-Bari 10:113	ok
+is-depression-weak-faith	A	0.3516	hadith	Al-Tamhid 9:252	ok
+suicide-in-islam	A	0.0575	hadith	Sahih Muslim 1:107	ok
+ivf-and-fertility-treatment	C	0.0067	hadith	Fath al-Bari 9:271	ok
+abortion-in-islam	C	0.0344	tafsir	Ahkam al-Qur'an (al-Jassas) 3:124-125	ok
+cosmetic-surgery	B	0.0050	fiqh	Al-Fatawa al-Hindiyya 1:32	ok
+fasting-with-a-medical-condition	C	0.5498	tafsir	Ahkam al-Qur'an (al-Jassas) 1:265	ok
+how-do-i-know-islam-is-true	A	0.1152	fiqh	Majmu' al-Fatawa 7:461-463	ok
+why-so-many-rules	A	0.0746	hadith	Al-Minhaj (Sharh Sahih Muslim) 12:11	ok
+why-are-men-and-women-treated-differently	A	0.5859	quran	Qur'an 33:35	ok
+islam-and-slavery	A	0.3218	fiqh	Al-Mughni 10:278	ok
+age-of-aisha	B	0.0049	hadith	Sunan al-Nasa'i al-Kubra 3:279-280	ok
+violence-in-the-quran	A	0.4690	quran	Qur'an 100:8	ok
+what-is-jihad	A	0.1906	fiqh	Al-Fatawa al-Hindiyya 2:188	ok
+muslims-behaving-badly	A	0.0437	quran	Qur'an 4:155	CHECK
+cultural-vs-islamic	A	0.0126	fiqh	Majmu' al-Fatawa 7:263-264	ok
+scholars-disagree-who-do-i-follow	A	0.2546	hadith	Al-Minhaj (Sharh Sahih Muslim) 2:23	ok
+leaving-islam	B	0.3862	fiqh	Al-Fatawa al-Hindiyya 2:253	ok
+fate-of-non-muslims	B	0.0325	fiqh	Majmu' al-Fatawa 18:293-295	ok
+my-parents-will-go-to-hell	A	0.7397	hadith	Al-Tamhid 18:97-99	ok

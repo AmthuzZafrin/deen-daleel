@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #ffffff;
+  --bg-subtle: #f7f7f5;
+  --border: #e5e5e0;
+  --text: #1a1a19;
+  --text-muted: #6b6b66;
+  --accent: #1c6a5e;
+  --accent-soft: #e6f0ee;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a19;
+    --bg-subtle: #232322;
+    --border: #34342f;
+    --text: #ecece8;
+    --text-muted: #9a9a93;
+    --accent: #4fb3a0;
+    --accent-soft: #1e332f;
+  }
+}
+
+html, body { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Vocalised Arabic needs generous line height or diacritics collide with the
+   line above. Never apply text-transform or letter-spacing to Arabic. */
+.arabic {
+  font-family: var(--font-arabic, "Amiri", "Scheherazade New", serif);
+  direction: rtl;
+  text-align: right;
+  line-height: 2.1;
+  font-size: 1.375rem;
+}

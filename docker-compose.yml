@@ -1,0 +1,26 @@
+# Equivalent to scripts/db.sh, for environments that have the compose plugin.
+# This machine does not, so scripts/db.sh is the supported path here.
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    container_name: deen-daleel-db
+    environment:
+      POSTGRES_DB: deen_daleel
+      POSTGRES_USER: deen
+      POSTGRES_PASSWORD: deen
+    ports:
+      # 5433 on the host: port 5432 is commonly taken by a system Postgres.
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Applied automatically on first boot of an empty volume.
+      - ./db/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U deen -d deen_daleel"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+volumes:
+  pgdata:
+    name: deen-daleel-pgdata

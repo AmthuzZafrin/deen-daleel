@@ -1,0 +1,105 @@
+slug	tier	beforeScore	afterScore	ratio	beforeKind	afterKind	beforeRef	afterRef	verdict
+how-to-make-wudu	A	0.0170	0.1161	6.81	quran	tafsir	Qur'an 5:6	Tafsir Ibn Kathir 3:49-50	shifted
+fard-parts-of-wudu	A	0.0472	0.1941	4.11	fiqh	fiqh	Al-Fatawa al-Hindiyya 1:58	Fatawa Qadi Khan 1:15	shifted
+bismillah-before-wudu	A	0.1239	0.2494	2.01	fiqh	fiqh	Al-Hidaya 1:145-146	Al-Majmu' Sharh al-Muhadhdhab 1:466	shifted
+order-of-wudu	A	0.2683	0.4446	1.66	tafsir	tafsir	Tafsir Ibn Kathir 3:51-52	Tafsir Ibn Kathir 3:51-52	same
+what-breaks-wudu	A	0.0256	0.3508	13.69	fiqh	fiqh	Al-Mabsut 1:110	Fatawa Qadi Khan 1:17	shifted
+does-sleeping-break-wudu	A	0.2659	0.5806	2.18	fiqh	fiqh	Fatawa Qadi Khan 1:20	Al-Bahr al-Ra'iq 1:74	shifted
+does-touching-spouse-break-wudu	A	0.0231	0.6416	27.81	quran	fiqh	Qur'an 4:43	Al-Mughni 1:123-124	MOVED
+does-bleeding-break-wudu	A	0.0526	0.1857	3.53	fiqh	fiqh	Al-Majmu' Sharh al-Muhadhdhab 2:11	Fatawa Qadi Khan 1:17	shifted
+does-vomiting-break-wudu	A	0.0553	0.4087	7.39	fiqh	fiqh	Al-Majmu' Sharh al-Muhadhdhab 2:541	Majmu' al-Fatawa 21:227	shifted
+does-laughing-break-wudu	A	0.8232	0.9263	1.13	fiqh	fiqh	Fatawa Qadi Khan 1:29	Fatawa Qadi Khan 1:29	same
+does-touching-private-parts-break-wudu	A	0.2058	0.2576	1.25	hadith	fiqh	Al-Tamhid 23:349	Majmu' al-Fatawa 21:231	shifted
+does-changing-clothes-break-wudu	A	0.0328	0.0578	1.76	fiqh	fiqh	Al-Mabsut 1:124	Al-Majmu' Sharh al-Muhadhdhab 2:537	shifted
+doubt-whether-wudu-broke	A	0.1032	0.3201	3.10	quran	fiqh	Qur'an 5:6	Al-Fatawa al-Hindiyya 1:3	MOVED
+nail-polish-and-wudu	A	0.0083	0.0129	1.56	tafsir	tafsir	Tafsir al-Tabari 8:175-177	Ahkam al-Qur'an (al-Jassas) 4:23	shifted
+makeup-and-wudu	A	0.0115	0.0511	4.46	fiqh	fiqh	Al-Majmu' Sharh al-Muhadhdhab 1:466	Al-Majmu' Sharh al-Muhadhdhab 1:466	same
+contact-lenses-wudu	A	0.0243	0.0667	2.75	tafsir	fiqh	Tafsir al-Tabari 8:182	Al-Majmu' Sharh al-Muhadhdhab 1:466	MOVED
+wudu-with-a-cast-or-bandage	A	0.0120	0.1708	14.22	tafsir	fiqh	Tafsir Ibn Kathir 3:49-50	Al-Majmu' Sharh al-Muhadhdhab 2:328	MOVED
+wiping-over-socks	A	0.0263	0.7808	29.73	tafsir	fiqh	Tafsir al-Tabari 8:194-198	Al-Mabsut 1:104	MOVED
+what-kind-of-socks-count	A	0.0010	0.6802	704.06	tafsir	fiqh	Tafsir Ibn Kathir 3:53	Al-Mabsut 1:104	MOVED
+how-long-can-i-wipe-socks	A	0.0048	0.8379	173.50	fiqh	fiqh	Al-Mabsut 1:99	Al-Mughni 1:177	shifted
+wiping-over-hijab-or-turban	A	0.1813	0.2185	1.21	fiqh	fiqh	Fatawa Qadi Khan 1:16	Fatawa Qadi Khan 1:16	same
+wudu-in-a-public-bathroom	A	0.0046	0.0490	10.60	tafsir	fiqh	Tafsir Ibn Kathir 3:48-49	Fatawa Qadi Khan 1:15	MOVED
+how-much-water-for-wudu	A	0.1334	0.1776	1.33	tafsir	fiqh	Ahkam al-Qur'an (al-Jassas) 4:25	Al-Mabsut 1:110	MOVED
+waswas-repeating-wudu	A	0.0779	0.1639	2.10	quran	fiqh	Qur'an 5:6	Al-Majmu' Sharh al-Muhadhdhab 1:466	MOVED
+when-is-ghusl-required	A	0.0860	0.4399	5.12	tafsir	fiqh	Ahkam al-Qur'an (Ibn al-'Arabi) 2:53	Majmu' al-Fatawa 21:469	MOVED
+how-to-do-ghusl	A	0.1050	0.5088	4.84	fiqh	fiqh	Al-Majmu' Sharh al-Muhadhdhab 5:169	Al-Mughni 1:138	shifted
+does-ghusl-replace-wudu	A	0.0720	0.1661	2.31	fiqh	hadith	Al-Majmu' Sharh al-Muhadhdhab 2:143	Al-Minhaj (Sharh Sahih Muslim) 3:229	shifted
+wet-dream-ghusl	A	0.5962	0.4807	0.81	fiqh	fiqh	Al-Majmu' Sharh al-Muhadhdhab 2:139	Fatawa Qadi Khan 1:20	shifted
+ghusl-with-hair-braids	A	0.0801	0.3621	4.52	fiqh	tafsir	Al-Bahr al-Ra'iq 2:304-305	Tafsir al-Qurtubi 5:212	REGRESSED
+what-is-tayammum	A	0.1626	0.6763	4.16	fiqh	fiqh	Al-Bahr al-Ra'iq 1:256-257	Al-Mughni 1:170	shifted
+how-to-do-tayammum	A	0.3103	0.7837	2.53	fiqh	fiqh	Al-Majmu' Sharh al-Muhadhdhab 2:214	Mukhtasar al-Quduri 1:15-16	shifted
+tayammum-no-water-at-work	B	0.6133	0.9380	1.53	fiqh	fiqh	Mukhtasar al-Quduri 1:15-16	Al-Mabsut 1:112	shifted
+tayammum-when-ill	B	0.1245	0.7021	5.64	fiqh	fiqh	Mukhtasar al-Quduri 1:15-16	Al-Mughni 1:170	shifted
+how-to-clean-after-toilet	A	0.0053	0.1646	31.03	quran	fiqh	Qur'an 5:6	Fatawa Qadi Khan 1:15	MOVED
+is-toilet-paper-enough	A	0.0064	0.1460	22.77	fiqh	fiqh	Al-Majmu' Sharh al-Muhadhdhab 2:268	Fatawa Qadi Khan 1:15	shifted
+what-is-najis	A	0.0093	0.5269	56.42	fiqh	fiqh	Al-Mughni 1:413	Al-Majmu' Sharh al-Muhadhdhab 2:599	shifted
+is-blood-najis	A	0.0368	0.5557	15.09	fiqh	fiqh	Al-Mughni 1:408-409	Al-Mughni 1:49	shifted
+madhiy-vs-maniy	A	0.2485	0.4280	1.72	fiqh	fiqh	Bada'i al-Sana'i 1:37	Al-Mughni 1:129	shifted
+discharge-and-wudu-women	A	0.1959	0.0844	0.43	fiqh	fiqh	Al-Bahr al-Ra'iq 1:113	Al-Hidaya 1:32	shifted
+is-alcohol-in-perfume-najis	B	0.0015	0.0500	32.70	hadith	fiqh	Musnad Ahmad 8:274-282	Fatawa Qadi Khan 1:13	shifted
+ghusl-after-period	A	0.1774	0.4717	2.66	tafsir	fiqh	Ahkam al-Qur'an (al-Jassas) 2:39	Majmu' al-Fatawa 21:469	MOVED
+birth-control-to-delay-period	B	0.0842	0.2778	3.30	hadith	hadith	Al-Tamhid 16:172	Al-Tamhid 16:172	same
+intercourse-after-period-before-ghusl	A	0.5977	0.6328	1.06	fiqh	fiqh	Al-Bahr al-Ra'iq 4:88	Al-Mughni 1:205	shifted
+forgot-a-rakah	A	0.0016	0.8682	532.98	tafsir	fiqh	Tafsir al-Tabari 3:240-241	Al-Mughni 1:386-387	MOVED
+sujud-al-sahw	A	0.0378	0.1138	3.01	quran	fiqh	Qur'an 2:282	Al-Mughni 1:382-383	MOVED
+which-direction-is-qibla	A	0.0033	0.1539	46.68	fiqh	fiqh	Al-Mabsut 28:56	Majmu' al-Fatawa 22:206-208	shifted
+two-people-congregation	A	0.0024	0.3042	125.48	fiqh	hadith	Al-Majmu' Sharh al-Muhadhdhab 4:196	Fath al-Bari 2:119	shifted
+how-to-pray-witr	A	0.0742	0.1407	1.90	fiqh	hadith	Al-Mughni 1:453	Sahih al-Bukhari 2:13	shifted
+tahajjud-how	A	0.0061	0.1917	31.68	fiqh	fiqh	Fatawa Qadi Khan 1:158	Radd al-Muhtar (Fatawa Shami) 2:25-26	shifted
+what-breaks-the-fast	A	0.0206	0.8149	39.47	hadith	fiqh	Sunan al-Nasa'i al-Kubra 2:214-215	Majmu' al-Fatawa 25:219-221	shifted
+swallowing-saliva	A	0.0025	0.6758	271.08	fiqh	fiqh	Fatawa Qadi Khan 1:102	Majmu' al-Fatawa 25:244-246	shifted
+toothpaste-and-fasting	A	0.0618	0.2006	3.25	fiqh	fiqh	Al-Mughni 3:17	Al-Mughni 3:17	same
+mouthwash-fasting	A	0.0049	0.4622	93.84	quran	fiqh	Qur'an 2:196	Al-Mughni 3:17	MOVED
+does-vomiting-break-fast	A	0.1797	0.5444	3.03	quran	fiqh	Qur'an 2:185	Kanz al-Daqa'iq 1:221-224	MOVED
+blood-test-while-fasting	B	0.0019	0.3489	186.08	quran	fiqh	Qur'an 2:187	Majmu' al-Fatawa 25:219-221	MOVED
+inhaler-while-fasting	B	0.0021	0.3130	150.82	fiqh	fiqh	Majmu' al-Fatawa 25:266-267	Al-Mughni 3:17	shifted
+injections-and-fasting	B	0.0018	0.4827	266.66	quran	fiqh	Qur'an 2:187	Majmu' al-Fatawa 25:244-246	MOVED
+intercourse-during-fasting-day	A	0.4216	0.5410	1.28	quran	quran	Qur'an 2:187	Qur'an 2:187	same
+does-smoking-break-fast	A	0.0042	0.4832	114.62	fiqh	fiqh	Fatawa Qadi Khan 1:102	Fatawa Qadi Khan 1:100	shifted
+perfume-while-fasting	A	0.0048	0.0619	12.92	fiqh	fiqh	Al-Majmu' Sharh al-Muhadhdhab 18:122-123	Fatawa Qadi Khan 1:102	shifted
+swimming-while-fasting	A	0.2335	0.6489	2.78	fiqh	fiqh	Majmu' al-Fatawa 21:463	Majmu' al-Fatawa 21:463	same
+missed-suhoor	A	0.0064	0.1246	19.44	quran	fiqh	Qur'an 2:187	Al-Majmu' Sharh al-Muhadhdhab 6:360	MOVED
+breaking-fast-time	A	0.0378	0.5752	15.21	quran	fiqh	Qur'an 2:187	Majmu' al-Fatawa 25:250-252	MOVED
+fasting-mondays-thursdays	A	0.0489	0.1163	2.38	fiqh	fiqh	Al-Majmu' Sharh al-Muhadhdhab 6:440	Al-Majmu' Sharh al-Muhadhdhab 6:440	same
+taraweeh-what-is-it	A	0.0018	0.2793	156.11	hadith	hadith	Al-Minhaj (Sharh Sahih Muslim) 6:38-39	Fath al-Bari 4:217	shifted
+zakat-al-fitr	A	0.2229	0.3301	1.48	hadith	hadith	Sunan Abi Dawud 3:54-55	Fath al-Bari 3:212	shifted
+what-is-zakat	A	0.1699	0.1390	0.82	fiqh	fiqh	Majmu' al-Fatawa 25:87-88	Al-Mughni 6:326	shifted
+how-much-is-nisab	B	0.1500	0.3105	2.07	fiqh	fiqh	Fatawa Qadi Khan 1:132	Al-Bahr al-Ra'iq 2:392-393	shifted
+zakat-on-savings	A	0.0168	0.0307	1.82	fiqh	fiqh	Al-Mughni 2:342	Al-Mughni 2:342	same
+zakat-on-salary	A	0.0970	0.1378	1.42	fiqh	fiqh	Al-Mughni 2:273	Al-Mughni 6:326	shifted
+zakat-on-gold-jewellery	A	0.1511	0.3916	2.59	fiqh	fiqh	Al-Majmu' Sharh al-Muhadhdhab 6:6	Al-Mughni 2:324	shifted
+zakat-if-i-have-debt	B	0.2480	0.5044	2.03	fiqh	fiqh	Fatawa Qadi Khan 1:132	Al-Mughni 2:342-343	shifted
+zakat-on-property	B	0.0551	0.3254	5.90	fiqh	fiqh	Fatawa Qadi Khan 1:132	Al-Mughni 5:372-373	shifted
+zakat-on-shares-investments	B	0.0078	0.0206	2.63	quran	fiqh	Qur'an 5:12	Al-Mabsut 2:203	MOVED
+zakat-on-pension	C	0.0042	0.0067	1.61	quran	quran	Qur'an 2:110	Qur'an 2:110	same
+when-is-zakat-due	A	0.0574	0.1120	1.95	hadith	fiqh	Sunan Abi Dawud 3:54-55	Fatawa Qadi Khan 1:113-114	shifted
+who-can-receive-zakat	A	0.2920	0.2673	0.92	fiqh	fiqh	Al-Mughni 2:365-366	Majmu' al-Fatawa 25:90	shifted
+zakat-to-family	A	0.7690	0.5933	0.77	fiqh	fiqh	Al-Mughni 2:269	Majmu' al-Fatawa 25:90	shifted
+zakat-to-non-muslims	A	0.8511	0.8638	1.01	hadith	hadith	Al-Tamhid 14:263-264	Al-Tamhid 14:263-264	same
+zakat-vs-sadaqah	A	0.2197	0.1987	0.90	fiqh	fiqh	Al-Majmu' Sharh al-Muhadhdhab 6:219	Al-Hidaya 1:103	shifted
+forgot-to-pay-zakat-years	B	0.0435	0.1394	3.21	quran	fiqh	Qur'an 2:280	Al-Mabsut 3:38	MOVED
+is-hajj-obligatory-on-me	A	0.1067	0.6367	5.97	fiqh	fiqh	Mukhtasar al-Quduri 1:66-67	Al-Mughni 3:85-86	shifted
+hajj-if-i-cant-afford	A	0.0834	0.3840	4.60	quran	hadith	Qur'an 2:196	Al-Tamhid 9:125-126	MOVED
+what-happens-at-hajj	A	0.0972	0.1417	1.46	quran	fiqh	Qur'an 2:197	Al-Mughni 3:85-86	MOVED
+what-is-umrah	A	0.4688	0.3577	0.76	fiqh	fiqh	Al-Bahr al-Ra'iq 3:31	Al-Bahr al-Ra'iq 3:31	same
+what-is-ihram	A	0.0323	0.1525	4.71	quran	fiqh	Qur'an 2:196	Bada'i al-Sana'i 2:211	MOVED
+women-hajj-without-mahram	B	0.9248	0.9517	1.03	hadith	fiqh	Sahih Muslim 2:978	Al-Majmu' Sharh al-Muhadhdhab 8:342-344	shifted
+hajj-on-behalf-of-someone	A	0.6147	0.4971	0.81	fiqh	fiqh	Al-Bahr al-Ra'iq 3:121	Al-Mabsut 4:148	shifted
+broke-ihram-rules	B	0.1282	0.1678	1.31	fiqh	fiqh	Al-Mughni 9:282	Al-Mughni 9:282	same
+period-during-hajj	A	0.0125	0.0255	2.04	quran	quran	Qur'an 2:196	Qur'an 2:196	same
+touching-quran-without-wudu	A	0.0616	0.1678	2.72	fiqh	fiqh	Al-Risala 1:160-165	Bada'i al-Sana'i 1:19	shifted
+quran-on-phone-without-wudu	A	0.1754	0.1000	0.57	fiqh	fiqh	Majmu' al-Fatawa 21:636	Al-Mabsut 1:62	shifted
+quran-in-the-bathroom-on-phone	A	0.0089	0.0167	1.88	fiqh	fiqh	Al-Majmu' Sharh al-Muhadhdhab	Fatawa Qadi Khan 1:15	shifted
+is-hijab-obligatory	A	0.0582	0.3618	6.21	tafsir	hadith	Tafsir Ibn Kathir 6:450-451	Al-Tamhid 6:376-378	MOVED
+not-ready-to-wear-hijab	A	0.0066	0.1936	29.27	quran	fiqh	Qur'an 2:282	Majmu' al-Fatawa 26:111-113	MOVED
+hijab-at-work-or-school	B	0.0044	0.1698	38.31	fiqh	tafsir	Al-Fatawa al-Hindiyya 2:125	Ahkam al-Qur'an (al-Jassas) 4:206	REGRESSED
+makeup-in-public	B	0.0010	0.0114	11.92	tafsir	hadith	Tafsir Ibn Kathir 6:49-50	Al-Tamhid 20:119	MOVED
+keeping-family-ties	A	0.0021	0.0309	14.50	quran	hadith	Qur'an 2:234	Fath al-Bari 10:353	MOVED
+when-do-children-start-praying	A	0.1217	0.1766	1.45	hadith	fiqh	Sunan Abi Dawud 1:366	Al-Mughni 3:45-46	shifted
+revert-woman-no-muslim-wali	B	0.0110	0.5562	50.62	fiqh	fiqh	Al-Mughni 7:21	Al-Mughni 7:21	same
+what-is-mahr	A	0.0721	0.3281	4.55	hadith	fiqh	Jami' al-Tirmidhi 2:405-406	Al-Bahr al-Ra'iq 3:249	shifted
+registering-marriage-legally	B	0.0067	0.1257	18.86	fiqh	fiqh	Mukhtasar al-Quduri 1:145-146	Bada'i al-Sana'i 2:253	shifted
+debt-obligations	A	0.1417	0.5186	3.66	quran	fiqh	Qur'an 56:66	Al-Mabsut 10:80	MOVED
+bathroom-etiquette	A	0.0103	0.0702	6.82	fiqh	hadith	Majmu' al-Fatawa 21:442	Al-Minhaj (Sharh Sahih Muslim) 3:163	shifted

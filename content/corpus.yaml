@@ -1,0 +1,390 @@
+# The classical corpus: what is ingested, and under what terms.
+#
+# This file is the editorial record for the library. Every entry states its
+# licence, because `sources.license` is NOT NULL by design — an unknown licence
+# must block ingestion rather than slip through.
+#
+# All texts here come from the OpenITI corpus (openiti.org) under
+# CC BY-NC-SA 4.0: free to use, **non-commercial only**, attribution required,
+# share-alike. Deen & Daleel is non-commercial by decision, which is what makes
+# this corpus usable. If that ever changes, this whole file has to be revisited.
+#
+# `kind` maps onto the four SourceKind values the retrieval balancer knows
+# (quran / hadith / tafsir / fiqh). Usul al-fiqh, qawa'id and fatwa collections
+# are all filed under `fiqh`; hadith commentaries under `hadith`, since the
+# narration is the evidence they carry.
+#
+# Ingest with:  .venv/bin/python -m pipelines.classical [--book <id>]
+#
+# Choosing a version
+# ------------------
+# OpenITI usually holds several digitisations of a work and they differ enormously
+# in whether they can be *cited*. Pick on page coverage, never on size — the
+# largest Fath al-Bari paginates 0% of its text while a slightly smaller one
+# paginates 99.8%, and the same held for Bukhari, Sharh Muslim and the Muwatta.
+#
+#   .venv/bin/python -m pipelines.compare_versions --book <id>
+#
+# `Shia*Vols` versions are often the best paginated, but not always — Abu Dawud's
+# is among the worst. Measure rather than assume. The ingest pipeline prints
+# coverage per work and warns below 50%, so a bad choice is visible rather than
+# silently producing chunks that cite only a title.
+
+defaults:
+  license: CC BY-NC-SA 4.0
+  attribution: OpenITI corpus (openiti.org), CC BY-NC-SA 4.0
+  language: ar
+
+books:
+  # ---------------------------------------------------------------- hadith --
+  # The collections come first: the commentaries below explain these, and
+  # without them "what does the hadith say" has nothing to retrieve.
+  - id: bukhari
+    title: Sahih al-Bukhari
+    title_ar: صحيح البخاري
+    author: Muhammad b. Isma'il al-Bukhari (d. 256 AH)
+    kind: hadith
+    # 99.8% paginated, against 72.8% for JK000110 and 10.1% for the largest.
+    uri: 0256Bukhari.Sahih.Shia001715Vols-ara1
+
+  - id: muslim
+    title: Sahih Muslim
+    title_ar: صحيح مسلم
+    author: Muslim b. al-Hajjaj (d. 261 AH)
+    kind: hadith
+    uri: 0261Muslim.Sahih.Shamela0001727-ara1
+
+  - id: abu-dawud
+    title: Sunan Abi Dawud
+    title_ar: سنن أبي داود
+    author: Abu Dawud al-Sijistani (d. 275 AH)
+    kind: hadith
+    # Already the best of four (checked); the others are 0-19%. Accepted.
+    uri: 0275AbuDawudSijistani.Sunan.Shamela0117359-ara1
+
+  - id: tirmidhi
+    title: Jami' al-Tirmidhi
+    title_ar: جامع الترمذي
+    author: Muhammad b. 'Isa al-Tirmidhi (d. 279 AH)
+    kind: hadith
+    # The metadata calls this book `JamicSahih`, but the GitHub release files it
+    # under `Sunan`. Where a fetch 404s on every candidate, check the actual
+    # directory listing rather than trusting the metadata's book id.
+    uri: 0279Tirmidhi.Sunan.Shamela0007895-ara2
+
+  - id: nasai
+    title: Sunan al-Nasa'i al-Kubra
+    title_ar: السنن الكبرى للنسائي
+    author: Ahmad b. Shu'ayb al-Nasa'i (d. 303 AH)
+    kind: hadith
+    uri: 0303Nasai.SunanKubra.JK000475-ara1
+
+  - id: ibn-majah
+    title: Sunan Ibn Majah
+    title_ar: سنن ابن ماجه
+    author: Muhammad b. Yazid Ibn Majah (d. 273 AH)
+    kind: hadith
+    uri: 0273IbnMaja.Sunan.Shia001731Vols-ara1
+
+  - id: muwatta
+    title: Al-Muwatta
+    title_ar: الموطأ
+    author: Malik b. Anas (d. 179 AH)
+    kind: hadith
+    # JK000466 over the larger Shamela0028107: the latter marks 4,159 of its
+    # 4,575 page markers as PageV00P000 (unpaginated), so it can carry no page
+    # citations at all. Prefer the version that can actually be cited.
+    uri: 0179MalikIbnAnas.Muwatta.JK000466-ara1
+
+  - id: musnad-ahmad
+    title: Musnad Ahmad
+    title_ar: مسند أحمد
+    author: Ahmad b. Hanbal (d. 241 AH)
+    kind: hadith
+    # Only ~49% of chunks get a page citation, which the pipeline flags. This is
+    # already the best of the four OpenITI versions (checked with
+    # `compare_versions --book musnad-ahmad`); the others are 0-11%. Accepted
+    # rather than fixable — the remainder cite the work without a page.
+    uri: 0241IbnHanbal.Musnad.Shamela0025794-ara1
+
+  # ------------------------------------------------- hadith commentaries --
+  - id: fath-al-bari
+    title: Fath al-Bari
+    title_ar: فتح الباري شرح صحيح البخاري
+    author: Ibn Hajar al-'Asqalani (d. 852 AH)
+    kind: hadith
+    # Shia001792Vols paginates 99.8% of its text; the larger Shamela0001673
+    # paginates none of it. Size is not the criterion — citability is.
+    uri: 0852IbnHajarCasqalani.FathBari.Shia001792Vols-ara1
+
+  - id: sharh-muslim
+    title: Al-Minhaj (Sharh Sahih Muslim)
+    title_ar: المنهاج شرح صحيح مسلم
+    author: Yahya b. Sharaf al-Nawawi (d. 676 AH)
+    kind: hadith
+    # 98.8% paginated, against 0% for the Shamela version of identical length.
+    uri: 0676Nawawi.MinhajFiSharhMuslim.Shia001764Vols-ara1
+
+  - id: umdat-al-qari
+    title: Umdat al-Qari
+    title_ar: عمدة القاري شرح صحيح البخاري
+    author: Badr al-Din al-'Ayni (d. 855 AH)
+    kind: hadith
+    uri: 0855BadrDinCayni.CumdatQari.Shia001806Vols-ara1
+    # Held back deliberately. All three OpenITI versions page badly — 0%, 10.8%
+    # and 15.8% — so five sixths of this 4.65M-token commentary would cite the
+    # title and no page, which is not a citation anyone can check. Fath al-Bari
+    # already covers Bukhari at 99.8% pagination; what is lost is the Hanafi
+    # reading, and that is worth revisiting if the query log shows the gap.
+    # The uri above is the best of the three, ready if that day comes.
+    skip: umdat-al-qari pages at only 15.8% in its best available version
+
+  - id: tamhid
+    title: Al-Tamhid
+    title_ar: التمهيد لما في الموطأ من المعاني والأسانيد
+    author: Ibn 'Abd al-Barr (d. 463 AH)
+    kind: hadith
+    uri: 0463IbnCabdBarr.TamhidMuwatta.Shia002131Vols-ara1  # 100% paged, vs 0%
+
+  # ---------------------------------------------------------------- tafsir --
+  - id: tabari
+    title: Tafsir al-Tabari
+    title_ar: جامع البيان عن تأويل آي القرآن
+    author: Muhammad b. Jarir al-Tabari (d. 310 AH)
+    kind: tafsir
+    uri: 0310Tabari.JamicBayan.Shamela0007798-ara1
+
+  - id: qurtubi
+    title: Tafsir al-Qurtubi
+    title_ar: الجامع لأحكام القرآن
+    author: Muhammad b. Ahmad al-Qurtubi (d. 671 AH)
+    kind: tafsir
+    # OpenITI's metadata files this author as `0671ShamsDinQurtubi`, but the
+    # GitHub tree uses `0671AbuCabdAllahQurtubi`. Fetching by the metadata name
+    # 404s on every version — the same mismatch that hid Tirmidhi. The URI must
+    # follow the repository, not the catalogue.
+    #
+    # Of the four real versions (2.2%, 26.0%, 35.7%, 0.0% paged) this is the
+    # best; a third of it can be cited to a printed page.
+    uri: 0671AbuCabdAllahQurtubi.JamicLiAhkamQuran.JK000160-ara1
+
+  - id: ibn-kathir
+    title: Tafsir Ibn Kathir
+    title_ar: تفسير القرآن العظيم
+    author: Isma'il b. 'Umar Ibn Kathir (d. 774 AH)
+    kind: tafsir
+    uri: 0774IbnKathir.TafsirQuran.Shamela0008473-ara1
+
+  - id: jalalayn
+    title: Tafsir al-Jalalayn
+    title_ar: تفسير الجلالين
+    author: Jalal al-Din al-Mahalli and Jalal al-Din al-Suyuti (d. 911 AH)
+    kind: tafsir
+    # Best of three, but only 14.4% paged — kept anyway, unlike Umdat al-Qari.
+    # Jalalayn is a verse-by-verse gloss: the heading breadcrumb names the sura
+    # and ayah, so a reader can find the passage in any edition without a page
+    # number. Umdat is continuous commentary, where losing the page loses the
+    # location entirely. Pagination matters in proportion to how hard the text
+    # is to navigate without it.
+    uri: 0911Suyuti.TafsirJalalayn.Shia002669-ara1
+
+  - id: ahkam-jassas
+    title: Ahkam al-Qur'an (al-Jassas)
+    title_ar: أحكام القرآن للجصاص
+    author: Ahmad b. 'Ali al-Jassas (d. 370 AH)
+    kind: tafsir
+    # 52.1% paged, against 1.8% for the larger Shamela0007370. Smaller in tokens
+    # but far more of it can be cited.
+    uri: 0370IbnCaliJassas.AhkamQuran.JK000871-ara1
+
+  - id: ahkam-ibn-arabi
+    title: Ahkam al-Qur'an (Ibn al-'Arabi)
+    title_ar: أحكام القرآن لابن العربي
+    author: Abu Bakr Ibn al-'Arabi al-Ishbili (d. 543 AH)
+    kind: tafsir
+    # Largest of three versions, all of which page at 100%.
+    uri: 0543IbnCarabiIshbili.AhkamQuran.JK000917-ara1
+
+  # ------------------------------------------------------------------ fiqh --
+  - id: risala-shafii
+    title: Al-Risala
+    title_ar: الرسالة
+    author: Muhammad b. Idris al-Shafi'i (d. 204 AH)
+    kind: fiqh
+    uri: 0204Shafici.Risala.JK000143-ara1  # 29.8% paged, vs 0.2%
+
+  - id: mustasfa
+    title: Al-Mustasfa
+    title_ar: المستصفى من علم الأصول
+    author: Abu Hamid al-Ghazali (d. 505 AH)
+    kind: fiqh
+    uri: 0505Ghazali.Mustasfa.Shia002916-ara1  # 28.1% paged, vs 0%
+
+  - id: usul-shashi
+    title: Usul al-Shashi
+    title_ar: أصول الشاشي
+    author: Nizam al-Din Abu 'Ali al-Shashi (d. 344 AH)
+    kind: fiqh
+    uri: 0344NizamDinShashi.Usul.JK000194-ara1  # 99.9% paged
+
+  - id: manar-al-anwar
+    title: Manar al-Anwar
+    title_ar: منار الأنوار في أصول الفقه
+    author: Hafiz al-Din al-Nasafi (d. 710 AH)
+    kind: fiqh
+    # Stands in for the *Sharh al-Manar* on your list, and is not the same book:
+    # this is Nasafi's base text, not a commentary on it. Nur al-Anwar — the
+    # commentary you named — is not in OpenITI at all, and the commentaries
+    # explain this text, so the matn is the closest thing available. Recorded
+    # plainly rather than filed under the title that was asked for.
+    #
+    # No metadata row exists for this work; found by listing the GitHub tree.
+    uri: 0710IbnAhmadHafizDinNasafi.ManarAnwar.ShamAY0037542-ara1
+
+  - id: adab-al-mufti
+    title: Adab al-Mufti wa'l-Mustafti
+    title_ar: أدب المفتي والمستفتي
+    author: Ibn al-Salah al-Shahrazuri (d. 643 AH)
+    kind: fiqh
+    # 1,238 blocks against JK000280's 360 — both page at ~100%, so the fuller
+    # text wins.
+    uri: 0643IbnSalahShahrazuri.AdabMuftiWaMustafti.Shamela0010720-ara1
+
+  - id: sifat-al-fatwa
+    title: Sifat al-Fatwa wa'l-Mufti wa'l-Mustafti
+    title_ar: صفة الفتوى والمفتي والمستفتي
+    author: Ahmad b. Hamdan al-Harrani (d. 695 AH)
+    kind: fiqh
+    uri: 0695IbnHamdanHarraniNumayri.SifatFatwa.JK000236-ara1  # 99.8% paged
+
+  - id: mabsut
+    title: Al-Mabsut
+    title_ar: المبسوط
+    author: Muhammad b. Ahmad al-Sarakhsi (d. 483 AH)
+    kind: fiqh
+    uri: 0483IbnAhmadSarakhsi.Mabsut.Shia000923Vols-ara1
+
+  - id: badai
+    title: Bada'i al-Sana'i
+    title_ar: بدائع الصنائع في ترتيب الشرائع
+    author: Abu Bakr al-Kasani (d. 587 AH)
+    kind: fiqh
+    uri: 0587IbnMascudCalaDinKasani.BadaicSanaic.Shia000956Vols-ara1  # 98.0% paged, vs 0%
+
+  - id: hidaya
+    title: Al-Hidaya
+    title_ar: الهداية في شرح بداية المبتدي
+    author: Burhan al-Din al-Marghinani (d. 593 AH)
+    kind: fiqh
+    # JK000185 is not a real version — only JK000242 (22.1% paged) and
+    # Shamela0011820 (0%) exist.
+    uri: 0593BurhanDinFarghaniMarghinani.HidayaFiSharhBidaya.JK000242-ara1
+
+  # The two entry-level Hanafi manuals the reading list is built around. Neither
+  # has a row in OpenITI's metadata; both sit in the GitHub tree. Al-Hidaya above
+  # is a commentary on Bidayat al-Mubtadi, which is itself built on Quduri — so
+  # without these the corpus held the commentaries and not the matn.
+  - id: quduri
+    title: Mukhtasar al-Quduri
+    title_ar: مختصر القدوري
+    author: Abu al-Husayn al-Quduri (d. 428 AH)
+    kind: fiqh
+    uri: 0428AbuHusaynQuduri.Mukhtasar.Sham19Y0124336-ara1
+
+  - id: kanz-daqaiq
+    title: Kanz al-Daqa'iq
+    title_ar: كنز الدقائق
+    author: Hafiz al-Din al-Nasafi (d. 710 AH)
+    kind: fiqh
+    uri: 0710IbnAhmadHafizDinNasafi.KanzDaqaiq.Sham19Y0014262-ara1
+
+  - id: qadi-khan
+    title: Fatawa Qadi Khan
+    title_ar: فتاوى قاضي خان
+    author: Fakhr al-Din Qadi Khan al-Farghani (d. 592 AH)
+    kind: fiqh
+    # Also unindexed in the metadata; the only version in the tree.
+    uri: 0592QadiKhanFarghani.Fatawa.ShamAY0033176-ara1
+
+  - id: mughni
+    title: Al-Mughni
+    title_ar: المغني
+    author: Ibn Qudama al-Maqdisi (d. 620 AH)
+    kind: fiqh
+    # GitHub calls this book `Mughni`; OpenITI's metadata calls it
+    # `MughniFiFiqh`, which 404s. Worth the correction twice over: the version
+    # below pages at 100% and does not appear in the metadata at all, so
+    # compare_versions could never have found it. When a work comes back
+    # "unavailable" on every version, suspect the name before the text.
+    uri: 0620IbnQudamaMaqdisi.Mughni.ShamAY0034266-ara1
+
+  - id: majmu
+    title: Al-Majmu' Sharh al-Muhadhdhab
+    title_ar: المجموع شرح المهذب
+    author: Yahya b. Sharaf al-Nawawi (d. 676 AH)
+    kind: fiqh
+    # Kept at 39.8% rather than switching to JK000913's 76.1%: that version
+    # holds 1.34M tokens against this one's 2.81M, so the two carry a similar
+    # absolute quantity of paginated text while this one carries twice the work.
+    # Pagination is the tie-breaker between comparable texts, not a reason to
+    # ingest half a book.
+    uri: 0676Nawawi.Majmuc.Shia000841Vols-ara1
+
+  - id: majmu-fatawa
+    title: Majmu' al-Fatawa
+    title_ar: مجموع الفتاوى
+    author: Ibn Taymiyya (d. 728 AH)
+    kind: fiqh
+    uri: 0728IbnTaymiyya.MajmucFatawa.JK000381-ara1  # 97.9% paged, vs 1.9%
+
+  - id: ashbah-suyuti
+    title: Al-Ashbah wa'l-Naza'ir
+    title_ar: الأشباه والنظائر
+    author: Jalal al-Din al-Suyuti (d. 911 AH)
+    kind: fiqh
+    uri: 0911Suyuti.Ashbah.JK000425-ara1  # 21.7% paged, vs 0%
+
+  - id: bahr-raiq
+    title: Al-Bahr al-Ra'iq
+    title_ar: البحر الرائق شرح كنز الدقائق
+    author: Zayn al-Din Ibn Nujaym (d. 970 AH)
+    kind: fiqh
+    uri: 0970IbnIbrahimIbnNujaymMisri.BahrRaiq.Shia000973Vols-ara1  # 43.0%; the other two 404
+
+  - id: fatawa-hindiyya
+    title: Al-Fatawa al-Hindiyya
+    title_ar: الفتاوى الهندية
+    author: Nizam al-Din and a committee of scholars (11th c. AH)
+    kind: fiqh
+    uri: 1090NizamDinBalkhi.FatawaHindiyya.JK007073-ara1  # 55.9% paged, vs 0%
+
+  - id: radd-al-muhtar
+    title: Radd al-Muhtar (Fatawa Shami)
+    title_ar: رد المحتار على الدر المختار
+    author: Muhammad Amin Ibn 'Abidin (d. 1252 AH)
+    kind: fiqh
+    # `RaddMukhtar` on GitHub, `RaddMuhtar` in the metadata — one letter, and
+    # every version 404s. 17.7% paged is the best of the three.
+    uri: 1252IbnCabidinDimashqi.RaddMukhtar.Shia000990Vols-ara1
+
+# ---------------------------------------------------------------------------
+# Requested but NOT here, recorded so the gaps are known rather than forgotten.
+#
+# Absent from OpenITI — would need sourcing from Shamela directly:
+#   Nur al-Anwar (Mulla Jiwan, d. 1130), Sharh 'Uqud Rasm al-Mufti (Ibn 'Abidin).
+#
+#   This list was previously ten works long and eight of them were wrong. They
+#   had been looked for in OpenITI's metadata CSV, which does not index
+#   everything the repository holds — Quduri, Kanz al-Daqa'iq, Fatawa Qadi Khan
+#   and Manar al-Anwar have no metadata row at all yet sit in the GitHub tree,
+#   and Al-Mughni's best version is likewise absent from the catalogue.
+#   **Confirm absence against the tree, never the CSV**: list
+#   `api.github.com/repos/OpenITI/<century>AH/contents/data` and look for the
+#   author, then the book beneath it.
+#
+# Still in copyright — cannot be redistributed, so they are not fetched. The
+# pipeline accepts a local `path:` instead of `uri:` for copies you own:
+#   I'la al-Sunan, Al-Wajiz (Wahbah al-Zuhayli), Fatawa Islamiyah,
+#   Fatawa Usmani, Imdad al-Fatawa, Kitab al-Nawazil,
+#   Fatawa Darul Uloom Deoband.
+# ---------------------------------------------------------------------------

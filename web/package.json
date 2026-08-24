@@ -1,0 +1,42 @@
+{
+  "name": "deen-daleel-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "retrieve": "tsx scripts/retrieve.ts",
+    "generate": "tsx scripts/generateAnswers.ts",
+    "test": "tsx scripts/checkNormalizerParity.ts && tsx scripts/testDraftFormat.ts && tsx scripts/testGlossary.ts && tsx scripts/testCitations.ts",
+    "test:offline": "tsx scripts/checkNormalizerParity.ts && tsx scripts/testDraftFormat.ts && tsx scripts/testGlossary.ts",
+    "draft": "tsx scripts/draft.ts",
+    "rebind": "tsx scripts/rebindCitations.ts",
+    "stub": "tsx scripts/voyageStub.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.70.0",
+    "clsx": "^2.1.1",
+    "next": "^15.5.0",
+    "pg": "^8.13.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^2.6.0",
+    "yaml": "^2.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/pg": "^8.11.10",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "dotenv": "^16.4.7",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

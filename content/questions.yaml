@@ -1,0 +1,4780 @@
+# Deen & Daleel — full question bank
+#
+# Fields
+#   slug          stable public id — do not change once published
+#   question      the canonical phrasing; also the primary match phrasing
+#   paraphrases   other real ways people ask it. These matter more than they
+#                 look: a user's wording is matched against these, so a clumsy
+#                 phrasing someone would actually type belongs here.
+#   tier          A = the corpus addresses this directly
+#                 B = principle only; state it, cite it, then refer
+#                 C = nothing citable; decline and explain what it turns on
+#                 Untagged means A. Verified against retrieval, not guessed:
+#                 34 tags were changed after running every question through
+#                 the corpus. See content/tier-audit.md for the log and the
+#                 method, and content/tier-audit.tsv for the raw run.
+#   expect        'answer' (default) or 'decline'
+#   also_retrieve extra queries run at drafting time, so a contested question
+#                 is not drafted from whichever side happened to share
+#                 vocabulary with how it was asked. See scripts/draft.ts.
+#   note          guidance for the reviewer, never shown to readers.
+#
+# Coverage is weighted toward what reverts and ordinary Muslims actually ask.
+# The query log shows what is missing; add entries here rather than guessing.
+
+# ─────────────────────────────────────────────────────────────
+# 1. Brand new / revert-specific
+# ─────────────────────────────────────────────────────────────
+
+- slug: how-do-i-become-muslim
+  question: How do I actually become Muslim?
+  paraphrases:
+    - I want to convert what do I do
+    - how do I take my shahada
+    - what are the steps to becoming Muslim
+    - is there a process to convert
+
+- slug: do-i-need-witnesses-shahada
+  question: Do I need witnesses to say the shahada?
+  paraphrases:
+    - can I convert alone at home
+    - does someone have to be there when I say it
+    - do I need two witnesses to become Muslim
+
+- slug: do-i-need-a-mosque-to-convert
+  question: Do I have to go to a mosque to convert?
+  paraphrases:
+    - can I become Muslim without going to a mosque
+    - do I need an imam to convert
+    - is there an official place to convert
+
+- slug: does-shahada-need-arabic
+  question: Do I have to say the shahada in Arabic?
+  paraphrases:
+    - can I say the shahada in English
+    - what if I can't pronounce the Arabic
+    - does it count in my own language
+  # Asked in English, this lands on shahada in its *courtroom* sense — the law
+  # of testimony, witnesses, the number two — and never on the question of what
+  # language an act of worship may be performed in. These name that question in
+  # the vocabulary the fiqh uses for it.
+  also_retrieve:
+    - التكبير بالفارسية والقراءة بغير العربية في الصلاة
+    - من أسلم وهو لا يحسن العربية وأتى بالشهادة بلسانه
+    - الإيمان إقرار باللسان وتصديق بالقلب
+    - الذكر والدعاء بغير اللسان العربي
+
+- slug: what-happens-to-my-past-sins
+  question: What happens to everything I did before I was Muslim?
+  paraphrases:
+    - are my old sins forgiven when I convert
+    - I did terrible things before Islam
+    - does converting wipe the slate clean
+
+  # Scores 0.012 unglossed: "past sins" reaches general repentance material and
+  # not the hadith that answers this question in one sentence.
+  also_retrieve:
+    - الإسلام يجب ما قبله والتوبة تجب ما قبلها
+    - من أحسن في الإسلام لم يؤاخذ بما عمل في الجاهلية
+    - تبديل السيئات حسنات عند التوبة
+- slug: do-i-need-a-new-name
+  question: Do I have to change my name?
+  paraphrases:
+    - should I take an Arabic name
+    - is my birth name a problem
+    - do converts need a Muslim name
+
+  # The retrieval lands on naming customs generally; these name the two
+  # matters that actually decide it — being called by your father's name, and
+  # the Companions who kept theirs.
+  also_retrieve:
+    - ادعوهم لآبائهم وتغيير النسب
+    - تغيير الاسم عند الإسلام وما غيره النبي من الأسماء
+    - كراهة الأسماء وتسمية المولود
+- slug: do-i-have-to-be-circumcised
+  question: Do I have to be circumcised as an adult convert?
+  paraphrases:
+    - is circumcision required to be Muslim
+    - I converted as an adult do I need this
+    - is my Islam valid without it
+
+  # The corpus answers this at 0.98 when asked in Arabic, and returned nothing
+  # about it at all when asked in English: "convert" glosses to إسلام الكافر and
+  # crowds out الختان, so the worksheet came back about how an apostate re-enters
+  # Islam. Naming the chapter directly is the fix; the glossary alone was not.
+  also_retrieve:
+    - الختان سنة أم واجب وختان الكبير إذا أسلم
+    - حكم الختان في حق الرجل والمرأة والفطرة
+    - من أسلم كبيرا وخاف الضرر من الختان
+- slug: ghusl-after-converting
+  question: Do I need to take a bath when I convert?
+  paraphrases:
+    - is ghusl required when becoming Muslim
+    - do I have to wash after saying shahada
+    - what do I do straight after converting
+
+- slug: what-do-i-learn-first
+  question: What should I learn first?
+  paraphrases:
+    - I just converted where do I start
+    - what's the first thing a new Muslim should do
+    - I'm overwhelmed what matters most
+
+- slug: how-do-i-learn-to-pray
+  question: I don't know how to pray at all — where do I start?
+  paraphrases:
+    - teach me how to pray as a new Muslim
+    - I've never prayed before
+    - how do I learn salah from scratch
+
+- slug: cant-read-arabic-yet
+  question: Can I pray if I can't read Arabic yet?
+  paraphrases:
+    - how can I pray if I don't know Arabic
+    - can I pray in English for now
+    - I can't read the Arabic script
+
+- slug: how-long-to-learn-fatihah
+  question: What do I do while I'm still memorising al-Fatihah?
+  paraphrases:
+    - I only know part of al-Fatihah
+    - what do I recite until I've learned it
+    - is my prayer valid while I'm still learning
+
+  # Scores 0.003 unglossed. The fiqh discusses this as the case of someone who
+  # cannot recite: what stands in for the Fatiha, and for how long.
+  also_retrieve:
+    - من لا يحسن الفاتحة ماذا يقرأ في صلاته
+    - الأمي في الصلاة ووجوب التعلم
+    - التسبيح والتحميد بدل القراءة لمن عجز
+- slug: was-my-old-marriage-valid
+  question: I was married before I became Muslim — is that marriage still valid?
+  tier: B
+  paraphrases:
+    - do I need to remarry after converting
+    - is my civil marriage recognised in Islam
+    - we married before I was Muslim
+
+  also_retrieve:
+    - نكاح الكفار إذا أسلما يقران عليه
+    - النكاح بغير شهود في الكفر ثم الإسلام
+- slug: spouse-not-muslim-after-i-convert
+  question: I converted but my husband or wife didn't — what now?
+  tier: B
+  paraphrases:
+    - my spouse is not Muslim and I am
+    - do I have to divorce if my partner doesn't convert
+    - can I stay married to a non-Muslim
+
+  also_retrieve:
+    - إسلام أحد الزوجين والتفريق بينهما
+    - المسلمة تحت الكافر وعرض الإسلام عليه
+    - لا هن حل لهم ولا هم يحلون لهن
+- slug: telling-my-family-i-converted
+  question: How do I tell my family I've become Muslim?
+  paraphrases:
+    - I'm scared to tell my parents I converted
+    - should I hide my Islam from family
+    - how do I break the news to my family
+
+  also_retrieve:
+    - الدعوة بالحكمة والموعظة الحسنة والمجادلة بالتي هي أحسن
+    - بر الوالدين الكافرين ومصاحبتهما بالمعروف
+    - كتمان الإسلام خوف الأذى
+- slug: family-rejected-me
+  question: My family reacted badly — what does Islam say about that?
+  paraphrases:
+    - my parents disowned me for converting
+    - my family is hostile since I became Muslim
+    - I've lost my family over this
+
+  also_retrieve:
+    - الصبر على الأذى في ذات الله وهجر الأهل للمسلم
+    - صلة الرحم مع القطيعة والإحسان إلى من أساء
+    - من ترك أهله وماله في سبيل الله
+- slug: do-i-owe-missed-prayers-before-islam
+  question: Do I have to make up prayers from before I was Muslim?
+  paraphrases:
+    - do converts owe a lifetime of prayers
+    - am I responsible for prayers before converting
+    - do I make up years of salah
+
+  also_retrieve:
+    - قضاء ما فات من الصلاة قبل الإسلام
+    - الكافر الأصلي لا يخاطب بقضاء الفروع إذا أسلم
+- slug: do-i-owe-missed-fasts-before-islam
+  question: Do I owe fasts from before I converted?
+  paraphrases:
+    - do I make up Ramadans I missed before Islam
+    - am I responsible for fasts before converting
+
+  also_retrieve:
+    - قضاء الصوم عمن أسلم وما فات في الكفر
+    - قل للذين كفروا إن ينتهوا يغفر لهم ما قد سلف
+- slug: feeling-like-a-fake-muslim
+  question: I feel like I'm pretending — is my Islam even real?
+  paraphrases:
+    - I feel like an imposter as a new Muslim
+    - I don't feel Muslim enough
+    - am I faking my faith
+
+  also_retrieve:
+    - الإخلاص والرياء وحديث النفس
+    - الوسوسة في الإيمان وصريح الإيمان
+    - تفاوت الإيمان وزيادته ونقصانه
+- slug: alone-no-muslim-community
+  question: I don't know any Muslims — how do I practise alone?
+  paraphrases:
+    - there's no mosque near me
+    - I'm the only Muslim I know
+    - how do I stay Muslim without a community
+
+  also_retrieve:
+    # The general phrasing reached commentary *about* strangeness but not the
+    # hadith itself, which scores 0.999 when quoted. Quote it.
+    - بدأ الإسلام غريبا وسيعود غريبا كما بدأ فطوبى للغرباء
+    - العزلة والخلطة وأيهما أفضل
+    - صلاة المنفرد وفضل الجماعة
+- slug: reverting-back-and-forth
+  question: I keep slipping and coming back — is that normal?
+  paraphrases:
+    - I keep falling off and returning
+    - is it normal to struggle with consistency
+    - I stopped praying then started again
+
+# ─────────────────────────────────────────────────────────────
+# 2. Purity — wudu
+# ─────────────────────────────────────────────────────────────
+
+  also_retrieve:
+    - تكرار الذنب والتوبة بعده
+    - لا يمل الله حتى تملوا وأحب العمل أدومه
+    - كل ابن آدم خطاء وخير الخطائين التوابون
+- slug: how-to-make-wudu
+  question: How do I make wudu, step by step?
+  tier: B
+  paraphrases:
+    - teach me how to do wudu
+    - what's the correct way to wash for prayer
+    - wudu step by step for beginners
+
+  also_retrieve:
+    - صفة الوضوء وكيفيته وسننه
+    - فرائض الوضوء الأربعة والترتيب والموالاة
+- slug: fard-parts-of-wudu
+  question: Which parts of wudu are compulsory and which are just recommended?
+  paraphrases:
+    - what is obligatory in wudu
+    - which bits of wudu can I skip
+    - what's the minimum valid wudu
+
+  also_retrieve:
+    # Both earlier attempts drifted into ghusl. Naming the four limbs is what
+    # pins the query to the chapter that enumerates them.
+    - فرائض الوضوء غسل الوجه واليدين ومسح الرأس وغسل الرجلين وما عداها سنة
+    - المضمضة والاستنشاق فرض أم سنة في الوضوء
+- slug: bismillah-before-wudu
+  question: Do I have to say bismillah before wudu?
+  paraphrases:
+    - is bismillah required for wudu
+    - I forgot to say bismillah before washing
+
+  also_retrieve:
+    # The bare topic reaches ghusl; quoting the hadith reaches the chapter.
+    - لا وضوء لمن لم يذكر اسم الله عليه والتسمية في أول الوضوء
+    - التسمية عند الوضوء واجبة أم سنة والخلاف فيها
+- slug: order-of-wudu
+  question: Does the order of washing matter in wudu?
+  paraphrases:
+    - do I have to wash in a specific order
+    - I washed my arms before my face
+
+- slug: what-breaks-wudu
+  question: What breaks wudu?
+  paraphrases:
+    - what invalidates my wudu
+    - when do I need to redo wudu
+    - list of things that break wudu
+
+- slug: does-sleeping-break-wudu
+  question: Does falling asleep break my wudu?
+  paraphrases:
+    - I dozed off does my wudu still count
+    - does a nap invalidate wudu
+
+- slug: does-touching-spouse-break-wudu
+  question: Does touching my wife or husband break wudu?
+  paraphrases:
+    - does skin contact with my spouse break wudu
+    - I held my wife's hand after wudu
+
+- slug: does-bleeding-break-wudu
+  question: Does a nosebleed or a cut break my wudu?
+  paraphrases:
+    - I'm bleeding does my wudu break
+    - does a small cut invalidate wudu
+
+  also_retrieve:
+    - الخارج من غير السبيلين هل ينقض الوضوء كالدم والرعاف
+    - الدم السائل من الجرح والفصد والحجامة ونقض الوضوء
+- slug: does-vomiting-break-wudu
+  question: Does throwing up break wudu?
+  paraphrases:
+    - I was sick does that break my wudu
+    - does vomiting invalidate wudu
+
+  also_retrieve:
+    - القيء هل ينقض الوضوء والخلاف فيه
+    - الخارج من غير السبيلين هل ينقض الوضوء كالقيء
+- slug: does-laughing-break-wudu
+  question: Does laughing break my wudu?
+  paraphrases:
+    - I laughed during prayer
+    - does laughing out loud invalidate wudu
+
+- slug: does-touching-private-parts-break-wudu
+  question: Does touching yourself break wudu?
+  paraphrases:
+    - does touching private parts invalidate wudu
+    - I touched myself after wudu
+
+  # Asked in English this lands on touching *a woman*, which is the neighbouring
+  # question and a different dispute entirely.
+  also_retrieve:
+    - من مس ذكره فليتوضأ ومس الفرج هل ينقض الوضوء
+    - مس الذكر ببطن الكف والخلاف فيه بين الأئمة
+- slug: does-changing-clothes-break-wudu
+  question: Does getting changed break my wudu?
+  paraphrases:
+    - do I need new wudu after changing clothes
+    - does undressing invalidate wudu
+
+  also_retrieve:
+    - كشف العورة وخلع الثوب لا ينقض الوضوء
+    - نواقض الوضوء محصورة فمن ادعى زيادة فليثبتها
+- slug: doubt-whether-wudu-broke
+  question: I'm not sure whether my wudu broke — what do I do?
+  paraphrases:
+    - I can't remember if I broke wudu
+    - do I redo wudu when in doubt
+
+  also_retrieve:
+    - اليقين لا يزول بالشك ومن تيقن الطهارة وشك في الحدث
+    - لا ينصرف حتى يسمع صوتا أو يجد ريحا
+- slug: nail-polish-and-wudu
+  question: Can I make wudu with nail polish on?
+  paraphrases:
+    - does nail varnish stop wudu counting
+    - do I have to remove nail polish to pray
+
+  also_retrieve:
+    - العجين والحناء تحت الظفر يمنع وصول الماء في الوضوء
+    - إذا بقي على بعض أعضاء الوضوء لمعة لم يصبها الماء لم يجزئه
+    - الشمع والدهن على العضو هل يمنع صحة الوضوء
+- slug: makeup-and-wudu
+  question: Does makeup stop wudu from counting?
+  paraphrases:
+    - do I need to remove foundation for wudu
+    - can I do wudu with makeup on
+
+  also_retrieve:
+    - العجين والحناء تحت الظفر يمنع وصول الماء في الوضوء
+    - الشمع والدهن على العضو هل يمنع صحة الوضوء
+    - حد الوجه الذي يجب غسله في الوضوء
+- slug: contact-lenses-wudu
+  question: Do I need to take out contact lenses for wudu?
+  paraphrases:
+    - can I keep my lenses in for wudu
+    - do contacts affect wudu
+
+  also_retrieve:
+    - إيصال الماء إلى داخل العينين ليس بواجب في الوضوء
+    - حد الوجه الذي يجب غسله في الوضوء
+    - الشمع والدهن على العضو هل يمنع صحة الوضوء
+- slug: wudu-with-a-cast-or-bandage
+  question: How do I make wudu with a cast or a bandage?
+  paraphrases:
+    - I have a plaster cast how do I wash
+    - wudu with a wound dressing
+
+- slug: wiping-over-socks
+  question: Can I wipe over my socks instead of washing my feet?
+  paraphrases:
+    - do I have to take my socks off for wudu
+    - what is masah over socks
+
+- slug: what-kind-of-socks-count
+  question: Do thin socks count for wiping?
+  paraphrases:
+    - can I wipe over cotton socks
+    - what socks are valid for masah
+
+- slug: how-long-can-i-wipe-socks
+  question: How long can I keep wiping over socks before I have to wash?
+  paraphrases:
+    - how many hours does masah last
+    - when does wiping over socks expire
+
+- slug: wiping-over-shoes
+  question: Can I wipe over shoes?
+  paraphrases:
+    - is masah over shoes allowed
+    - can I wipe over boots
+
+  also_retrieve:
+    - المسح على النعلين هل يجزئ في الوضوء
+    - شروط الخف الذي يمسح عليه
+- slug: wiping-over-hijab-or-turban
+  question: Can I wipe over my headscarf in wudu?
+  paraphrases:
+    - do I have to take my hijab off for wudu
+    - can I wipe over a turban
+
+  also_retrieve:
+    - المسح على العمامة والخمار في الوضوء
+
+- slug: wudu-in-a-public-bathroom
+  question: How do I make wudu in a public toilet at work?
+  paraphrases:
+    - wudu at work with no proper sink
+    - how do I wash my feet in a public bathroom
+
+  also_retrieve:
+    - آداب قضاء الحاجة والدخول إلى الخلاء
+    - الوضوء في موضع النجاسة وذكر الله فيه
+- slug: how-much-water-for-wudu
+  question: Am I using too much water in wudu?
+  paraphrases:
+    - is there a limit on water in wudu
+    - wasting water while washing
+
+  also_retrieve:
+    - الإسراف في ماء الوضوء وكان يتوضأ بالمد ويغتسل بالصاع
+
+- slug: waswas-repeating-wudu
+  question: I keep repeating wudu because I'm never sure it was right — what do I do?
+  paraphrases:
+    - I redo wudu over and over
+    - obsessive thoughts about whether my wudu counted
+    - I can't stop doubting my purity
+
+  also_retrieve:
+    - الوسوسة في الطهارة وتكرار الوضوء ومن ابتلي بالوسواس
+    - اليقين لا يزول بالشك ومن تيقن الطهارة وشك في الحدث
+
+# ─────────────────────────────────────────────────────────────
+# 3. Purity — ghusl, tayammum, istinja, najasa
+# ─────────────────────────────────────────────────────────────
+
+- slug: when-is-ghusl-required
+  question: When do I have to do a full bath (ghusl)?
+  paraphrases:
+    - what makes ghusl obligatory
+    - when is a full shower required in Islam
+
+  also_retrieve:
+    - أسباب الغسل ثلاثة الجنابة والحيض والنفاس
+    - ما يوجب الغسل التقاء الختانين وإنزال المني
+
+- slug: how-to-do-ghusl
+  question: How do I do ghusl properly?
+  paraphrases:
+    - step by step ghusl
+    - what's the right way to do the ritual bath
+
+- slug: does-ghusl-replace-wudu
+  question: If I've done ghusl do I still need wudu?
+  paraphrases:
+    - can I pray straight after ghusl
+    - does a full bath count as wudu
+
+- slug: wet-dream-ghusl
+  question: Do I need ghusl after a wet dream?
+  paraphrases:
+    - I had a wet dream do I shower
+    - is ghusl required if I wasn't awake
+
+- slug: ghusl-with-hair-braids
+  question: Do I have to undo my braids or hair extensions for ghusl?
+  paraphrases:
+    - ghusl with braided hair
+    - do I need to wet every strand of hair
+
+- slug: what-is-tayammum
+  question: What is tayammum and when can I use it?
+  paraphrases:
+    - dry ablution in Islam
+    - when can I use earth instead of water
+
+  also_retrieve:
+    - التيمم ضربتان يمسح بإحداهما وجهه وبالأخرى يديه إلى المرفقين
+    - and if ye find not water, then go to clean high ground and rub your faces and your hands with some of it
+
+- slug: how-to-do-tayammum
+  question: How do I do tayammum?
+  paraphrases:
+    - step by step tayammum
+    - how do I purify without water
+
+  also_retrieve:
+    - التيمم ضربتان يمسح بإحداهما وجهه وبالأخرى يديه إلى المرفقين
+    - and if ye find not water, then go to clean high ground and rub your faces and your hands with some of it
+
+- slug: tayammum-no-water-at-work
+  question: There's no water where I work — can I do tayammum?
+  paraphrases:
+    - no place to wash at work
+    - can I do dry ablution in the office
+
+- slug: tayammum-when-ill
+  question: Can I do tayammum if water makes my skin condition worse?
+  paraphrases:
+    - water hurts my eczema can I skip wudu
+    - tayammum because of illness
+
+
+  also_retrieve:
+    - إن كان يخاف زيادة المرض من استعمال الماء جاز له التيمم
+    - قتلوه قتلهم الله كان يكفيه التيمم
+- slug: how-to-clean-after-toilet
+  question: How do I clean myself after using the toilet?
+  paraphrases:
+    - what is istinja
+    - toilet cleaning rules in Islam
+
+
+  also_retrieve:
+    - الاستنجاء بالحجر والماء وما يجزئ فيه
+- slug: is-toilet-paper-enough
+  question: Is toilet paper enough or do I need water?
+  paraphrases:
+    - do I have to use water after the toilet
+    - is dry cleaning sufficient
+
+  also_retrieve:
+    - الاستجمار بالحجر والاقتصار عليه دون الماء
+    - الاستنجاء بالأحجار وعددها
+- slug: what-is-najis
+  question: What counts as impure (najis)?
+  paraphrases:
+    - what things are considered filth in Islam
+    - list of impure substances
+
+- slug: is-blood-najis
+  question: Is blood impure, and what if a little gets on my clothes?
+  paraphrases:
+    - a small amount of blood on my clothes
+    - does blood invalidate my prayer clothes
+
+- slug: dog-saliva
+  question: What do I do if a dog licks me or my clothes?
+  paraphrases:
+    - a dog licked my hand
+    - is dog saliva impure
+
+  also_retrieve:
+    - ولوغ الكلب في الإناء وغسله سبعا إحداهن بالتراب
+    - نجاسة الكلب وسؤره
+- slug: baby-urine-on-clothes
+  question: My baby wet my clothes — can I still pray in them?
+  paraphrases:
+    - baby urine on my shirt
+    - do I change clothes if a child wets me
+
+
+  also_retrieve:
+    - بول الغلام الذي لم يأكل الطعام ينضح وبول الجارية يغسل
+    - مقدار النجاسة المعفو عنها في الثوب والصلاة
+- slug: how-to-clean-najasa-from-clothes
+  question: How do I clean impurity off clothes?
+  paraphrases:
+    - washing out najasa
+    - how many times do I wash a soiled garment
+
+  also_retrieve:
+    - تطهير الثوب من النجاسة وغسله
+    - النجاسة المرئية وغير المرئية وكيفية إزالتها
+- slug: praying-in-clothes-with-a-stain
+  question: Can I pray in clothes with a stain I'm not sure about?
+  paraphrases:
+    - I don't know what this mark is
+    - praying in possibly dirty clothes
+
+- slug: madhiy-vs-maniy
+  question: What's the difference between the discharges, and which needs ghusl?
+  paraphrases:
+    - difference between madhi and mani
+    - which discharge requires a full bath
+
+
+  also_retrieve:
+    - الفرق بين المني والمذي والودي وحكم كل منهما
+- slug: discharge-and-wudu-women
+  question: Does everyday discharge break my wudu?
+  paraphrases:
+    - normal discharge and purity
+    - do I redo wudu for discharge
+
+  also_retrieve:
+    - رطوبة فرج المرأة وطهارتها
+    - الإفرازات المعتادة وهل تنقض الوضوء
+- slug: incontinence-and-prayer
+  question: I have incontinence — how do I pray?
+  paraphrases:
+    - I leak constantly can I still pray
+    - praying with a medical condition affecting purity
+
+
+  also_retrieve:
+    - المستحاضة وصاحب السلس يتوضأ لكل صلاة ويصلي
+    - من به حدث دائم لا ينتقض وضوؤه بما خرج منه في الصلاة
+- slug: shoes-in-prayer-area
+  question: Do I have to take my shoes off to pray?
+  paraphrases:
+    - can I pray in shoes
+    - praying with trainers on
+
+
+  also_retrieve:
+    - الصلاة في النعلين ونزع النعل في المسجد
+    - طهارة النعل ودلكها بالأرض إذا أصابها أذى
+- slug: is-alcohol-in-perfume-najis
+  question: Is alcohol-based perfume impure?
+  tier: B
+  paraphrases:
+    - can I wear perfume with alcohol in it
+    - does deodorant with alcohol affect prayer
+
+# ─────────────────────────────────────────────────────────────
+# 4. Menstruation and women's purity
+# ─────────────────────────────────────────────────────────────
+
+  also_retrieve:
+    - نجاسة الخمر وحكم الانتفاع بها
+    - الطيب المشتمل على مسكر
+- slug: praying-on-period
+  question: Do I pray during my period?
+  paraphrases:
+    - can I pray on my period
+    - do I make up prayers missed on my period
+  also_retrieve:
+    - الحائض لا تصلي ولا تقضي الصلاة وتقضي الصوم
+
+
+- slug: fasting-on-period
+  question: Do I fast during my period, and do I make it up?
+  paraphrases:
+    - can I fast on my period in Ramadan
+    - do I owe those fasts later
+  also_retrieve:
+    - تقضي الحائض الصوم ولا تقضي الصلاة
+
+
+- slug: quran-on-period
+  question: Can I read or touch the Quran on my period?
+  paraphrases:
+    - reading Quran while menstruating
+    - can I hold a mushaf on my period
+  also_retrieve:
+    - قراءة القرآن للحائض والجنب ومس المصحف
+    - الطواف للحائض والجنب والمحدث والفرق بين المرور واللبث في المسجد
+
+
+- slug: mosque-on-period
+  question: Can I go into the mosque on my period?
+  paraphrases:
+    - entering a masjid while menstruating
+    - can I attend a lecture on my period
+  also_retrieve:
+    - دخول الحائض والجنب المسجد والمرور فيه
+
+
+- slug: dhikr-and-dua-on-period
+  question: Can I still make du'a and dhikr on my period?
+  paraphrases:
+    - what worship can I do on my period
+    - remembering Allah while menstruating
+  also_retrieve:
+    - كان النبي صلى الله عليه وسلم يذكر الله على كل أحيانه
+    - افعلي ما يفعل الحاج غير أن لا تطوفي بالبيت حتى تطهري
+
+
+- slug: ghusl-after-period
+  question: How do I do ghusl after my period ends?
+  paraphrases:
+    - the bath after menstruation
+    - what do I do when my period finishes
+  also_retrieve:
+    - غسل الحائض بعد الطهر ونقض الشعر في الغسل
+
+
+- slug: how-do-i-know-period-ended
+  question: How do I know my period has actually finished?
+  paraphrases:
+    - how do I tell my period is over
+    - signs my bleeding has stopped
+  also_retrieve:
+    - القصة البيضاء والجفوف وعلامة انقطاع الحيض
+
+
+- slug: spotting-after-period
+  question: I'm spotting after my period — do I pray?
+  paraphrases:
+    - brown discharge after my period
+    - light spotting and prayer
+  also_retrieve:
+    - الصفرة والكدرة بعد أيام الحيض ليست بحيض
+
+
+- slug: irregular-bleeding-istihada
+  question: My bleeding is irregular — how do I know when to pray?
+  paraphrases:
+    - what is istihada
+    - continuous bleeding and prayer
+    - my cycle is unpredictable
+  also_retrieve:
+    - المستحاضة ودم الاستحاضة والتمييز بين دم الحيض والاستحاضة
+
+
+- slug: bleeding-after-childbirth
+  question: How long do I stop praying after giving birth?
+  paraphrases:
+    - nifas after childbirth
+    - postnatal bleeding and prayer
+  also_retrieve:
+    - النفاس وأكثره أربعون يوما
+
+
+- slug: miscarriage-bleeding
+  question: What are the rules after a miscarriage?
+  tier: B
+  paraphrases:
+    - bleeding after losing a pregnancy
+    - do I stop praying after a miscarriage
+  also_retrieve:
+    - السقط إذا استبان بعض خلقه فدمها نفاس
+
+
+- slug: period-starts-mid-prayer
+  question: My period started in the middle of prayer — what now?
+  paraphrases:
+    - I got my period while praying
+    - bleeding began during salah
+  also_retrieve:
+    - إذا حاضت المرأة في أثناء الصلاة بطلت صلاتها
+
+
+- slug: period-ends-before-prayer-time-ends
+  question: My period ended just before the prayer time ran out — do I pray it?
+  paraphrases:
+    - period finished right before maghrib
+    - do I owe that prayer
+  also_retrieve:
+    - إذا طهرت الحائض قبل خروج الوقت لزمها الصلاة
+
+
+- slug: birth-control-to-delay-period
+  question: Can I take something to delay my period for Ramadan or Hajj?
+  paraphrases:
+    - pills to postpone my period for Ramadan
+    - delaying menstruation for Hajj
+  also_retrieve:
+    - شرب دواء لقطع الحيض أو منع الدم
+
+
+- slug: intimacy-during-period
+  question: What's allowed with my spouse during my period?
+  paraphrases:
+    - can we be intimate while I'm bleeding
+    - what is permitted during menstruation
+  also_retrieve:
+    - مباشرة الحائض فيما دون الفرج والاستمتاع بها
+
+
+- slug: intercourse-after-period-before-ghusl
+  question: Can we be intimate after the bleeding stops but before ghusl?
+  paraphrases:
+    - my period ended but I haven't showered yet
+    - intimacy before the post-period bath
+
+# ─────────────────────────────────────────────────────────────
+# 5. Prayer — mechanics
+# ─────────────────────────────────────────────────────────────
+  also_retrieve:
+    - إذا انقطع دم الحيض لم يجز وطؤها حتى تغتسل
+
+
+- slug: how-to-pray-step-by-step
+  question: How do I pray, step by step?
+  paraphrases:
+    - teach me salah from the beginning
+    - what do I do in each part of the prayer
+    - complete prayer guide for beginners
+
+
+  also_retrieve:
+    - صفة الصلاة من التكبير إلى التسليم
+    - فرائض الصلاة وواجباتها وسننها
+- slug: what-are-the-five-prayers
+  question: What are the five prayers and how many rak'ahs is each?
+  paraphrases:
+    - names of the five daily prayers
+    - how many units in each prayer
+    - fajr dhuhr asr maghrib isha explained
+
+
+  also_retrieve:
+    - الصلوات الخمس المفروضة وعدد ركعات كل صلاة
+    - الظهر أربع ركعات والعصر أربع والمغرب ثلاث والعشاء أربع والفجر ركعتان
+- slug: prayer-times-explained
+  question: How do I know when each prayer time starts and ends?
+  paraphrases:
+    - when does each prayer time begin
+    - how late can I pray dhuhr
+    - working out prayer times
+
+
+  also_retrieve:
+    - مواقيت الصلاة أول وقت الظهر والعصر والمغرب والعشاء والفجر
+- slug: what-to-recite-in-prayer
+  question: What am I supposed to say in each part of the prayer?
+  paraphrases:
+    - what do I recite in ruku and sujud
+    - words to say during salah
+    - the tashahhud and what it means
+
+
+  also_retrieve:
+    - سبحان ربي العظيم في الركوع وسبحان ربي الأعلى في السجود والتشهد
+    - فرائض الصلاة ستة التحريمة والقيام والقراءة والركوع والسجود والقعدة الأخيرة
+- slug: minimum-to-recite
+  question: What's the minimum I need to know to pray validly?
+  paraphrases:
+    - shortest valid prayer
+    - what must I memorise before I can pray
+    - bare minimum for salah
+
+- slug: what-invalidates-prayer
+  question: What breaks my prayer?
+  paraphrases:
+    - what makes salah invalid
+    - do I have to start the prayer again
+    - things that nullify prayer
+
+- slug: moving-during-prayer
+  question: Can I scratch or move during prayer?
+  paraphrases:
+    - is fidgeting allowed in salah
+    - I had an itch during prayer
+
+
+  also_retrieve:
+    - العمل الكثير في الصلاة يفسدها والعمل اليسير لا يفسدها
+- slug: talking-during-prayer
+  question: What if I speak by accident during prayer?
+  paraphrases:
+    - I said something in salah by mistake
+    - does talking break my prayer
+
+
+  also_retrieve:
+    - من تكلم في صلاته ناسيا أو ساهيا هل تفسد صلاته
+- slug: phone-rings-during-prayer
+  question: My phone rang mid-prayer — can I silence it?
+  paraphrases:
+    - can I turn off my phone during salah
+    - my alarm went off while praying
+
+
+  also_retrieve:
+    - العمل الكثير في الصلاة يفسدها والعمل اليسير لا يفسدها
+    - التسبيح في الصلاة لتنبيه غيره
+- slug: someone-walks-in-front
+  question: Does it matter if someone walks in front of me while I pray?
+  paraphrases:
+    - someone crossed in front of my prayer
+    - do I need a sutrah
+
+- slug: forgot-a-rakah
+  question: I lost count of my rak'ahs — what do I do?
+  paraphrases:
+    - I don't know if I prayed three or four
+    - forgot how many units I've done
+
+
+  also_retrieve:
+    - سجود السهو ومتى يجب وكيفيته قبل السلام أو بعده
+    - من شك في صلاته فلم يدر كم صلى فليبن على اليقين
+- slug: sujud-al-sahw
+  question: What is the prostration of forgetfulness and when do I do it?
+  paraphrases:
+    - how do I do sujud al-sahw
+    - the extra prostrations for mistakes
+
+
+  also_retrieve:
+    - سجود السهو ومتى يجب وكيفيته قبل السلام أو بعده
+- slug: praying-with-eyes-closed
+  question: Can I close my eyes in prayer?
+  paraphrases:
+    - is it allowed to shut my eyes during salah
+    - I concentrate better with eyes closed
+
+
+  also_retrieve:
+    - تغميض العينين في الصلاة والالتفات فيها
+- slug: crying-in-prayer
+  question: Does crying break my prayer?
+  paraphrases:
+    - I cried during salah
+    - weeping in prayer
+
+
+  also_retrieve:
+    - البكاء في الصلاة والأنين والتأوه هل يفسدها
+- slug: mind-wanders-in-prayer
+  question: My mind wanders constantly in prayer — does it still count?
+  paraphrases:
+    - I can't concentrate in salah
+    - I think about other things while praying
+    - is my prayer valid without khushu
+
+
+  also_retrieve:
+    - الخشوع في الصلاة وحديث النفس والوسوسة فيها
+- slug: which-direction-is-qibla
+  question: How do I find the qibla?
+  paraphrases:
+    - which way do I face to pray
+    - finding the direction of the Kaaba
+
+
+  also_retrieve:
+    - استقبال القبلة والاجتهاد في جهة الكعبة لمن لا يعلمها
+- slug: wrong-qibla-direction
+  question: I prayed facing the wrong way — do I repeat it?
+  paraphrases:
+    - I found out my qibla was wrong
+    - prayed in the wrong direction by mistake
+
+
+  also_retrieve:
+    - استقبال القبلة والاجتهاد في جهة الكعبة لمن لا يعلمها
+    - من صلى إلى غير القبلة مجتهدا ثم تبين خطؤه
+- slug: praying-on-a-chair
+  question: Can I pray sitting on a chair?
+  paraphrases:
+    - praying seated because of my knees
+    - can elderly people pray on a chair
+
+
+  also_retrieve:
+    - صلاة المريض قاعدا وعلى جنبه إذا عجز عن القيام
+- slug: praying-lying-down
+  question: How do I pray if I can't get out of bed?
+  paraphrases:
+    - praying while bedridden
+    - salah lying down when ill
+
+
+  also_retrieve:
+    - صلاة المريض قاعدا وعلى جنبه إذا عجز عن القيام
+    - من لم يستطع الصلاة قائما ولا قاعدا صلى بالإيماء
+- slug: prayer-mat-necessary
+  question: Do I need a prayer mat?
+  paraphrases:
+    - can I pray on the carpet
+    - is a musalla required
+
+
+  also_retrieve:
+    - الصلاة على الأرض والحصير والخمرة وموضع الصلاة
+- slug: where-can-i-pray
+  question: Are there places I'm not allowed to pray?
+  paraphrases:
+    - can I pray anywhere
+    - places where prayer isn't valid
+
+# ─────────────────────────────────────────────────────────────
+# 6. Prayer — missed, travel, work, congregation
+# ─────────────────────────────────────────────────────────────
+
+
+  also_retrieve:
+    - المواضع التي نهي عن الصلاة فيها كالمقبرة والحمام
+- slug: slept-through-fajr
+  question: I slept through fajr — is that prayer gone?
+  paraphrases:
+    - I woke up after sunrise
+    - missed fajr because I overslept
+
+
+  also_retrieve:
+    - من نام عن صلاة أو نسيها فليصلها إذا ذكرها
+- slug: missed-prayer-on-purpose
+  question: I skipped a prayer deliberately — can I make it up?
+  paraphrases:
+    - I intentionally didn't pray
+    - is a deliberately missed prayer forgivable
+
+
+  also_retrieve:
+    - من نام عن صلاة أو نسيها فليصلها إذا ذكرها
+    - قضاء الفوائت والترتيب بينها وبين الوقتية
+- slug: years-of-missed-prayers
+  question: I have years of missed prayers — how do I deal with that?
+  tier: B
+  paraphrases:
+    - I didn't pray for years
+    - how do I make up a lifetime of salah
+    - qada for years of missed prayer
+
+
+  also_retrieve:
+    - قضاء الفوائت والترتيب بينها وبين الوقتية
+    - من نام عن صلاة أو نسيها فليصلها إذا ذكرها
+- slug: making-up-prayers-order
+  question: Do I have to make up missed prayers in order?
+  paraphrases:
+    - sequence for making up prayers
+    - can I pray qada out of order
+
+
+  also_retrieve:
+    - قضاء الفوائت والترتيب بينها وبين الوقتية
+- slug: praying-at-work
+  question: How do I pray at work when there's nowhere private?
+  paraphrases:
+    - no prayer room at my office
+    - praying discreetly at work
+    - where do I pray during a shift
+
+
+  also_retrieve:
+    - من نام عن صلاة أو نسيها فليصلها إذا ذكرها
+    - المواضع التي نهي عن الصلاة فيها كالمقبرة والحمام
+- slug: cant-take-a-break-to-pray
+  question: My job won't give me time to pray — what do I do?
+  tier: B
+  paraphrases:
+    - my manager won't let me pray
+    - no break allowed at prayer time
+
+
+  also_retrieve:
+    - من نام عن صلاة أو نسيها فليصلها إذا ذكرها
+    - الجمع بين الصلاتين في السفر والمطر
+- slug: combining-prayers-at-work
+  question: Can I combine prayers because of my shift?
+  tier: B
+  paraphrases:
+    - joining dhuhr and asr for work
+    - long shifts and prayer times
+
+
+  also_retrieve:
+    - الجمع بين الصلاتين في السفر والمطر
+- slug: shortening-prayer-travelling
+  question: Do I shorten my prayers when I travel?
+  paraphrases:
+    - qasr prayer while travelling
+    - two rakahs instead of four on a trip
+
+
+  also_retrieve:
+    - قصر الصلاة في السفر ومسافة القصر
+- slug: how-far-counts-as-travel
+  question: How far do I have to go before it counts as travelling?
+  paraphrases:
+    - what distance makes me a traveller
+    - is my commute far enough to shorten
+
+
+  also_retrieve:
+    - قصر الصلاة في السفر ومسافة القصر
+- slug: how-long-can-i-shorten
+  question: How many days can I keep shortening prayers when I'm away?
+  paraphrases:
+    - how long does traveller status last
+    - staying somewhere two weeks do I still shorten
+
+
+  also_retrieve:
+    - قصر الصلاة في السفر ومسافة القصر
+    - إقامة المسافر في بلد كم يقصر
+- slug: combining-prayers-travelling
+  question: Can I combine maghrib and isha when travelling?
+  paraphrases:
+    - joining prayers on a journey
+    - praying two prayers together while away
+
+
+  also_retrieve:
+    - الجمع بين الصلاتين في السفر والمطر
+- slug: praying-on-a-plane
+  question: How do I pray on a plane?
+  paraphrases:
+    - salah during a flight
+    - praying seated on an aeroplane
+
+
+  also_retrieve:
+    - قصر الصلاة في السفر ومسافة القصر
+    - صلاة المريض قاعدا وعلى جنبه إذا عجز عن القيام
+- slug: praying-in-a-car-or-train
+  question: Can I pray sitting in a car or train?
+  paraphrases:
+    - praying on public transport
+    - salah in a moving vehicle
+
+
+  also_retrieve:
+    - الصلاة على الراحلة والتطوع على الدابة حيثما توجهت
+- slug: is-congregation-obligatory
+  question: Do I have to pray in the mosque with others?
+  paraphrases:
+    - is jamaah compulsory
+    - can I always pray at home
+
+
+  also_retrieve:
+    - صلاة الجماعة حكمها ووجوبها وفضلها
+- slug: praying-behind-imam-joining-late
+  question: I joined the prayer late — how do I finish?
+  paraphrases:
+    - I missed a rakah with the imam
+    - completing prayer after the imam finishes
+
+
+  also_retrieve:
+    - المسبوق الذي أدرك بعض الصلاة مع الإمام كيف يقضي
+- slug: two-people-congregation
+  question: Is it a congregation if it's just two of us?
+  paraphrases:
+    - can two people pray in jamaah
+    - praying together with my spouse
+
+
+  also_retrieve:
+    - صلاة الجماعة حكمها ووجوبها وفضلها
+    - أقل الجماعة اثنان الإمام ومن خلفه
+- slug: women-praying-in-mosque
+  question: Can women pray in the mosque?
+  paraphrases:
+    - are women allowed in the masjid
+    - is it better for women to pray at home
+
+
+  also_retrieve:
+    - صلاة الجماعة حكمها ووجوبها وفضلها
+    - لا تمنعوا إماء الله مساجد الله وخروج النساء إلى المسجد
+- slug: woman-leading-prayer
+  question: Can a woman lead prayer?
+  paraphrases:
+    - female imam
+    - can a woman lead other women in prayer
+
+
+  also_retrieve:
+    - إمامة المرأة للرجال لا تجوز وتؤم النساء وتقف وسطهن
+- slug: praying-behind-someone-who-makes-mistakes
+  question: Can I pray behind someone whose recitation is poor?
+  paraphrases:
+    - the imam made mistakes reciting
+    - is my prayer valid behind a weak reciter
+
+
+  also_retrieve:
+    - إمامة الأمي واللحان ومن لا يحسن الفاتحة
+- slug: what-are-sunnah-prayers
+  question: What are the extra sunnah prayers and are they required?
+  paraphrases:
+    - what are the nafl prayers
+    - the prayers before and after the obligatory ones
+
+
+  also_retrieve:
+    - السنن الرواتب قبل الفرائض وبعدها اثنتا عشرة ركعة
+- slug: how-to-pray-witr
+  question: How do I pray witr?
+  paraphrases:
+    - what is witr and how many rakahs
+    - the odd prayer at night
+
+
+  also_retrieve:
+    - صلاة الوتر وعدد ركعاتها والقنوت فيها
+- slug: tahajjud-how
+  question: How do I pray tahajjud?
+  paraphrases:
+    - the night prayer
+    - waking up to pray in the night
+
+
+  also_retrieve:
+    - صلاة الليل والتهجد وقيام الليل
+- slug: duha-prayer
+  question: What is the duha prayer?
+  paraphrases:
+    - the mid-morning prayer
+    - salat al-duha explained
+
+
+  also_retrieve:
+    - صلاة الضحى وعدد ركعاتها
+- slug: istikhara-how
+  question: How do I pray istikhara and what happens after?
+  paraphrases:
+    - the prayer for guidance in a decision
+    - do I get a dream after istikhara
+
+
+  also_retrieve:
+    - صلاة الاستخارة ودعاؤها
+- slug: salat-al-tawbah
+  question: Is there a prayer for repentance?
+  paraphrases:
+    - prayer after committing a sin
+    - salat al-tawbah how to
+
+
+  also_retrieve:
+    - صلاة التوبة وركعتان يستغفر الله بعدهما
+    - ما من عبد يذنب ذنبا فيتوضأ ويصلي ركعتين ثم يستغفر الله إلا غفر له
+- slug: times-you-cannot-pray-nafl
+  question: Are there times when I shouldn't pray voluntary prayers?
+  paraphrases:
+    - forbidden times for prayer
+    - can I pray nafl at sunrise
+
+# ─────────────────────────────────────────────────────────────
+# 7. Jumu'ah
+# ─────────────────────────────────────────────────────────────
+
+
+  also_retrieve:
+    - الأوقات المنهي عن الصلاة فيها بعد الفجر وبعد العصر
+- slug: is-jumuah-obligatory
+  question: Do I have to go to Friday prayer?
+  paraphrases:
+    - is Jumuah compulsory for men
+    - what if I can't get to Friday prayer
+  also_retrieve:
+    - الجمعة واجبة على كل مسلم في جماعة ومن تجب عليه
+    - من ترك الجمعة ثلاث مرات تهاونا طبع الله على قلبه
+
+
+- slug: women-and-jumuah
+  question: Do women have to attend Friday prayer?
+  paraphrases:
+    - is Jumuah obligatory for women
+    - can women go to Friday prayer
+  also_retrieve:
+    - حضور المرأة الجمعة وإن حضرتها أجزأتها عن صلاة الظهر
+    - لا جمعة على امرأة ولا صبي ولا مسافر ولا مريض ولا عبد
+
+
+- slug: missed-jumuah-what-now
+  question: I missed Jumu'ah — what do I pray instead?
+  paraphrases:
+    - do I pray dhuhr if I miss Friday prayer
+    - couldn't make it to Jumuah
+  also_retrieve:
+    - من أدرك ركعة من الجمعة ومن فاتته الجمعة صلى الظهر أربعا
+
+
+- slug: talking-during-khutbah
+  question: Can I talk during the Friday sermon?
+  paraphrases:
+    - is speaking during the khutbah allowed
+    - someone spoke to me during the sermon
+  also_retrieve:
+    - الإنصات للخطبة والكلام أثناء الخطبة إذا قلت لصاحبك أنصت فقد لغوت
+
+
+- slug: arriving-late-to-jumuah
+  question: I arrived during the sermon — does my Jumu'ah count?
+  paraphrases:
+    - came late to Friday prayer
+    - how much of Jumuah must I catch
+  also_retrieve:
+    - من أدرك ركعة من الجمعة ومن فاتته الجمعة صلى الظهر أربعا
+
+
+- slug: jumuah-at-work
+  question: My job won't let me leave for Jumu'ah — what do I do?
+  paraphrases:
+    - can't get time off for Friday prayer
+    - my employer refuses Jumuah leave
+  also_retrieve:
+    - الأعذار في ترك الجمعة والجماعة المطر والخوف والمرض والحاجة
+    - لا جمعة على امرأة ولا صبي ولا مسافر ولا مريض ولا عبد
+
+
+- slug: friday-sunnah-acts
+  question: What am I supposed to do on Fridays?
+  paraphrases:
+    - sunnah acts of Friday
+    - what makes Friday special
+
+# ─────────────────────────────────────────────────────────────
+# 8. Fasting
+# ─────────────────────────────────────────────────────────────
+  also_retrieve:
+    - غسل الجمعة والطيب والسواك والتبكير إلى الجمعة وقراءة سورة الكهف
+
+
+- slug: why-do-we-fast
+  question: Why do Muslims fast?
+  paraphrases:
+    - what is the point of fasting
+    - purpose of Ramadan
+    - why does Islam require fasting
+  also_retrieve:
+    - فرض صيام شهر رمضان وحكمة الصوم والتقوى
+
+
+- slug: who-must-fast
+  question: Who has to fast and who's excused?
+  paraphrases:
+    - is fasting in Ramadan obligatory
+    - who is exempt from fasting
+    - do I have to fast if I'm ill
+  also_retrieve:
+    - من يجب عليه الصوم ومن يرخص له الفطر المريض والمسافر والشيخ الكبير
+
+
+- slug: how-do-i-start-fasting
+  question: I've never fasted before — how do I start?
+  paraphrases:
+    - my first Ramadan as a convert
+    - tips for a beginner fasting
+    - I'm worried I can't manage a fast
+  also_retrieve:
+    - فرض صيام شهر رمضان وحكمة الصوم والتقوى
+    - السحور بركة فتسحروا ولو بجرعة ماء
+
+
+- slug: what-breaks-the-fast
+  question: What breaks my fast?
+  paraphrases:
+    - things that invalidate fasting
+    - what nullifies my fast
+    - did I break my fast
+  also_retrieve:
+    - ما يفسد الصوم الأكل والشرب والجماع عمدا
+
+
+- slug: forgot-and-ate
+  question: I forgot and ate something — is my fast broken?
+  paraphrases:
+    - I ate by accident while fasting
+    - drank water forgetting I was fasting
+  also_retrieve:
+    - من أكل أو شرب ناسيا فليتم صومه فإنما أطعمه الله وسقاه
+
+
+- slug: swallowing-saliva
+  question: Does swallowing spit break my fast?
+  paraphrases:
+    - swallowing saliva while fasting
+    - does phlegm break the fast
+  also_retrieve:
+    - ابتلاع الريق والبزاق للصائم لا يفطر
+
+
+- slug: toothpaste-and-fasting
+  question: Can I brush my teeth while fasting?
+  paraphrases:
+    - toothpaste during Ramadan
+    - brushing teeth breaks fast
+  also_retrieve:
+    - السواك للصائم بالعشي وآخر النهار رطبا كان أو يابسا
+    - ما وصل إلى الجوف والدماغ من منفذ أفطر الصائم
+
+
+- slug: mouthwash-fasting
+  question: Does mouthwash break my fast?
+  paraphrases:
+    - rinsing my mouth while fasting
+    - can I gargle during Ramadan
+  also_retrieve:
+    - المضمضة والاستنشاق للصائم والمبالغة فيها
+    - ما وصل إلى الجوف والدماغ من منفذ أفطر الصائم
+
+
+- slug: does-vomiting-break-fast
+  question: Does being sick break my fast?
+  paraphrases:
+    - I threw up while fasting
+    - vomiting during Ramadan
+  also_retrieve:
+    - من ذرعه القيء فلا قضاء عليه ومن استقاء عمدا فليقض
+
+
+- slug: blood-test-while-fasting
+  question: Does a blood test break my fast?
+  paraphrases:
+    - giving blood while fasting
+    - blood draw during Ramadan
+  also_retrieve:
+    - الحجامة والفصد للصائم وأفطر الحاجم والمحجوم
+    - ما وصل إلى الجوف والدماغ من منفذ أفطر الصائم
+
+
+- slug: inhaler-while-fasting
+  question: Does my asthma inhaler break my fast?
+  paraphrases:
+    - using an inhaler during Ramadan
+    - asthma medication and fasting
+  also_retrieve:
+    - ما وصل إلى الجوف والدماغ من منفذ أفطر الصائم
+    - التداوي والدواء للصائم وما يصل إلى الجوف
+
+
+- slug: injections-and-fasting
+  question: Do injections break my fast?
+  paraphrases:
+    - insulin while fasting
+    - having a jab during Ramadan
+  also_retrieve:
+    - ما وصل إلى الجوف والدماغ من منفذ أفطر الصائم
+    - الحجامة والفصد للصائم وأفطر الحاجم والمحجوم
+
+
+- slug: tablets-while-fasting
+  question: I have to take medication — can I still fast?
+  expect: decline
+  paraphrases:
+    - I take daily pills can I fast
+    - prescription medicine during Ramadan
+  note: >
+    Turns on the medication, the condition and medical advice. Explain what it
+    turns on; route to a doctor as well as a scholar. Do not rule.
+  also_retrieve:
+    - التداوي والدواء للصائم وما يصل إلى الجوف
+    - من يجب عليه الصوم ومن يرخص له الفطر المريض والمسافر والشيخ الكبير
+
+
+- slug: intimacy-while-fasting
+  question: What's allowed with my spouse during Ramadan?
+  paraphrases:
+    - can we be intimate in Ramadan
+    - marital relations while fasting
+  also_retrieve:
+    - القبلة للصائم ومباشرة الصائم لامرأته
+
+
+- slug: intercourse-during-fasting-day
+  question: What if we had intercourse during a fasting day?
+  paraphrases:
+    - we broke the fast by having sex
+    - expiation for intercourse in Ramadan
+  also_retrieve:
+    - من جامع في نهار رمضان فعليه الكفارة عتق رقبة أو صيام شهرين أو إطعام ستين مسكينا
+
+
+- slug: kissing-while-fasting
+  question: Does kissing break the fast?
+  paraphrases:
+    - can I kiss my wife while fasting
+    - affection during Ramadan daytime
+  also_retrieve:
+    - القبلة للصائم ومباشرة الصائم لامرأته
+
+
+- slug: does-smoking-break-fast
+  question: Does smoking break my fast?
+  paraphrases:
+    - cigarettes while fasting
+    - does vaping break the fast
+  also_retrieve:
+    - ما وصل إلى الجوف والدماغ من منفذ أفطر الصائم
+    - ابتلاع الريق والبزاق للصائم لا يفطر
+
+
+- slug: perfume-while-fasting
+  question: Can I wear perfume while fasting?
+  paraphrases:
+    - using scent during Ramadan
+    - does smelling perfume break the fast
+  also_retrieve:
+    - ما وصل إلى الجوف والدماغ من منفذ أفطر الصائم
+    - ما يفسد الصوم الأكل والشرب والجماع عمدا
+
+
+- slug: swimming-while-fasting
+  question: Can I swim or shower while fasting?
+  paraphrases:
+    - bathing during Ramadan
+    - does water on my body break the fast
+  also_retrieve:
+    - كان يصب على رأسه الماء وهو صائم من العطش والحر
+    - المضمضة والاستنشاق للصائم والمبالغة فيها
+
+
+- slug: what-time-do-i-stop-eating
+  question: When exactly do I have to stop eating in the morning?
+  paraphrases:
+    - when does the fast start
+    - can I eat until the adhan
+    - suhoor cut-off time
+  also_retrieve:
+    - حتى يتبين لكم الخيط الأبيض من الخيط الأسود من الفجر ووقت الإمساك
+    - السحور بركة فتسحروا ولو بجرعة ماء
+
+
+- slug: missed-suhoor
+  question: I slept through suhoor — can I still fast?
+  paraphrases:
+    - fasting without the pre-dawn meal
+    - I didn't wake up for suhoor
+  also_retrieve:
+    - السحور بركة فتسحروا ولو بجرعة ماء
+
+
+- slug: breaking-fast-time
+  question: When exactly can I break my fast?
+  paraphrases:
+    - when is iftar
+    - can I eat as soon as the sun sets
+  also_retrieve:
+    - تعجيل الفطر وتأخير السحور ولا يزال الناس بخير ما عجلوا الفطر
+
+
+- slug: what-to-say-when-breaking-fast
+  question: Is there something I say when breaking my fast?
+  paraphrases:
+    - dua for iftar
+    - what do Muslims say at sunset in Ramadan
+  also_retrieve:
+    - ذهب الظمأ وابتلت العروق وثبت الأجر إن شاء الله
+    - تعجيل الفطر وتأخير السحور ولا يزال الناس بخير ما عجلوا الفطر
+
+
+- slug: making-up-missed-fasts
+  question: How do I make up fasts I missed?
+  paraphrases:
+    - qada fasts after Ramadan
+    - do I fast the days back to back
+  also_retrieve:
+    - قضاء رمضان متتابعا أو متفرقا وفدة من أيام أخر
+
+
+- slug: deadline-for-makeup-fasts
+  question: Is there a deadline for making up missed fasts?
+  paraphrases:
+    - can I make up fasts after the next Ramadan
+    - how long do I have to repay fasts
+  also_retrieve:
+    - تأخير قضاء رمضان حتى يدخل رمضان آخر فعليه الفدية
+
+
+- slug: fidyah-when-cannot-fast
+  question: What if I genuinely can't fast at all?
+  paraphrases:
+    - what is fidyah
+    - feeding the poor instead of fasting
+    - permanent illness and Ramadan
+  also_retrieve:
+    - من يجب عليه الصوم ومن يرخص له الفطر المريض والمسافر والشيخ الكبير
+    - تأخير قضاء رمضان حتى يدخل رمضان آخر فعليه الفدية
+
+
+- slug: fasting-while-pregnant
+  question: Do I have to fast while pregnant or breastfeeding?
+  paraphrases:
+    - fasting in Ramadan while pregnant
+    - can I skip fasting while nursing
+    - do I make up or pay fidyah
+  also_retrieve:
+    - الحامل والمرضع إذا خافتا على أنفسهما أو ولدهما أفطرتا
+
+
+- slug: fasting-long-summer-days
+  question: The days are 20 hours where I live — what do I do?
+  tier: B
+  paraphrases:
+    - fasting in northern countries
+    - very long summer fasts
+    - can I follow Makkah timings
+  also_retrieve:
+    - ووقت الصوم من حين طلوع الفجر الثاني إلى غروب الشمس
+    - من يجب عليه الصوم ومن يرخص له الفطر المريض والمسافر والشيخ الكبير
+
+
+- slug: voluntary-fasts
+  question: What voluntary fasts are recommended?
+  paraphrases:
+    - nafl fasting days
+    - fasting outside Ramadan
+  also_retrieve:
+    - صوم يوم الاثنين والخميس وصوم التطوع
+    - من صام رمضان ثم أتبعه ست من شوال كان كصيام الدهر
+
+
+- slug: fasting-mondays-thursdays
+  question: Is fasting Mondays and Thursdays a real thing?
+  paraphrases:
+    - fasting twice a week
+    - Monday and Thursday sunnah fast
+  also_retrieve:
+    - صوم يوم الاثنين والخميس وصوم التطوع
+
+
+- slug: ashura-fasting
+  question: What is the fast of Ashura?
+  paraphrases:
+    - fasting the 10th of Muharram
+    - why do Muslims fast Ashura
+  also_retrieve:
+    - صوم يوم عاشوراء يكفر السنة الماضية
+
+
+- slug: six-fasts-of-shawwal
+  question: What are the six fasts of Shawwal?
+  paraphrases:
+    - fasting six days after Eid
+    - Shawwal fasting reward
+  also_retrieve:
+    - من صام رمضان ثم أتبعه ست من شوال كان كصيام الدهر
+
+
+- slug: breaking-a-voluntary-fast
+  question: Can I break a voluntary fast partway through?
+  paraphrases:
+    - I started a nafl fast and want to stop
+    - do I owe anything for breaking an optional fast
+  also_retrieve:
+    - الصائم المتطوع أمير نفسه إن شاء صام وإن شاء أفطر
+
+
+- slug: taraweeh-what-is-it
+  question: What is taraweeh and do I have to pray it?
+  paraphrases:
+    - the long night prayers in Ramadan
+    - is taraweeh obligatory
+    - how many rakahs is taraweeh
+  also_retrieve:
+    - قيام رمضان والتراويح عشرون ركعة
+
+
+- slug: laylat-al-qadr
+  question: What is Laylat al-Qadr and how do I find it?
+  paraphrases:
+    - the night of power
+    - which night is Laylat al-Qadr
+    - what do I do on the 27th night
+  also_retrieve:
+    - ليلة القدر في العشر الأواخر في الوتر منها وتحريها
+
+
+- slug: itikaf-what-is-it
+  question: What is i'tikaf?
+  paraphrases:
+    - staying in the mosque in Ramadan
+    - the last ten nights retreat
+  also_retrieve:
+    - الاعتكاف في المسجد في العشر الأواخر من رمضان وشروطه
+
+
+- slug: zakat-al-fitr
+  question: What is zakat al-fitr and when do I pay it?
+  paraphrases:
+    - fitrana before Eid
+    - the charity due at the end of Ramadan
+    - how much is zakat al-fitr
+  also_retrieve:
+    - صدقة الفطر صاع من تمر أو شعير على الحر والعبد قبل صلاة العيد
+
+
+- slug: eid-what-do-i-do
+  question: What am I supposed to do on Eid?
+  paraphrases:
+    - my first Eid what happens
+    - Eid prayer and customs
+    - how do Muslims celebrate Eid
+
+# ─────────────────────────────────────────────────────────────
+# 9. Zakat and charity
+# ─────────────────────────────────────────────────────────────
+  also_retrieve:
+    - صلاة العيد والتكبير والغسل والخروج إلى المصلى
+
+
+- slug: what-is-zakat
+  question: What is zakat and do I have to pay it?
+  paraphrases:
+    - is zakat obligatory on me
+    - what is the charity tax in Islam
+    - do I have to pay zakat as a new Muslim
+  also_retrieve:
+    - الزكاة واجبة على الحر المسلم البالغ العاقل إذا ملك نصابا ملكا تاما وحال عليه الحول
+
+
+- slug: how-much-is-nisab
+  question: How much do I need to have before zakat is due?
+  paraphrases:
+    - what is the nisab threshold
+    - minimum wealth for zakat
+    - am I rich enough to owe zakat
+  also_retrieve:
+    - نصاب الزكاة مائتا درهم وعشرون مثقالا من الذهب وحولان الحول
+
+
+- slug: zakat-on-savings
+  question: Do I pay zakat on money in my bank account?
+  paraphrases:
+    - zakat on cash savings
+    - is my current account zakatable
+  also_retrieve:
+    - نصاب الزكاة مائتا درهم وعشرون مثقالا من الذهب وحولان الحول
+    - زكاة الأثمان الذهب والفضة والدراهم ربع العشر
+
+
+- slug: zakat-on-salary
+  question: Do I pay zakat on my salary?
+  paraphrases:
+    - zakat on income
+    - do I pay zakat monthly from wages
+  also_retrieve:
+    - زكاة المستفاد في أثناء الحول وضمه إلى نصاب من جنسه
+
+
+- slug: zakat-on-gold-jewellery
+  question: Do I pay zakat on jewellery I wear?
+  paraphrases:
+    - zakat on gold I use
+    - is worn jewellery exempt
+  also_retrieve:
+    - وليس في حلي المرأة زكاة إذا كان مما يباح لها لبسه
+
+
+- slug: zakat-if-i-have-debt
+  question: Do I pay zakat if I'm in debt?
+  paraphrases:
+    - deducting debts before zakat
+    - I owe more than I have
+  also_retrieve:
+    - الدين يمنع وجوب الزكاة ومن كان عليه دين ينقص النصاب
+
+
+- slug: zakat-on-property
+  question: Do I pay zakat on a house or land I own?
+  paraphrases:
+    - zakat on rental property
+    - is my home zakatable
+  also_retrieve:
+    - ليس في دور السكنى وعقار الغلة زكاة وزكاة عروض التجارة
+
+
+- slug: zakat-on-shares-investments
+  question: Do I pay zakat on shares or investments?
+  tier: B
+  paraphrases:
+    - zakat on stocks
+    - calculating zakat on an investment portfolio
+  also_retrieve:
+    - زكاة عروض التجارة وتقويمها عند حولان الحول
+
+
+- slug: zakat-on-pension
+  question: Do I pay zakat on my pension?
+  expect: decline
+  paraphrases:
+    - zakat on a workplace pension
+    - is my retirement fund zakatable
+  note: >
+    Turns on the scheme's structure and whether the money is accessible —
+    facts about a modern financial product. Explain what it turns on; refer.
+  also_retrieve:
+    - زكاة عروض التجارة وتقويمها عند حولان الحول
+    - الدين يمنع وجوب الزكاة ومن كان عليه دين ينقص النصاب
+
+
+- slug: when-is-zakat-due
+  question: When in the year do I pay zakat?
+  paraphrases:
+    - do I pay zakat in Ramadan
+    - zakat anniversary date
+  also_retrieve:
+    - ولا زكاة في مال حتى يحول عليه الحول
+
+
+- slug: who-can-receive-zakat
+  question: Who is allowed to receive zakat?
+  paraphrases:
+    - the eight categories of zakat
+    - who is eligible for zakat money
+  also_retrieve:
+    - مصارف الزكاة الثمانية الفقراء والمساكين والعاملين عليها والمؤلفة قلوبهم
+
+
+- slug: zakat-to-family
+  question: Can I give zakat to my own family?
+  paraphrases:
+    - zakat to my brother or sister
+    - can I give zakat to my parents
+  also_retrieve:
+    - لا يجوز دفع الزكاة إلى الوالدين والمولودين والزوجة
+
+
+- slug: zakat-to-non-muslims
+  question: Can I give zakat to non-Muslims?
+  paraphrases:
+    - zakat to a non-Muslim charity
+    - can non-Muslims receive zakat
+  also_retrieve:
+    - دفع الزكاة إلى أهل الذمة والكفار وصدقة التطوع عليهم
+
+
+- slug: zakat-vs-sadaqah
+  question: What's the difference between zakat and sadaqah?
+  paraphrases:
+    - is sadaqah the same as zakat
+    - obligatory versus voluntary charity
+  also_retrieve:
+    - الفرق بين الزكاة المفروضة وصدقة التطوع وفضل صدقة التطوع
+
+
+- slug: forgot-to-pay-zakat-years
+  question: I didn't know about zakat for years — do I owe it all?
+  tier: B
+  paraphrases:
+    - back-paying missed zakat
+    - I never paid zakat as a new Muslim
+  also_retrieve:
+    - من مضت عليه سنون لم يؤد الزكاة وجب عليه إخراج ما مضى
+
+
+- slug: how-to-give-charity-best
+  question: What's the best way to give charity?
+  paraphrases:
+    - most rewarding charity in Islam
+    - where should I give sadaqah
+  also_retrieve:
+    - أفضل الصدقة جهد المقل وأن تصدق وأنت صحيح شحيح تأمل الغنى
+
+
+- slug: charity-anonymously
+  question: Is it better to give charity secretly?
+  paraphrases:
+    - should I hide my donations
+    - giving charity in public versus private
+  also_retrieve:
+    - إخفاء الصدقة أفضل من إظهارها ورجل تصدق بصدقة فأخفاها
+
+# ─────────────────────────────────────────────────────────────
+# 10. Hajj and Umrah
+# ─────────────────────────────────────────────────────────────
+
+
+- slug: is-hajj-obligatory-on-me
+  question: Do I have to do Hajj, and when?
+  paraphrases:
+    - is Hajj compulsory
+    - when does Hajj become obligatory on a person
+  also_retrieve:
+    - استطاعة الحج الزاد والراحلة ومن وجب عليه الحج
+    - الحج على الفور أو على التراخي ومن استطاع إليه سبيلا
+
+
+- slug: hajj-if-i-cant-afford
+  question: What if I can't afford Hajj?
+  paraphrases:
+    - Hajj is too expensive for me
+    - do I have to save up for Hajj
+  also_retrieve:
+    - استطاعة الحج الزاد والراحلة ومن وجب عليه الحج
+    - من لم يجد الزاد والراحلة فلا حج عليه ولا يلزمه الاستقراض
+
+
+- slug: what-happens-at-hajj
+  question: What actually happens during Hajj?
+  paraphrases:
+    - the rites of Hajj explained
+    - what do pilgrims do day by day
+  also_retrieve:
+    - أركان الحج الإحرام والوقوف بعرفة وطواف الإفاضة والسعي
+    - الوقوف بعرفة ومزدلفة ورمي الجمار وطواف الوداع
+
+
+- slug: what-is-umrah
+  question: What is Umrah and how is it different from Hajj?
+  paraphrases:
+    - difference between Hajj and Umrah
+    - can I do Umrah any time of year
+  also_retrieve:
+    - العمرة سنة أم واجبة وصفتها الطواف والسعي والحلق
+
+
+- slug: what-is-ihram
+  question: What is ihram and what can't I do in it?
+  paraphrases:
+    - the pilgrim state and its restrictions
+    - what is forbidden while in ihram
+  also_retrieve:
+    - محظورات الإحرام لبس المخيط والطيب وحلق الشعر
+    - مواقيت الإحرام والتلبية ونية الإحرام بالحج أو العمرة
+
+
+- slug: women-hajj-without-mahram
+  question: Can a woman go to Hajj without a male relative?
+  paraphrases:
+    - Hajj without a mahram
+    - can I travel for Hajj as a woman alone
+  also_retrieve:
+    - حج المرأة بغير محرم وسفرها مع النساء الثقات
+
+
+- slug: hajj-on-behalf-of-someone
+  question: Can I do Hajj for a parent who died?
+  paraphrases:
+    - performing Hajj for someone else
+    - proxy Hajj for the deceased
+  also_retrieve:
+    - الحج عن الميت والنيابة في الحج وحج المعضوب
+
+
+- slug: broke-ihram-rules
+  question: I broke an ihram rule by accident — what do I do?
+  tier: B
+  paraphrases:
+    - I used perfume in ihram
+    - expiation for ihram violations
+  also_retrieve:
+    - فدية حلق الرأس أو لبس المخيط ناسيا في الإحرام
+    - من فعل محظورا من محظورات الإحرام ناسيا أو جاهلا
+
+
+- slug: period-during-hajj
+  question: What do I do if my period starts during Hajj?
+  paraphrases:
+    - menstruating during pilgrimage
+    - can I do tawaf on my period
+  also_retrieve:
+    - الحائض في الحج تفعل ما يفعل الحاج غير الطواف بالبيت
+
+
+- slug: what-is-udhiyah
+  question: What is the Eid sacrifice and do I have to do it?
+  paraphrases:
+    - qurbani explained
+    - is the Eid animal sacrifice obligatory
+
+# ─────────────────────────────────────────────────────────────
+# 11. Qur'an
+# ─────────────────────────────────────────────────────────────
+  also_retrieve:
+    - الأضحية واجبة أم سنة ووقت الذبح يوم النحر
+
+
+- slug: touching-quran-without-wudu
+  question: Can I touch the Quran without wudu?
+  paraphrases:
+    - do I need wudu to hold a mushaf
+    - handling the Quran without ablution
+  also_retrieve:
+    - لا يمس المصحف إلا طاهر
+    - مس المصحف على غير وضوء والحدث الأصغر
+    - حمل المصحف بعلاقته أو في غلافه
+
+- slug: quran-on-phone-without-wudu
+  question: Can I read Quran on my phone without wudu?
+  paraphrases:
+    - Quran app and purity
+    - reading scripture on a screen without wudu
+  also_retrieve:
+    - مس الدراهم التي فيها آية من القرآن
+    - كتب التفسير والفقه فيها آيات هل يمنع المحدث من مسها
+    - قراءة القرآن عن ظهر قلب للمحدث حدثا أصغر
+
+- slug: reading-quran-in-translation
+  question: Does reading a translation count as reading Quran?
+  paraphrases:
+    - is reading the English Quran rewarded
+    - does translation count as recitation
+  also_retrieve:
+    - قراءة القرآن بالفارسية في الصلاة
+    - لا يجوز أن يقرأ القرآن بغير لسان العرب
+    - ترجمة معاني القرآن وتفسيره بغير العربية
+
+- slug: quran-in-the-bathroom-on-phone
+  question: Can I take my phone into the toilet if it has Quran on it?
+  paraphrases:
+    - phone with a Quran app in the bathroom
+    - is it disrespectful to carry Quran into the toilet
+  also_retrieve:
+    - كراهة دخول الخلاء بخاتم عليه اسم الله
+    - دخول الخلاء بشيء فيه ذكر الله تعالى
+    - ذكر الله في الحمام وقراءة القرآن فيه
+
+- slug: non-muslim-touching-quran
+  question: Can a non-Muslim touch or hold the Quran?
+  paraphrases:
+    - giving a Quran to a non-Muslim friend
+    - can my mother hold my mushaf
+  also_retrieve:
+    - لا تسافروا بالقرآن إلى أرض العدو
+    - دفع المصحف إلى الكافر والذمي
+    - تعليم الكافر القرآن وبيع المصحف منه
+
+- slug: how-to-start-memorising
+  question: How do I start memorising Quran?
+  paraphrases:
+    - beginning hifz as an adult
+    - tips to memorise surahs
+  also_retrieve:
+    - تعاهدوا هذا القرآن فوالذي نفسي بيده لهو أشد تفلتا
+    - في كم يقرأ القرآن اقرأه في سبع
+    - من نسي شيئا من القرآن بعد حفظه
+
+- slug: which-translation-should-i-read
+  question: Which English translation should I use?
+  tier: B
+  paraphrases:
+    - best Quran translation in English
+    - which translation is most accurate
+  also_retrieve:
+    - أنزل القرآن على سبعة أحرف
+    - اختلاف القراءات وحكم القراءة بها
+    - جمع القرآن في مصحف واحد في زمن عثمان
+
+- slug: disposing-of-old-quran
+  question: How do I dispose of a damaged Quran?
+  paraphrases:
+    - my mushaf is falling apart
+    - can I throw away a torn Quran
+  also_retrieve:
+    - المصحف إذا بلي يدفن أو يحرق
+    - الصحف والكتب التي فيها ذكر الله إذا بليت
+    - أمر عثمان بتحريق المصاحف وغسلها
+
+- slug: reciting-quran-out-loud
+  question: Should I recite out loud or silently?
+  paraphrases:
+    - is it better to read Quran aloud
+    - silent versus vocal recitation
+  also_retrieve:
+    - زينوا القرآن بأصواتكم
+    - الجهر بالقراءة بالليل والإسرار بها
+    - رفع الصوت بالقراءة يؤذي المصلين والنائم
+
+- slug: making-mistakes-in-recitation
+  question: What if I mispronounce words while reciting?
+  paraphrases:
+    - my tajweed is bad
+    - is my recitation valid with errors
+  also_retrieve:
+    - الماهر بالقرآن مع السفرة الكرام البررة والذي يقرأ ويتتعتع فيه
+    - اللحن في قراءة القرآن وحكمه
+    - من قرأ القرآن فأعرب فله بكل حرف
+
+- slug: quran-order-of-revelation
+  question: Why isn't the Quran in chronological order?
+  paraphrases:
+    - how is the Quran arranged
+    - why are the surahs not in date order
+  also_retrieve:
+    - أول ما نزل من القرآن اقرأ باسم ربك الذي خلق
+    - ترتيب السور في المصحف وترتيب النزول
+    - المكي والمدني من السور وآخر ما نزل
+
+- slug: abrogation-in-quran
+  question: What does it mean that some verses were abrogated?
+  paraphrases:
+    - what is naskh
+    - are some Quran verses cancelled
+  also_retrieve:
+    - الناسخ والمنسوخ في القرآن
+    - ما ننسخ من آية أو ننسها نأت بخير منها
+    - نسخ التلاوة وبقاء الحكم ونسخ الحكم وبقاء التلاوة
+
+# ─────────────────────────────────────────────────────────────
+# 12. Belief and aqidah
+# ─────────────────────────────────────────────────────────────
+
+- slug: what-is-tawhid
+  question: What does tawhid actually mean?
+  paraphrases:
+    - what do Muslims believe about God
+    - the oneness of Allah explained
+    - what is monotheism in Islam
+  also_retrieve:
+    - توحيد الألوهية والربوبية ومعنى لا إله إلا الله
+    - معنى شهادة أن لا إله إلا الله وإخلاص العبادة لله وحده
+    - حق الله على العباد أن يعبدوه ولا يشركوا به شيئا
+
+- slug: what-are-the-pillars-of-islam
+  question: What are the five pillars?
+  paraphrases:
+    - the five duties of a Muslim
+    - list the pillars of Islam
+  also_retrieve:
+    - بني الإسلام على خمس شهادة أن لا إله إلا الله وإقام الصلاة
+    - حديث جبريل ما الإسلام قال أن تعبد الله ولا تشرك به شيئا
+
+- slug: what-are-the-pillars-of-faith
+  question: What are the six articles of faith?
+  paraphrases:
+    - what must a Muslim believe
+    - the articles of iman
+  also_retrieve:
+    - الإيمان أن تؤمن بالله وملائكته وكتبه ورسله واليوم الآخر وتؤمن بالقدر
+    - حديث جبريل ما الإيمان قال أن تؤمن بالله وملائكته
+
+- slug: what-is-shirk
+  question: What is shirk and what counts as it?
+  paraphrases:
+    - associating partners with God
+    - is shirk forgivable
+  also_retrieve:
+    - الشرك بالله وأنواعه وأن تجعل لله ندا وهو خلقك
+    - الرياء والشرك الأصغر وإن الله لا يغفر أن يشرك به
+
+- slug: what-is-kufr
+  question: What is kufr?
+  paraphrases:
+    - what does disbelief mean in Islam
+    - difference between kufr and shirk
+  also_retrieve:
+    - الكفر وأنواعه ونواقض الإسلام
+    - كفر دون كفر ومن ترك الصلاة والفرق بين الكفر والمعصية
+
+- slug: does-faith-go-up-and-down
+  question: Is it normal for my faith to go up and down?
+  paraphrases:
+    - my iman is weak lately
+    - faith fluctuates is that normal
+  also_retrieve:
+    - الإيمان يزيد وينقص يزيد بالطاعة وينقص بالمعصية
+    - الإيمان بضع وسبعون شعبة أعلاها لا إله إلا الله
+
+- slug: what-happens-when-we-die
+  question: What happens to us after we die?
+  paraphrases:
+    - the afterlife in Islam
+    - what comes after death
+  also_retrieve:
+    - سكرات الموت وقبض ملك الموت للروح
+    - خروج الروح وتشييع الملائكة للمؤمن والكافر
+
+- slug: what-is-barzakh
+  question: What is the grave like before Judgement Day?
+  paraphrases:
+    - life in the grave
+    - what is barzakh
+  also_retrieve:
+    - فتنة القبر وسؤال الملكين وعذاب القبر ونعيمه
+    - البرزخ ومن ورائهم برزخ إلى يوم يبعثون وأرواح الشهداء
+
+- slug: what-is-the-day-of-judgement
+  question: What happens on the Day of Judgement?
+  paraphrases:
+    - the last day in Islam
+    - how are we judged
+  also_retrieve:
+    - الحشر والحساب والميزان والصراط يوم القيامة
+    - نفخ الصور والبعث من القبور وأول من تنشق عنه الأرض
+    - يوم يقوم الناس لرب العالمين وقراءة الكتاب والحساب
+
+- slug: paradise-and-hell
+  question: What are Paradise and Hell like?
+  paraphrases:
+    - jannah and jahannam described
+    - what is heaven like in Islam
+  also_retrieve:
+    - صفة الجنة ونعيمها وصفة النار وعذابها
+    - أعددت لعبادي الصالحين ما لا عين رأت ولا أذن سمعت
+
+- slug: is-hell-forever
+  question: Is Hell forever?
+  paraphrases:
+    - is punishment eternal
+    - does anyone leave Hell
+  also_retrieve:
+    - خلود أهل النار وخروج الموحدين من النار بالشفاعة
+    - الشفاعة في أهل الكبائر وإخراج من قال لا إله إلا الله من النار
+
+- slug: what-is-qadar
+  question: If everything is decreed, do I have free will?
+  paraphrases:
+    - predestination in Islam
+    - if it's written why am I judged
+  also_retrieve:
+    - الإيمان بالقدر خيره وشره وكل ميسر لما خلق له
+    - كتب الله مقادير الخلائق والاحتجاج بالقدر على المعصية
+
+- slug: why-does-god-allow-suffering
+  question: Why does God allow suffering?
+  paraphrases:
+    - why do bad things happen to good people
+    - why is there pain in the world
+  also_retrieve:
+    - الابتلاء والصبر على المصيبة وما أصاب من مصيبة إلا بإذن الله
+    - ما يصيب المؤمن من نصب ولا وصب إلا كفر الله بها من خطاياه
+
+- slug: purpose-of-life
+  question: What does the Qur'an say about the purpose of human life?
+  paraphrases:
+    - why were we created
+    - what is the meaning of life in Islam
+    - what am I here for
+  also_retrieve:
+    - وما خلقت الجن والإنس إلا ليعبدون
+    - الدنيا دار ابتلاء وليبلوكم أيكم أحسن عملا
+
+- slug: what-are-angels
+  question: What are angels and what do they do?
+  paraphrases:
+    - do Muslims believe in angels
+    - what are the angels' jobs
+  also_retrieve:
+    - الملائكة خلقهم من نور وأعمالهم وحملة العرش
+    - الملائكة لا يعصون الله ما أمرهم والكرام الكاتبون
+    - جبريل وميكائيل وإسرافيل وملك الموت وأعمال الملائكة
+
+- slug: what-are-jinn
+  question: Are jinn real, and should I be afraid of them?
+  paraphrases:
+    - do jinn exist
+    - are jinn dangerous
+  also_retrieve:
+    - الجن خلقوا من مارج من نار وإسلامهم وكفرهم
+    - استماع الجن للقرآن وقل أوحي إلي أنه استمع نفر من الجن
+
+- slug: who-is-shaytan
+  question: Who is Shaytan and how does he work?
+  paraphrases:
+    - is the devil real in Islam
+    - how does Shaytan tempt people
+  also_retrieve:
+    - إبليس وعداوة الشيطان ووسوسته لبني آدم
+    - الاستعاذة من الشيطان الرجيم ونزغ الشيطان وخطواته
+
+- slug: jesus-in-islam
+  question: What do Muslims believe about Jesus?
+  paraphrases:
+    - is Isa a prophet in Islam
+    - Muslim view of Jesus Christ
+  also_retrieve:
+    - عيسى ابن مريم عبد الله ورسوله وكلمته ألقاها إلى مريم
+    - نزول عيسى في آخر الزمان ورفعه وما قتلوه وما صلبوه
+
+- slug: previous-scriptures
+  question: What do Muslims believe about the Bible and Torah?
+  paraphrases:
+    - are the previous books still valid
+    - Muslim view of the Bible
+  also_retrieve:
+    - التوراة والإنجيل وتحريف أهل الكتاب لكتبهم
+    - الإيمان بالكتب المنزلة وأنزل التوراة والإنجيل
+
+- slug: can-i-read-the-bible
+  question: Am I allowed to read the Bible?
+  paraphrases:
+    - can Muslims read other scriptures
+    - is reading the Gospel allowed
+  also_retrieve:
+    - النهي عن سؤال أهل الكتاب والأخذ عن كتبهم
+    - حديث عمر في الصحيفة من التوراة وغضب النبي صلى الله عليه وسلم
+    - لا تصدقوا أهل الكتاب ولا تكذبوهم وقولوا آمنا بالله
+
+- slug: why-muhammad
+  question: Why do we need a prophet at all?
+  paraphrases:
+    - why did God send messengers
+    - what is the role of the Prophet
+  also_retrieve:
+    - إرسال الرسل مبشرين ومنذرين لئلا يكون للناس على الله حجة
+    - ختم النبوة وما كان محمد أبا أحد من رجالكم وخاتم النبيين
+
+- slug: are-prophets-sinless
+  question: Were the prophets sinless?
+  paraphrases:
+    - did prophets make mistakes
+    - infallibility of prophets
+  also_retrieve:
+    - عصمة الأنبياء عن الكبائر والصغائر
+    - أخطاء الأنبياء وتوبة آدم ويونس واستغفار النبي صلى الله عليه وسلم
+
+- slug: what-are-the-names-of-allah
+  question: What are the 99 names and what do I do with them?
+  paraphrases:
+    - the beautiful names of Allah
+    - should I memorise the 99 names
+  also_retrieve:
+    - أسماء الله الحسنى تسعة وتسعون اسما من أحصاها دخل الجنة
+    - ولله الأسماء الحسنى فادعوه بها والدعاء بأسماء الله
+
+- slug: can-i-question-my-faith
+  question: Is it wrong to have doubts?
+  paraphrases:
+    - I have doubts about Islam
+    - is questioning my religion a sin
+  also_retrieve:
+    - الوسوسة في الإيمان وقولهم نجد في أنفسنا ما يتعاظم أن نتكلم به
+    - الشك في الإيمان والوسوسة وذاك صريح الإيمان
+
+- slug: what-is-bidah
+  question: What is bid'ah and why is it a big deal?
+  paraphrases:
+    - what counts as innovation in religion
+    - is everything new bidah
+  also_retrieve:
+    - البدعة وكل محدثة بدعة وكل بدعة ضلالة
+    - من أحدث في أمرنا هذا ما ليس منه فهو رد
+
+- slug: sunni-shia-difference
+  question: What's the difference between Sunni and Shia?
+  expect: decline
+  paraphrases:
+    - are Sunnis or Shias correct
+    - what separates Sunni and Shia Islam
+  note: >
+    May describe what the groups are and how the split arose; must not
+    adjudicate between them.
+  also_retrieve:
+    - افتراق الأمة والفرق والطوائف
+    - أهل السنة والجماعة ولزوم الجماعة وإياكم والفرقة
+
+- slug: which-madhhab-should-i-follow
+  question: Which school of thought should I follow?
+  expect: decline
+  paraphrases:
+    - which madhhab is best
+    - should I be Hanafi or Shafii
+  note: May explain what the schools are; must not pick one.
+  also_retrieve:
+    - التقليد واتباع المذاهب الأربعة والاجتهاد
+    - الأئمة الأربعة أبو حنيفة ومالك والشافعي وأحمد واختلافهم
+
+- slug: do-i-have-to-follow-a-madhhab
+  question: Do I have to follow a madhhab at all?
+  paraphrases:
+    - can I just follow the Quran and sunnah
+    - is following a school required
+  also_retrieve:
+    - سؤال أهل الذكر وتقليد العامي للمفتي
+    - فاسألوا أهل الذكر إن كنتم لا تعلمون واستفتاء العامي
+
+- slug: is-this-person-a-kafir
+  question: Is someone who does a particular thing still a Muslim?
+  expect: decline
+  paraphrases:
+    - is my friend still Muslim if he does this
+    - does this action make someone a disbeliever
+  note: Refuse outright. Takfir is not something this app does.
+  also_retrieve:
+    - تكفير المسلم ومن قال لأخيه يا كافر فقد باء بها أحدهما
+    - لا نكفر أحدا من أهل القبلة بذنب وأهل السنة لا يكفرون بالذنوب
+
+# ─────────────────────────────────────────────────────────────
+# 13. Food and drink
+# ─────────────────────────────────────────────────────────────
+
+- slug: what-food-is-forbidden
+  question: What food is actually forbidden in Islam?
+  paraphrases:
+    - what is haram to eat
+    - list of forbidden foods
+    - what can't Muslims eat
+  also_retrieve:
+    - حرمت عليكم الميتة والدم ولحم الخنزير وما أهل لغير الله به
+    - كتاب الأطعمة وما يحل أكله وما يحرم من الحيوان
+
+- slug: what-does-halal-mean
+  question: What does halal actually mean?
+  paraphrases:
+    - definition of halal
+    - what makes food halal
+  also_retrieve:
+    - الحلال بين والحرام بين وبينهما أمور مشتبهات
+    - الأصل في الأعيان الإباحة حتى يرد التحريم
+
+- slug: alcohol-and-intoxicants
+  question: What does Islam say about alcohol and intoxicants?
+  paraphrases:
+    - is alcohol haram
+    - what counts as an intoxicant
+    - is a small amount of alcohol allowed
+  also_retrieve:
+    - كل مسكر خمر وكل خمر حرام
+    - ما أسكر كثيره فقليله حرام
+
+- slug: can-i-eat-at-my-parents-house
+  question: Can I eat at my non-Muslim parents' house?
+  paraphrases:
+    - eating at my family's home after converting
+    - my mum cooks with things I'm unsure about
+    - can I eat what my family serves
+  also_retrieve:
+    - وطعام الذين أوتوا الكتاب حل لكم وطعامكم حل لهم
+    - قوم يأتوننا باللحم لا ندري أذكروا اسم الله عليه أم لا سموا أنتم وكلوا
+
+- slug: food-cooked-by-non-muslims
+  question: Can I eat food cooked by non-Muslims?
+  paraphrases:
+    - is food from a non-Muslim kitchen halal
+    - food prepared by people of other faiths
+    - can I eat food cooked in pans used for pork
+  also_retrieve:
+    - آنية المشركين والأكل في أواني أهل الكتاب
+    - طعام المجوس وأهل الكتاب وما طبخوه في قدورهم
+
+- slug: eating-out-at-restaurants
+  question: Can I eat at a normal restaurant?
+  tier: B
+  paraphrases:
+    - eating at non-halal restaurants
+    - can I order vegetarian at a normal place
+    - what if there's no halal option
+  also_retrieve:
+    - الشك في الذبيحة وما لم يعلم كيف ذبح
+    - قوم يأتوننا باللحم لا ندري أذكروا اسم الله عليه أم لا سموا أنتم وكلوا
+
+- slug: is-supermarket-meat-halal
+  question: Can I eat meat from a regular supermarket?
+  tier: B
+  paraphrases:
+    - is supermarket chicken halal
+    - buying meat from a normal shop
+  also_retrieve:
+    - ذبيحة من لا تعرف ملته والتسمية على الذبيحة
+    - ترك التسمية على الذبيحة عمدا أو نسيانا واختلاف الفقهاء
+
+- slug: meat-from-christians-jews
+  question: Is meat slaughtered by Christians or Jews permissible?
+  paraphrases:
+    - food of the People of the Book
+    - is kosher meat halal
+  also_retrieve:
+    - ذبائح أهل الكتاب اليهود والنصارى
+    - طعامهم ذبائحهم قول ابن عباس في طعام أهل الكتاب
+
+- slug: stunning-before-slaughter
+  question: What about meat that was stunned before slaughter?
+  expect: decline
+  paraphrases:
+    - is stunned meat halal
+    - mechanical slaughter and halal
+  note: >
+    Turns on facts about a specific slaughter process. Explain what it turns
+    on; refer to a body that has examined the method.
+  also_retrieve:
+    - شروط الذكاة قطع الحلقوم والمريء والودجين
+    - المنخنقة والموقوذة والمتردية وما أدركتم ذكاته
+
+- slug: is-gelatin-halal
+  question: Is gelatin halal?
+  expect: decline
+  paraphrases:
+    - are marshmallows halal
+    - gelatin in sweets and yoghurt
+  note: Depends on source and on istihala. Explain what it turns on; do not rule.
+  also_retrieve:
+    - الاستحالة وانقلاب العين النجسة إلى طاهرة
+    - الخمر إذا تخللت بنفسها وطهارة الخل
+
+- slug: e-numbers-additives
+  question: How do I know if additives are halal?
+  expect: decline
+  paraphrases:
+    - what about E numbers
+    - hidden ingredients in processed food
+  also_retrieve:
+    - الشبهات والورع وترك ما يريبك إلى ما لا يريبك
+    - الاستحالة وتبدل الحقيقة وطهارة ما استحال من النجاسات
+
+- slug: vanilla-extract-alcohol
+  question: Is vanilla extract haram because of the alcohol?
+  expect: decline
+  paraphrases:
+    - alcohol in food flavourings
+    - is vanilla essence permissible
+  also_retrieve:
+    - الانتفاع بالمسكر في التداوي وحكم استعماله
+    - وقوع الخمر في الطعام وغلبة الطاهر عليه واستهلاكها
+    - الطلاء والمطبوخ من عصير العنب إذا ذهب ثلثاه بالطبخ
+
+- slug: halal-certification-labels
+  question: Can I trust halal certification labels?
+  expect: decline
+  paraphrases:
+    - which halal certifier is reliable
+    - what does the halal logo actually mean
+  also_retrieve:
+    - قبول خبر الواحد في الطعام والإخبار عن الحل والحرمة
+    - الشبهات والورع وترك ما يريبك إلى ما لا يريبك
+
+- slug: alcohol-in-cooking
+  question: What if alcohol was used in cooking and burned off?
+  tier: B
+  paraphrases:
+    - wine in a sauce that was cooked
+    - does alcohol evaporate make it halal
+  also_retrieve:
+    - الطلاء والمطبوخ من عصير العنب إذا ذهب ثلثاه بالطبخ
+    - وقوع الخمر في الطعام وغلبة الطاهر عليه واستهلاكها
+
+- slug: non-alcoholic-beer
+  question: Can I drink non-alcoholic beer?
+  tier: B
+  paraphrases:
+    - is alcohol-free beer allowed
+    - 0.0% drinks in Islam
+  also_retrieve:
+    - الفقاع والنبيذ الذي لا يسكر وحكم شربه
+    - التشبه بشاربي الخمر والجلوس على مائدة فيها خمر
+
+- slug: is-seafood-halal
+  question: Is all seafood halal?
+  paraphrases:
+    - can Muslims eat fish
+    - what sea creatures are permitted
+  also_retrieve:
+    - أحل لكم صيد البحر وطعامه وميتة البحر
+    - هو الطهور ماؤه الحل ميتته
+
+- slug: is-shellfish-halal
+  question: Are prawns and shellfish halal?
+  paraphrases:
+    - can I eat crab and lobster
+    - shrimp in Islam
+  also_retrieve:
+    - أحلت لنا ميتتان الحوت والجراد
+    - حيوان البحر سوى السمك واختلاف العلماء في أكله
+
+- slug: what-if-i-ate-pork-by-accident
+  question: I ate pork without knowing — what do I do?
+  paraphrases:
+    - I found out my food had pork in it
+    - accidentally eating haram
+  also_retrieve:
+    - رفع عن أمتي الخطأ والنسيان وما استكرهوا عليه
+    - من أكل حراما جاهلا أو ناسيا فلا إثم عليه
+
+- slug: cross-contamination-kitchen
+  question: What if halal food touched pork in a shared kitchen?
+  tier: B
+  paraphrases:
+    - shared pans and utensils
+    - my flatmate cooks pork in our kitchen
+  also_retrieve:
+    - أواني أهل الكتاب فإن لم تجدوا غيرها فاغسلوها
+    - طهارة الإناء بالغسل وإزالة النجاسة عنه
+
+- slug: cooking-pork-for-family
+  question: Can I cook pork for my non-Muslim family?
+  tier: B
+  paraphrases:
+    - preparing haram food for others
+    - my job requires handling pork
+  also_retrieve:
+    - التعاون على الإثم والعدوان والإعانة على المعصية
+    - لعن الله الخمر وحاملها والمحمولة إليه
+
+- slug: eating-etiquette
+  question: Are there rules about how to eat?
+  paraphrases:
+    - sunnah manners of eating
+    - eating with the right hand
+  also_retrieve:
+    - سم الله وكل بيمينك وكل مما يليك
+    - النهي عن الأكل بالشمال والشرب قائما
+
+- slug: is-it-wrong-to-waste-food
+  question: What does Islam say about wasting food?
+  paraphrases:
+    - throwing away leftovers
+    - is food waste sinful
+  also_retrieve:
+    - وكلوا واشربوا ولا تسرفوا إنه لا يحب المسرفين
+    - لعق الأصابع والصحفة وإماطة الأذى عن اللقمة
+
+- slug: vegetarianism-in-islam
+  question: Can I be vegetarian as a Muslim?
+  paraphrases:
+    - is it allowed to avoid meat entirely
+    - vegan Muslim
+  also_retrieve:
+    - لا تحرموا طيبات ما أحل الله لكم
+    - تحريم الحلال على النفس وكفارة اليمين
+    - أكل اللحم وفضله وهل يجب أكله أو يستحب
+
+# ─────────────────────────────────────────────────────────────
+# 14. Dress and appearance
+# ─────────────────────────────────────────────────────────────
+
+- slug: is-hijab-obligatory
+  question: Is hijab compulsory?
+  paraphrases:
+    - do I have to wear the headscarf
+    - is covering hair required in Islam
+  also_retrieve:
+    - وليضربن بخمرهن على جيوبهن وآية الحجاب
+    - ستر المرأة عورتها في الصلاة وخارجها
+
+- slug: what-counts-as-proper-hijab
+  question: What actually counts as proper covering?
+  paraphrases:
+    - hijab requirements for women
+    - is a turban style hijab acceptable
+  also_retrieve:
+    - عورة المرأة الحرة وما يجوز إبداؤه من الوجه والكفين
+    - الزينة الظاهرة في قوله إلا ما ظهر منها
+
+- slug: is-face-covering-required
+  question: Do I have to cover my face?
+  paraphrases:
+    - is niqab obligatory
+    - do I need to wear a face veil
+  also_retrieve:
+    - تغطية الوجه والنقاب للمرأة
+    - نظر الرجل إلى وجه المرأة الأجنبية
+
+- slug: hijab-in-front-of-family
+  question: Who do I have to cover in front of?
+  paraphrases:
+    - do I wear hijab around my cousins
+    - who counts as family for covering
+  also_retrieve:
+    - المحارم الذين تبدي المرأة زينتها لهم
+    - نظر المرأة إلى ذي المحرم وابن العم
+
+- slug: not-ready-to-wear-hijab
+  question: I'm not ready to wear hijab — am I sinning?
+  paraphrases:
+    - I converted but can't wear hijab yet
+    - struggling to start wearing the scarf
+  also_retrieve:
+    - ستر المرأة عورتها في الصلاة وخارجها
+    - من ترك واجبا من الواجبات وهو مؤمن
+    - العاصي المصر على الذنب لا يخرج من الإيمان
+
+- slug: hijab-at-work-or-school
+  question: What if I can't wear hijab at work?
+  tier: B
+  paraphrases:
+    - my employer bans headscarves
+    - hijab not allowed at my school
+  also_retrieve:
+    - من أكره على الكفر وقلبه مطمئن بالإيمان
+    - كتاب الإكراه وحد الإكراه الملجئ وغير الملجئ
+    - ستر المرأة عورتها في الصلاة وخارجها
+
+- slug: mens-dress-code
+  question: What are the dress rules for men?
+  paraphrases:
+    - how should a Muslim man dress
+    - is there a male dress code
+  also_retrieve:
+    - ما يكره من اللباس للرجال وإسبال الإزار
+    - لباس الرجل وما يحل له من الثياب
+
+- slug: awrah-for-men
+  question: What does a man have to cover?
+  paraphrases:
+    - male awrah limits
+    - can men go topless
+  also_retrieve:
+    - عورة الرجل من السرة إلى الركبة
+    - كشف الفخذ والنظر إليه
+
+- slug: can-men-wear-gold
+  question: Can men wear gold or silk?
+  paraphrases:
+    - gold ring for men
+    - is silk forbidden for males
+  also_retrieve:
+    - تحريم الذهب والحرير على ذكور الأمة
+    - خاتم الذهب ولبس الحرير للرجال
+
+- slug: can-men-wear-shorts
+  question: Can men wear shorts?
+  paraphrases:
+    - shorts above the knee for men
+    - gym clothing for Muslim men
+  also_retrieve:
+    - الركبة من العورة أم لا وكشفها
+    - ستر ما بين السرة والركبة في الصلاة
+
+- slug: is-the-beard-obligatory
+  question: Do I have to grow a beard?
+  paraphrases:
+    - is shaving haram
+    - beard requirement in Islam
+  also_retrieve:
+    - إعفاء اللحى وقص الشوارب
+    - حلق اللحية والأخذ منها
+
+- slug: trimming-eyebrows
+  question: Can women shape their eyebrows?
+  paraphrases:
+    - is threading eyebrows allowed
+    - plucking eyebrows in Islam
+  also_retrieve:
+    - النامصة والمتنمصة والمتفلجات للحسن
+    - الوشم والنمص والتفليج وتغيير خلق الله
+
+- slug: removing-body-hair
+  question: What are the rules about removing body hair?
+  paraphrases:
+    - hair removal in Islam
+    - waxing and shaving rules
+  also_retrieve:
+    - خصال الفطرة الاستحداد ونتف الإبط
+    - حلق العانة والتوقيت في قص الشارب
+
+- slug: tattoos-before-islam
+  question: I have tattoos from before I converted — what do I do?
+  paraphrases:
+    - do I need to remove my tattoos
+    - I converted with tattoos
+  also_retrieve:
+    - الواشمة والمستوشمة وإزالة الوشم
+    - الإسلام يجب ما قبله ومن أسلم وعليه أثر الجاهلية
+
+- slug: getting-a-tattoo
+  question: Are tattoos haram?
+  paraphrases:
+    - can Muslims get tattoos
+    - is permanent ink forbidden
+  also_retrieve:
+    - لعن الله الواشمات المغيرات خلق الله
+    - الوشم في اليد والنجاسة الحاصلة به
+
+- slug: piercings
+  question: Are piercings allowed?
+  paraphrases:
+    - can I get my nose pierced
+    - ear piercings in Islam
+  also_retrieve:
+    - حلي النساء من الذهب والفضة والخلخال
+    - ثقب الأذن والأنف للزينة وهل هو من المثلة
+    - الوشم والنمص والتفليج وتغيير خلق الله
+
+- slug: hair-dye
+  question: Can I dye my hair?
+  paraphrases:
+    - is colouring hair allowed
+    - can I dye my hair black
+  also_retrieve:
+    - تغيير الشيب بالحناء والكتم
+    - الخضاب بالسواد
+
+- slug: makeup-in-public
+  question: Can I wear makeup outside?
+  tier: B
+  paraphrases:
+    - is wearing makeup in public haram
+    - light makeup with hijab
+  also_retrieve:
+    - ولا تبرجن تبرج الجاهلية الأولى
+    - الكحل والخضاب والزينة للمرأة
+    - خروج المرأة متزينة من بيتها
+
+- slug: high-heels
+  question: Is there anything wrong with high heels?
+  paraphrases:
+    - are heels allowed for Muslim women
+    - shoes that make noise
+  also_retrieve:
+    - ولا يضربن بأرجلهن ليعلم ما يخفين من زينتهن
+    - الخيلاء في المشي وجر الثوب
+    - حلي النساء من الذهب والفضة والخلخال
+
+- slug: wearing-perfume-outside
+  question: Can women wear perfume in public?
+  paraphrases:
+    - is perfume outside the home allowed
+    - scent when leaving the house
+  also_retrieve:
+    - المرأة تخرج متطيبة إلى المسجد
+    - أيما امرأة استعطرت فمرت على قوم
+
+- slug: imitating-non-muslim-dress
+  question: Is there a problem with dressing like everyone else?
+  paraphrases:
+    - do I have to dress differently as a Muslim
+    - wearing western clothes
+  also_retrieve:
+    - من تشبه بقوم فهو منهم
+    - النهي عن التشبه بالمشركين وأهل الكتاب
+    - مخالفة اليهود والنصارى في الصبغ والشعر
+
+# ─────────────────────────────────────────────────────────────
+# 15. Family and non-Muslim relatives
+# ─────────────────────────────────────────────────────────────
+
+- slug: how-to-treat-non-muslim-parents
+  question: How am I supposed to treat my non-Muslim parents?
+  paraphrases:
+    - my parents aren't Muslim how do I behave
+    - rights of non-Muslim parents
+    - being good to family who aren't Muslim
+  also_retrieve:
+    - وصاحبهما في الدنيا معروفا وإن جاهداك على أن تشرك بي
+    - لا ينهاكم الله عن الذين لم يقاتلوكم في الدين أن تبروهم
+    - قدمت علي أمي وهي راغبة مشركة أفأصلها قال صليها
+
+- slug: obeying-parents-who-arent-muslim
+  question: Do I have to obey my parents if they're not Muslim?
+  paraphrases:
+    - must I obey non-Muslim parents
+    - my parents tell me to do things against Islam
+  also_retrieve:
+    - لا طاعة لمخلوق في معصية الخالق
+    - وإن جاهداك على أن تشرك بي ما ليس لك به علم فلا تطعهما
+    - طاعة الوالدين واجبة في المعروف
+
+- slug: parents-tell-me-to-stop-praying
+  question: My parents tell me to stop practising — what do I do?
+  paraphrases:
+    - my family wants me to give up Islam
+    - parents forbid me from praying
+  also_retrieve:
+    - لا طاعة في معصية إنما الطاعة في المعروف
+    - الصبر على أذى الوالدين في الدين
+    - وصاحبهما في الدنيا معروفا
+
+- slug: can-i-make-dua-for-non-muslim-family
+  question: Can I pray for my non-Muslim family?
+  paraphrases:
+    - making dua for non-Muslim relatives
+    - can I ask Allah to guide my parents
+  also_retrieve:
+    - الاستغفار للمشركين وقصة أبي طالب
+    - ما كان للنبي والذين آمنوا أن يستغفروا للمشركين
+    - الدعاء بالهداية لغير المسلم
+
+- slug: non-muslim-parent-died
+  question: My non-Muslim parent died — can I pray for them?
+  paraphrases:
+    - dua for a deceased non-Muslim
+    - my father died without Islam
+  also_retrieve:
+    - ما كان استغفار إبراهيم لأبيه إلا عن موعدة وعدها إياه
+    - الاستغفار للميت المشرك بعد موته
+    - لا يستغفر لهم بعد أن تبين أنهم أصحاب الجحيم
+
+- slug: inheriting-from-non-muslim-parents
+  question: Can I inherit from my non-Muslim parents?
+  expect: decline
+  paraphrases:
+    - inheritance across religions
+    - can I accept money left by non-Muslim family
+  note: Turns on the estate, the jurisdiction and the school. Refer.
+  also_retrieve:
+    - لا يرث المسلم الكافر ولا الكافر المسلم
+    - اختلاف الدين مانع من الموانع في الميراث
+    - الوصية للقريب الكافر وقصة صفية
+
+- slug: rights-of-parents
+  question: What are my parents' rights over me?
+  paraphrases:
+    - what does Islam say about treating parents
+    - duties towards mother and father
+  also_retrieve:
+    - حق الوالدين على الولد
+    - أحق الناس بحسن صحابتي أمك ثم أمك ثم أمك ثم أبوك
+    - بر الوالدين ركن من أركان الدين
+
+- slug: cutting-off-toxic-family
+  question: Can I cut off family who treat me badly?
+  paraphrases:
+    - my family is abusive can I go no contact
+    - is estrangement allowed in Islam
+  also_retrieve:
+    - ليس الواصل بالمكافئ ولكن الواصل الذي إذا قطعت رحمه وصلها
+    - قطيعة الرحم وحكمها
+    - الرجل يقول إن لي قرابة أصلهم ويقطعوني
+
+- slug: keeping-family-ties
+  question: What does keeping family ties actually require?
+  paraphrases:
+    - silat al-rahm meaning
+    - how often must I contact relatives
+  also_retrieve:
+    - الرحم شجنة من الرحمن من وصلها وصله الله
+    - من أحب أن يبسط له في رزقه وينسأ له في أثره فليصل رحمه
+    - صلة الرحم وما تكون به
+
+- slug: raising-children-muslim
+  question: How do I raise my children Muslim when my spouse isn't?
+  tier: B
+  paraphrases:
+    - interfaith parenting
+    - my husband isn't Muslim what about the kids
+  also_retrieve:
+    - كل مولود يولد على الفطرة فأبواه يهودانه أو ينصرانه
+    - تعليم الصبيان القرآن والصلاة
+    - ولد المسلم يتبع خير الأبوين دينا
+
+- slug: naming-a-baby
+  question: What should I name my baby?
+  paraphrases:
+    - do Muslim babies need Arabic names
+    - choosing a name in Islam
+  also_retrieve:
+    - أحب الأسماء إلى الله عبد الله وعبد الرحمن
+    - تسموا بأسماء الأنبياء
+    - تغيير الاسم القبيح وكراهية بعض الأسماء
+
+- slug: aqiqah-what-is-it
+  question: What is aqiqah and do I have to do it?
+  paraphrases:
+    - the sacrifice for a newborn
+    - is aqiqah obligatory
+  also_retrieve:
+    - العقيقة عن الغلام شاتان وعن الجارية شاة
+    - كل غلام رهينة بعقيقته تذبح عنه يوم سابعه
+    - حلق رأس المولود والتسمية يوم السابع
+
+- slug: when-do-children-start-praying
+  question: When should my children start praying and fasting?
+  paraphrases:
+    - at what age do kids pray
+    - teaching children salah and Ramadan
+  also_retrieve:
+    - مروا أولادكم بالصلاة لسبع واضربوهم عليها لعشر
+    - متى يؤمر الصبي بالصيام
+    - بلوغ الصبي والاحتلام والإنبات
+
+- slug: adoption-in-islam
+  question: How does adoption work in Islam?
+  tier: B
+  paraphrases:
+    - can Muslims adopt children
+    - fostering versus adoption in Islam
+  also_retrieve:
+    - ادعوهم لآبائهم هو أقسط عند الله
+    - من ادعى إلى غير أبيه
+    - كافل اليتيم أنا وكافل اليتيم في الجنة هكذا
+
+# ─────────────────────────────────────────────────────────────
+# 16. Marriage and relationships
+# ─────────────────────────────────────────────────────────────
+
+- slug: is-dating-allowed
+  question: Is dating allowed in Islam?
+  paraphrases:
+    - can I have a girlfriend or boyfriend
+    - is it haram to date before marriage
+    - can I go out with someone
+  also_retrieve:
+    - النظر إلى المرأة الأجنبية والخلوة بها وحرمة الزنا
+    - لا يخلون رجل بامرأة إلا ومعها ذو محرم
+
+- slug: how-do-muslims-meet-to-marry
+  question: How am I supposed to meet someone to marry?
+  paraphrases:
+    - how do Muslims find a spouse
+    - halal ways to meet someone
+    - is there Muslim dating
+  also_retrieve:
+    - الخطبة والنظر إلى المخطوبة قبل النكاح
+
+- slug: talking-to-someone-before-marriage
+  question: Can I talk to someone I'm considering marrying?
+  paraphrases:
+    - texting a potential spouse
+    - getting to know someone before nikah
+  also_retrieve:
+    - الخطبة والنظر إلى المخطوبة قبل النكاح
+    - لا يخلون رجل بامرأة إلا ومعها ذو محرم
+
+- slug: what-makes-a-nikah-valid
+  question: What makes a marriage valid in Islam?
+  paraphrases:
+    - requirements of an Islamic marriage
+    - what do I need for a nikah
+  also_retrieve:
+    - أركان النكاح الإيجاب والقبول والشهود والولي
+    - لا نكاح إلا بولي وشاهدي عدل والإعلان بالنكاح
+    - شروط صحة النكاح ورضا المرأة واستئمار البكر والثيب
+
+- slug: do-i-need-a-wali
+  question: Do I need a guardian to get married?
+  paraphrases:
+    - what is a wali in marriage
+    - can a woman marry without her father
+  also_retrieve:
+    - لا نكاح إلا بولي والمرأة تزوج نفسها
+
+- slug: revert-woman-no-muslim-wali
+  question: I'm a convert with no Muslim family — who is my wali?
+  paraphrases:
+    - wali for a convert woman
+    - my father isn't Muslim who gives me away
+  also_retrieve:
+    - لا نكاح إلا بولي والمرأة تزوج نفسها
+    - السلطان ولي من لا ولي له والقاضي يزوج من لا ولي لها
+    - لا ولاية لكافر على مسلمة في النكاح واختلاف الدين يمنع الولاية
+
+- slug: what-is-mahr
+  question: What is mahr and how much should it be?
+  paraphrases:
+    - the dowry in Islam
+    - how much mahr is appropriate
+  also_retrieve:
+    - باب الصداق وأقل ما يجوز من المهر وتسميته في العقد
+
+- slug: can-a-muslim-man-marry-non-muslim
+  question: Can a Muslim man marry a Christian or Jewish woman?
+  paraphrases:
+    - marrying a woman of the Book
+    - can I marry my Christian girlfriend
+  also_retrieve:
+    - نكاح الكتابية من أهل الكتاب اليهودية والنصرانية
+
+- slug: can-a-muslim-woman-marry-non-muslim
+  question: Can a Muslim woman marry a non-Muslim man?
+  paraphrases:
+    - I converted but my fiancé hasn't
+    - can a Muslim woman marry outside Islam
+  also_retrieve:
+    - لا تنكحوا المشركين حتى يؤمنوا ونكاح المسلمة من الكافر
+
+- slug: marrying-someone-my-family-hates
+  question: My family won't accept who I want to marry — what now?
+  tier: B
+  paraphrases:
+    - parents refuse my marriage choice
+    - family objects on race or culture
+  also_retrieve:
+    - عضل الولي وامتناعه من تزويج المرأة الكفء
+    - لا نكاح إلا بولي والمرأة تزوج نفسها
+
+- slug: online-nikah
+  question: Is a marriage done over video call valid?
+  tier: B
+  paraphrases:
+    - nikah over Zoom
+    - remote marriage ceremony
+  also_retrieve:
+    - شرائط الإيجاب والقبول اتحاد المجلس والنكاح بالكتاب والرسالة
+    - سماع الشاهدين كلام المتعاقدين جميعا في مجلس واحد
+    - لا نكاح إلا بولي وشاهدي عدل
+
+- slug: registering-marriage-legally
+  question: Do I need a civil marriage as well as a nikah?
+  tier: B
+  paraphrases:
+    - is a nikah legally recognised
+    - do I have to register my Islamic marriage
+  also_retrieve:
+    - إعلان النكاح والضرب بالدف وأعلنوا هذا النكاح
+    - الإشهاد على النكاح لدفع الجحود والإنكار وحفظ النسب
+    - الكتاب أوثق وأحفظ للحقوق والإشهاد على الحقوق
+    - طاعة السلطان وأولي الأمر فيما ليس بمعصية
+
+- slug: rights-of-husband-and-wife
+  question: What are a husband's and wife's rights over each other?
+  paraphrases:
+    - marital rights in Islam
+    - what do spouses owe each other
+  also_retrieve:
+    - نفقة الزوجة على الزوج الطعام والكسوة والسكنى وحق الزوج عليها
+    - وعاشروهن بالمعروف واستوصوا بالنساء خيرا وخيركم خيركم لأهله
+    - حق المرأة على زوجها أن يطعمها إذا طعم ويكسوها إذا اكتسى ولا يضرب الوجه
+
+- slug: is-obedience-required-of-wife
+  question: Does a wife have to obey her husband?
+  paraphrases:
+    - obedience in marriage
+    - must I do what my husband says
+  also_retrieve:
+    - الرجال قوامون على النساء والنشوز وحق الزوج في الطاعة
+
+- slug: financial-responsibility-in-marriage
+  question: Who pays for what in a marriage?
+  paraphrases:
+    - is the husband responsible for all expenses
+    - does a wife have to contribute financially
+  also_retrieve:
+    - نفقة الزوجة على الزوج الطعام والكسوة والسكنى وحق الزوج عليها
+
+- slug: does-wife-have-to-do-housework
+  question: Is a wife obliged to cook and clean?
+  paraphrases:
+    - housework duties in Islamic marriage
+    - is cooking required of a wife
+  also_retrieve:
+    - خدمة المرأة زوجها في البيت والعجن والخبز
+
+- slug: intimacy-in-marriage-limits
+  question: What's allowed between husband and wife?
+  paraphrases:
+    - limits of marital intimacy
+    - what is forbidden between spouses
+  also_retrieve:
+    - إتيان المرأة في دبرها ونساؤكم حرث لكم فأتوا حرثكم أنى شئتم
+    - فاعتزلوا النساء في المحيض ووطء الحائض قبل الطهر
+    - التمتع بالحائض فيما فوق الإزار والمباشرة دون الفرج
+
+- slug: contraception
+  question: Is birth control allowed?
+  tier: B
+  paraphrases:
+    - can Muslims use contraception
+    - is the pill permissible
+  also_retrieve:
+    - باب العزل كنا نعزل والقرآن ينزل
+    - حكم العزل وإذن المرأة الحرة فيه عند الفقهاء
+    - الغيلة والموءودة الصغرى
+
+- slug: polygamy-in-islam
+  question: Why does Islam allow more than one wife?
+  paraphrases:
+    - polygamy explained
+    - can a man have four wives
+  also_retrieve:
+    - تعدد الزوجات فانكحوا ما طاب لكم من النساء مثنى وثلاث ورباع والعدل بينهن
+    - ولن تستطيعوا أن تعدلوا بين النساء ولو حرصتم والقسم بين الزوجات ومن كانت له امرأتان فمال إلى إحداهما
+
+- slug: how-does-divorce-work
+  question: How does divorce actually work in Islam?
+  paraphrases:
+    - the process of talaq
+    - steps of Islamic divorce
+  also_retrieve:
+    - الطلاق السنة والبدعة وطلاق الثلاث والرجعة
+
+- slug: did-my-divorce-count
+  question: My husband said it in anger — did that count as divorce?
+  expect: decline
+  paraphrases:
+    - is my divorce valid
+    - he said talaq three times
+    - divorce pronounced in anger
+  note: >
+    Turns on wording, intent, state of mind and local law. Must explain why a
+    person is needed; may explain the general structure. Must not rule.
+  also_retrieve:
+    - طلاق الغضبان والمكره وطلاق السكران
+
+- slug: khul-woman-initiated-divorce
+  question: Can a woman initiate divorce?
+  paraphrases:
+    - what is khul
+    - can I ask for a divorce as a wife
+  also_retrieve:
+    - الخلع وافتداء المرأة نفسها من زوجها
+
+- slug: iddah-waiting-period
+  question: What is the waiting period after divorce or death?
+  paraphrases:
+    - how long is iddah
+    - waiting period for a widow
+  also_retrieve:
+    - العدة بعد الطلاق والوفاة ثلاثة قروء وأربعة أشهر وعشرا
+
+- slug: custody-after-divorce
+  question: Who gets the children after divorce?
+  expect: decline
+  paraphrases:
+    - child custody in Islam
+    - who keeps the kids after separation
+  note: Turns on the children, the parents and the court. Refer.
+  also_retrieve:
+    - حضانة الولد بعد الفراق والأم أحق به
+
+- slug: zina-what-if-i-did-it
+  question: I committed zina — what do I do?
+  paraphrases:
+    - I had sex outside marriage
+    - repenting from fornication
+    - I did this before converting
+  also_retrieve:
+    - من ابتلي بشيء من هذه القاذورات فليستتر بستر الله والتوبة من الزنا
+    - التوبة النصوح من الكبائر وقوله لا تقنطوا من رحمة الله إن الله يغفر الذنوب جميعا
+    - النهي عن إشاعة الفاحشة والأمر بستر المسلم على نفسه
+    - الإسلام يهدم ما كان قبله والتوبة تجب ما قبلها
+
+- slug: masturbation-ruling
+  question: Is masturbation haram?
+  tier: B
+  paraphrases:
+    - what does Islam say about self-pleasure
+    - is it a sin to masturbate
+  also_retrieve:
+    - الاستمناء بالكف وحكمه واختلاف الفقهاء فيه
+    - يا معشر الشباب من استطاع منكم الباءة فليتزوج ومن لم يستطع فعليه بالصوم فإنه له وجاء
+
+- slug: pornography
+  question: How do I stop watching porn?
+  paraphrases:
+    - I'm addicted to pornography
+    - breaking a porn habit as a Muslim
+  also_retrieve:
+    - قل للمؤمنين يغضوا من أبصارهم ويحفظوا فروجهم
+    - غض البصر والنظر المحرم وفتنة النظر
+    - التوبة النصوح من الكبائر وقوله لا تقنطوا من رحمة الله إن الله يغفر الذنوب جميعا
+
+- slug: being-gay-in-islam
+  question: What does Islam say about being gay?
+  tier: B
+  paraphrases:
+    - homosexuality in Islam
+    - I have same-sex attraction what do I do
+  note: >
+    Distinguish inclination from action, and answer a person rather than a
+    debate. Do not shame. Route to support where the reader is struggling.
+  also_retrieve:
+    - قوم لوط وعمل قوم لوط واللواط
+    - مسألة العزم على الفعل المحرم ومن هم بسيئة فلم يعملها
+    - الصبر عن الشهوات والهوى ومجاهدة النفس
+    - التوبة النصوح من الكبائر وقوله لا تقنطوا من رحمة الله إن الله يغفر الذنوب جميعا
+
+- slug: friendship-with-opposite-gender
+  question: Can I be friends with the opposite gender?
+  paraphrases:
+    - can men and women be just friends
+    - is texting the opposite sex haram
+  also_retrieve:
+    - لا يخلون رجل بامرأة إلا ومعها ذو محرم
+    - غض البصر والنظر المحرم وفتنة النظر
+
+- slug: shaking-hands-opposite-gender
+  question: Can I shake hands with the opposite gender?
+  paraphrases:
+    - handshake at work with the opposite sex
+    - refusing a handshake politely
+  also_retrieve:
+    - لا أصافح النساء وما مست يده يد امرأة قط في البيعة
+
+- slug: hugging-relatives
+  question: Can I hug my cousins or in-laws?
+  paraphrases:
+    - hugging extended family
+    - physical affection with relatives
+  also_retrieve:
+    - المحارم الذين لا يحل نكاحهن حرمت عليكم أمهاتكم
+    - لا يخلون رجل بامرأة إلا ومعها ذو محرم
+
+- slug: who-is-a-mahram
+  question: Who counts as a mahram?
+  paraphrases:
+    - list of mahram relatives
+    - who can I travel with
+  also_retrieve:
+    - المحارم الذين لا يحل نكاحهن حرمت عليكم أمهاتكم
+
+- slug: being-alone-with-opposite-gender
+  question: Can I be alone in a room with the opposite gender?
+  paraphrases:
+    - what is khalwa
+    - alone with a colleague in an office
+  also_retrieve:
+    - لا يخلون رجل بامرأة إلا ومعها ذو محرم
+
+# ─────────────────────────────────────────────────────────────
+# 17. Money and work
+# ─────────────────────────────────────────────────────────────
+
+- slug: what-is-riba
+  question: What is riba and why is it such a big deal?
+  paraphrases:
+    - is bank interest haram
+    - what does riba mean
+    - why is interest forbidden
+  also_retrieve:
+    - الربا نوعان ربا الفضل وربا النسيئة والأصناف الستة الذهب والفضة والبر والشعير والتمر والملح
+    - الذهب بالذهب والفضة بالفضة مثلا بمثل سواء بسواء يدا بيد فإذا اختلفت هذه الأجناس فبيعوا كيف شئتم
+    - وأحل الله البيع وحرم الربا والحكمة في تحريم الربا
+    - العلة في تحريم ربا الفضل الطعم أو الكيل أو الثمنية
+    - لعن رسول الله آكل الربا وموكله وكاتبه وشاهديه وقال هم سواء
+
+- slug: savings-account-interest
+  question: Can I have a normal savings account?
+  tier: B
+  paraphrases:
+    - is a savings account haram
+    - interest paid on my current account
+  also_retrieve:
+    - كل قرض جر منفعة فهو ربا
+    - القرض إذا شرط فيه زيادة على رأس المال فهو ربا النسيئة
+    - الوديعة إذا انتفع بها المستودع صارت قرضا وضمنها
+    - لا يحل سلف وبيع ولا شرطان في بيع ولا ربح ما لم يضمن
+
+- slug: what-do-i-do-with-interest-money
+  question: What do I do with interest my bank already paid me?
+  tier: B
+  paraphrases:
+    - can I keep interest money
+    - giving away bank interest
+  also_retrieve:
+    - التخلص من المال الحرام وصرفه في مصالح المسلمين إذا لم يعرف أربابه
+    - فمن جاءه موعظة من ربه فانتهى فله ما سلف وأمره إلى الله
+    - وإن تبتم فلكم رؤوس أموالكم لا تظلمون ولا تظلمون
+    - من ورث مالا من ربا أو اكتسبه ثم تاب ماذا يصنع به
+    - اختلاط الحلال بالحرام في المال وحكم الأكل منه والانتفاع به
+
+- slug: is-a-mortgage-allowed
+  question: Can I take out a mortgage to buy a house?
+  tier: B
+  paraphrases:
+    - is a mortgage haram
+    - buying a home with a loan
+    - what about Islamic mortgages
+  also_retrieve:
+    - بيع العينة والتحيل على الربا والذرائع إلى الحرام
+    - بيع المرابحة وبيان الثمن الأول وما زاد عليه من الربح
+    - الزيادة في الثمن لأجل الأجل في البيع المؤجل
+    - الضرورات تبيح المحظورات والحاجة تنزل منزلة الضرورة عامة أو خاصة
+    - شراء الدار بالأقساط وإجارتها ثم تمليكها في آخر المدة
+
+- slug: student-loans
+  question: Are student loans allowed?
+  tier: B
+  paraphrases:
+    - is a student loan riba
+    - can I go to university on a loan
+  also_retrieve:
+    - الاستدانة عند الحاجة وكراهة الدين والتشديد فيه
+    - القرض بزيادة مشروطة وحكمها
+    - الإنفاق على طلب العلم وفضل النفقة فيه
+    - الحاجة العامة تنزل منزلة الضرورة في المعاملات ورفع الحرج
+
+- slug: credit-cards
+  question: Can I use a credit card?
+  tier: B
+  paraphrases:
+    - are credit cards haram
+    - paying off the balance in full
+  also_retrieve:
+    - اشتراط الزيادة على المدين عند التأخير في السداد
+    - مطل الغني ظلم وعقوبة المماطل
+    - الكفالة والضمان وهل تجوز بأجر
+    - كل قرض جر منفعة إلى المقرض فهو ربا
+
+- slug: car-finance
+  question: Is car finance allowed?
+  tier: B
+  paraphrases:
+    - buying a car on finance
+    - is PCP or leasing halal
+  also_retrieve:
+    - بيع التقسيط وزيادة الثمن من أجل التأجيل
+    - لا تبع ما ليس عندك ونهي عن ربح ما لم يضمن
+    - المرابحة للآمر بالشراء وقبض السلعة قبل بيعها
+    - من باع بيعتين في بيعة فله أوكسهما أو الربا
+
+- slug: is-insurance-allowed
+  question: Is insurance haram?
+  expect: decline
+  paraphrases:
+    - is car insurance allowed
+    - life insurance in Islam
+    - what about takaful
+  note: Nothing citable. Explain what it turns on; refer.
+  also_retrieve:
+    - نهى رسول الله عن بيع الغرر وعن بيع الحصاة
+    - بيع المعدوم والمجهول وما لا يقدر على تسليمه
+    - العاقلة وتحمل الدية بين العصبة والتعاون على المغارم
+    - ضمان خطر الطريق وضمان ما لم يقبض وهل يجوز أخذ العوض عليه
+    - التبرع المشروط والهبة بعوض والالتزام بالتبرع
+
+- slug: is-crypto-halal
+  question: Is crypto halal?
+  expect: decline
+  paraphrases:
+    - is bitcoin permissible
+    - investing in cryptocurrency
+  also_retrieve:
+    - علة الربا في الذهب والفضة الثمنية وكونهما أثمانا للأشياء
+    - الفلوس النافقة وهل تجري فيها أحكام النقدين
+    - المال المتقوم وما ليس بمال ولا منفعة فيه
+    - نهى عن بيع الغرر والمجهول الذي لا يدرى أيحصل أم لا
+
+- slug: stocks-and-shares
+  question: Can I invest in the stock market?
+  expect: decline
+  paraphrases:
+    - buying shares in Islam
+    - is index investing halal
+  also_retrieve:
+    - شركة العنان والمفاوضة وشركة الأبدان والوجوه
+    - القراض والمضاربة والربح على ما اصطلحا عليه والوضيعة على المال
+    - الشركة في السلعة المشاعة وبيع الحصة المشاعة
+    - اختلاط الحلال بالحرام في المال وحكم الشبهة والغالب
+
+- slug: pension-scheme-at-work
+  question: My employer auto-enrolled me in a pension — is that okay?
+  expect: decline
+  paraphrases:
+    - workplace pension and Islam
+    - can I opt out of a pension
+  also_retrieve:
+    - ما يصل إلى الرجل من المال من غير مسألة ولا إشراف نفس
+    - الإكراه في المعاملات ومن أخذ من ماله بغير اختياره
+    - الوكالة في استثمار المال ونيابة الغير في التصرف
+    - كل قرض جر منفعة فهو ربا واستثمار الأموال بالربح
+
+- slug: working-at-a-bank
+  question: Can I work at a bank?
+  tier: B
+  paraphrases:
+    - is a job at a bank haram
+    - working in finance as a Muslim
+  also_retrieve:
+    - لعن آكل الربا وموكله وكاتبه وشاهديه
+    - الإجارة على عمل محرم ولا تحل الأجرة على المعصية
+    - وتعاونوا على البر والتقوى ولا تعاونوا على الإثم والعدوان
+    - من أعان على معصية بعمل يده هل يأثم ويحرم كسبه
+
+- slug: working-where-alcohol-is-served
+  question: Can I work somewhere that serves alcohol?
+  tier: B
+  paraphrases:
+    - waiting tables where drinks are served
+    - bar job as a Muslim
+  also_retrieve:
+    - لعنت الخمر على عشرة أوجه عاصرها ومعتصرها وحاملها والمحمولة إليه وساقيها
+    - لا تحل الإجارة على حمل الخمر ولا على عصرها
+    - إجارة النفس فيما لا يحل من الأعمال
+    - ثمن الخمر حرام وأجر من باعها
+
+- slug: working-in-a-supermarket-selling-pork
+  question: I work in a shop that sells pork and alcohol — is my income halal?
+  tier: B
+  paraphrases:
+    - scanning haram items at the till
+    - stocking shelves with alcohol
+  also_retrieve:
+    - إن الله ورسوله حرم بيع الخمر والميتة والخنزير والأصنام
+    - أجرة من باع محرما وحكم كسبه إذا كان أكثر عمله في الحلال
+    - اختلاط الكسب الحلال بالحرام وحكم الأكل من ماله
+    - من عمل عملا مباحا عند من في ماله حرام
+
+- slug: haram-income-what-do-i-do
+  question: I earned money from something haram — what do I do with it?
+  tier: B
+  paraphrases:
+    - disposing of unlawful earnings
+    - money from a job I now think was wrong
+  also_retrieve:
+    - من اكتسب مالا من حرام ثم تاب وجب عليه رده إلى صاحبه
+    - إذا جهل أصحاب الأموال تصدق بها عنهم تخلصا لا تقربا
+    - الكسب الخبيث وحكم التصرف فيه والانتفاع به
+    - إن الله طيب لا يقبل إلا طيبا
+
+- slug: is-my-job-halal
+  question: Is my job halal?
+  expect: decline
+  paraphrases:
+    - is my career permissible in Islam
+    - I'm not sure my work is allowed
+  note: Cannot be answered generically. Explain what it turns on; refer.
+  also_retrieve:
+    - أطيب الكسب عمل الرجل بيده وكل بيع مبرور
+    - الإجارة الفاسدة والأجرة على ما لا يحل
+    - التعاون على الإثم والعدوان في الأعمال والصناعات
+    - الصنائع والحرف المكروهة وحكم الكسب منها
+
+- slug: gambling-and-lottery
+  question: Why is gambling forbidden, and does the lottery count?
+  paraphrases:
+    - is the lottery haram
+    - betting on sport
+    - are raffles gambling
+  also_retrieve:
+    - إنما الخمر والميسر والأنصاب والأزلام رجس من عمل الشيطان فاجتنبوه
+    - الميسر والقمار والمخاطرة وأصل القمار في الجاهلية بالأزلام
+    - المسابقة بعوض لا تجوز إلا في خف أو حافر أو نصل
+    - النرد والشطرنج والمقامرة بهما
+
+- slug: is-trading-forex-allowed
+  question: Is forex or day trading allowed?
+  expect: decline
+  paraphrases:
+    - currency trading in Islam
+    - is day trading halal
+  also_retrieve:
+    - الصرف وبيع الذهب بالفضة يدا بيد والتقابض قبل التفرق
+    - لا تبيعوا الذهب بالذهب إلا مثلا بمثل ولا تبيعوا منها غائبا بناجز
+    - نهى عن بيع الكالئ بالكالئ وهو الدين بالدين
+    - بيع ما ليس عندك وربح ما لم يضمن
+
+- slug: buying-on-instalments
+  question: Is buying in instalments allowed?
+  paraphrases:
+    - paying for something over time
+    - is hire purchase allowed
+  also_retrieve:
+    - الزيادة في الثمن من أجل النساء والأجل في البيع
+    - نهى عن بيعتين في بيعة فله أوكسهما أو الربا
+    - بيع السلعة بثمن حال وبثمن مؤجل أكثر منه
+    - بيع السلم وشروطه والأجل المعلوم
+
+- slug: buy-now-pay-later
+  question: Are buy-now-pay-later schemes allowed?
+  expect: decline
+  paraphrases:
+    - Klarna and similar services
+    - deferred payment apps
+  also_retrieve:
+    - اشتراط غرامة أو زيادة عند تأخر السداد في البيع
+    - الشرط الفاسد في البيع وما يفسد به العقد
+    - بيع التقسيط وحكم الزيادة للأجل
+    - الجهالة في الثمن وتردده بين قدرين
+
+- slug: debt-obligations
+  question: What does Islam say about being in debt?
+  paraphrases:
+    - is debt sinful
+    - I owe money and can't pay
+    - dying with debt
+  also_retrieve:
+    - نفس المؤمن معلقة بدينه حتى يقضى عنه
+    - كان يستعيذ من المأثم والمغرم وقال إن الرجل إذا غرم حدث فكذب
+    - من أخذ أموال الناس يريد أداءها أدى الله عنه ومن أخذها يريد إتلافها أتلفه الله
+    - وإن كان ذو عسرة فنظرة إلى ميسرة وإنظار المعسر وفضله
+
+- slug: someone-owes-me-money
+  question: Someone owes me money and won't pay — what can I do?
+  tier: B
+  paraphrases:
+    - recovering a debt in Islam
+    - a friend won't repay me
+  also_retrieve:
+    - مطل الغني ظلم وإذا أتبع أحدكم على ملي فليتبع
+    - لي الواجد يحل عرضه وعقوبته
+    - الحجر على المفلس وقسمة ماله بين الغرماء بالحصص
+    - مسألة الظفر وأخذ الحق من مال المدين بغير إذنه
+
+- slug: honesty-in-business
+  question: What are the rules for honest trade?
+  paraphrases:
+    - business ethics in Islam
+    - deceiving customers
+  also_retrieve:
+    - من غش فليس مني وحديث صبرة الطعام فأدخل يده فيها فنالت أصابعه بللا
+    - البيعان بالخيار ما لم يتفرقا فإن صدقا وبينا بورك لهما في بيعهما وإن كتما وكذبا محقت بركة بيعهما
+    - النهي عن النجش وتلقي الركبان وبيع حاضر لباد
+    - التصرية والتدليس وخيار العيب ورد المبيع
+    - التاجر الصدوق الأمين مع النبيين والصديقين والشهداء
+
+- slug: bribery-vs-gift
+  question: Where's the line between a gift and a bribe?
+  paraphrases:
+    - is a corporate gift a bribe
+    - baksheesh and Islam
+  also_retrieve:
+    - لعن الله الراشي والمرتشي في الحكم
+    - هدايا العمال غلول وقوله هلا جلس في بيت أبيه فينظر أيهدى إليه أم لا
+    - هدية القاضي والوالي وحكم قبولها ممن لم تجر عادته بها
+    - دفع المال لدفع الظلم عن نفسه وأخذ الحق به
+
+- slug: working-with-opposite-gender
+  question: Can I work in a mixed-gender office?
+  tier: B
+  paraphrases:
+    - mixed workplaces in Islam
+    - meetings with the opposite sex
+  also_retrieve:
+    - قل للمؤمنين يغضوا من أبصارهم وقل للمؤمنات يغضضن من أبصارهن
+    - لا يخلون رجل بامرأة إلا ومعها ذو محرم
+    - خروج المرأة لحاجتها وقد أذن لكن أن تخرجن لحوائجكن
+    - مصافحة الأجنبية وكلام الرجال مع النساء في الحاجة
+
+- slug: cutting-corners-at-work
+  question: Is it wrong to slack off at work?
+  paraphrases:
+    - using work time for personal things
+    - taking long breaks
+  also_retrieve:
+    - إن الله يحب إذا عمل أحدكم عملا أن يتقنه
+    - الأجير الخاص والأجير المشترك واستيفاء العمل منه
+    - الأمانة في العمل والخيانة فيها وضمان ما تلف بتفريطه
+    - أعطوا الأجير أجره قبل أن يجف عرقه ووفاء الأجرة
+
+- slug: is-freelancing-for-a-haram-client-ok
+  question: Can I do design work for a client whose business isn't halal?
+  tier: B
+  paraphrases:
+    - freelance work for a bar or casino
+    - building a website for a haram business
+  also_retrieve:
+    - إجارة الدار لمن يبيع فيها الخمر أو يتخذها كنيسة
+    - الإعانة على الإثم والعدوان وبيع السلاح في الفتنة
+    - الأجرة على ما يستعان به على المعصية وحكم بيع العنب لمن يعصره خمرا
+    - الذرائع إلى الحرام وسد الذرائع في البيوع
+
+- slug: earning-from-ads
+  question: Can I earn money from ads on my content?
+  expect: decline
+  paraphrases:
+    - YouTube ad revenue in Islam
+    - monetising a channel
+  also_retrieve:
+    - الأجرة على الدلالة والسمسرة وأجر السمسار
+    - كسب الحجام وكسب الحرام والأجرة على ما فيه منفعة محرمة
+    - الإعانة على الإثم في الترويج للمحرم والدلالة عليه
+    - إجارة على منفعة محرمة أو مختلطة بالحلال
+
+# ─────────────────────────────────────────────────────────────
+# 18. Technology, media and entertainment
+# ─────────────────────────────────────────────────────────────
+
+- slug: is-music-haram
+  question: Is music haram?
+  paraphrases:
+    - can I listen to songs
+    - is listening to music a sin
+    - what does Islam say about music
+  also_retrieve:
+    - permitted singing and the duff at weddings and celebrations
+    - the difference between idle talk and lawful poetry
+    - اختلاف العلماء في سماع الغناء والمعازف
+  note: >
+    Contested, and retrieval leans prohibitive because that is what the corpus
+    holds. The answer must present the range, including the permissive
+    position, and must not present the retrieved side as settled.
+
+- slug: is-singing-allowed
+  question: Can I sing or listen to nasheeds?
+  paraphrases:
+    - are nasheeds allowed
+    - is singing permitted in Islam
+    - vocals-only music
+  also_retrieve:
+    - permitted singing and the duff at weddings and celebrations
+    - الغناء والسماع وحكمه عند الفقهاء
+    - الحداء وأشعار الأعراب
+  note: Same school-skew caution as music.
+
+- slug: musical-instruments
+  question: Are musical instruments specifically forbidden?
+  paraphrases:
+    - are instruments haram
+    - is the duff allowed
+    - playing guitar as a Muslim
+  also_retrieve:
+    - permitted singing and the duff at weddings and celebrations
+    - المعازف والمزمار وآلات اللهو
+    - الدف في النكاح والعيد
+  note: Same school-skew caution as music.
+
+- slug: watching-films-and-tv
+  question: Can I watch films and TV?
+  tier: B
+  paraphrases:
+    - is watching movies haram
+    - Netflix as a Muslim
+    - television in Islam
+  also_retrieve:
+    - مجالس اللهو والمنكر وحكم حضورها
+    - غض البصر عن النظر إلى الأجنبية
+    - لهو الحديث والباطل من القول
+
+- slug: photographs-and-selfies
+  question: Are photographs haram?
+  paraphrases:
+    - can I take pictures
+    - is photography forbidden
+    - selfies in Islam
+  also_retrieve:
+    - permitted images that are not of living beings
+    - the distinction between a statue and a flat image
+  note: >
+    Contested. Retrieval leans prohibitive on taswir; photography did not exist
+    when any of it was written. Present the range.
+
+- slug: posting-photos-on-social-media
+  question: Can I post pictures of myself online?
+  tier: B
+  paraphrases:
+    - sharing selfies on Instagram
+    - posting photos as a Muslim woman
+  also_retrieve:
+    - permitted images that are not of living beings
+    - الرخصة في الصور الممتهنة كالبساط والوسادة
+  note: Same caution as photographs.
+
+- slug: drawing-and-art
+  question: Can I draw people or animals?
+  paraphrases:
+    - is drawing faces haram
+    - art and illustration in Islam
+    - can my child draw people
+  also_retrieve:
+    - permitted images that are not of living beings
+    - the distinction between a statue and a flat image
+  note: Same school-skew caution as photographs.
+
+- slug: video-games
+  question: Are video games haram?
+  tier: B
+  paraphrases:
+    - is gaming allowed in Islam
+    - violent games and Islam
+    - too much time playing games
+  also_retrieve:
+    - اللعب بالنرد والنردشير
+    - اللهو المباح وما يشغل عن الصلاة
+    - الرهان والسبق والعوض في اللعب
+
+- slug: social-media-and-gossip
+  question: What are the rules for how I behave online?
+  paraphrases:
+    - social media etiquette in Islam
+    - arguing with people online
+    - what should I not post
+  also_retrieve:
+    - الغيبة والنميمة وحفظ اللسان
+    - الكلمة يتكلم بها العبد لا يلقي لها بالا
+    - من كان يؤمن بالله واليوم الآخر فليقل خيرا أو ليصمت
+
+- slug: backbiting-online
+  question: Does gossiping in a group chat count as backbiting?
+  tier: B
+  paraphrases:
+    - is talking about someone in a chat gheeba
+    - sharing screenshots of someone
+  also_retrieve:
+    - تعريف الغيبة ذكرك أخاك بما يكره
+    - الأسباب المبيحة للغيبة والاستفتاء والتظلم
+    - من رد عن عرض أخيه بالغيب
+
+- slug: is-ai-use-allowed
+  question: Is using AI allowed in Islam?
+  expect: decline
+  paraphrases:
+    - is ChatGPT haram
+    - using AI for schoolwork
+  note: >
+    Nothing citable — the corpus predates it entirely, and even this app is an
+    instance of the question. Explain what it turns on; do not rule.
+  also_retrieve:
+    - شروط المفتي وأدب الاستفتاء
+    - فاسألوا أهل الذكر إن كنتم لا تعلمون
+    - القول على الله بغير علم
+
+- slug: wasting-time-on-phone
+  question: What does Islam say about wasting time?
+  paraphrases:
+    - I scroll for hours
+    - is entertainment a waste of life
+    - how should I spend my free time
+  also_retrieve:
+    - نعمتان مغبون فيهما كثير من الناس الصحة والفراغ
+    - من حسن إسلام المرء تركه ما لا يعنيه
+    - لا تزول قدما عبد حتى يسأل عن عمره فيما أفناه
+
+- slug: dancing
+  question: Is dancing allowed?
+  tier: B
+  paraphrases:
+    - can Muslims dance
+    - dancing at a wedding
+  also_retrieve:
+    - الرقص والسماع وحكمه
+    - لعب الحبشة في المسجد يوم العيد
+
+- slug: sports-and-exercise
+  question: What does Islam say about sport and exercise?
+  paraphrases:
+    - is going to the gym encouraged
+    - playing football as a Muslim
+  also_retrieve:
+    - المسابقة بالخيل والرمي والسبق
+    - علموا أبناءكم السباحة والرمي وركوب الخيل
+    - كل شيء ليس من ذكر الله فهو لهو ولعب
+
+- slug: chess-and-card-games
+  question: Are chess and card games allowed?
+  tier: B
+  paraphrases:
+    - is chess haram
+    - playing cards without betting
+  also_retrieve:
+    - حكم اللعب بالشطرنج
+    - من لعب بالنردشير فكأنما صبغ يده في لحم خنزير
+    - اللعب بالعوض والقمار والميسر
+
+# ─────────────────────────────────────────────────────────────
+# 19. Social life and other religions
+# ─────────────────────────────────────────────────────────────
+
+- slug: friends-who-arent-muslim
+  question: Can I stay friends with my non-Muslim friends?
+  paraphrases:
+    - should I stop seeing my old friends
+    - can Muslims be close to non-Muslims
+    - I feel isolated after converting
+  also_retrieve:
+    - showing kindness and justice to those who have not fought you over religion
+    - keeping company with parents in kindness even where they are not believers
+    - مجالسة أهل الكتاب ومخالطتهم ومؤاكلتهم
+  note: >
+    The retrieved set is one-sided without also_retrieve — it returns only the
+    verses about not taking allies. Check the answer represents both the
+    caution and the permission, and does not leave a revert believing they must
+    cut everyone off. A question about belonging as much as about law.
+
+- slug: going-to-the-pub-with-friends
+  question: Can I go somewhere alcohol is being served?
+  tier: B
+  paraphrases:
+    - work drinks at a bar
+    - sitting at a table where people drink
+    - can I go to the pub and drink juice
+  also_retrieve:
+    - لا يقعد على مائدة يدار عليها الخمر
+    - حضور مجلس فيه منكر ولا يمكنه الإنكار
+    - بيع الخمر وحملها وسقيها
+
+- slug: attending-a-christmas-dinner
+  question: Can I go to my family's Christmas dinner?
+  tier: B
+  paraphrases:
+    - Christmas with non-Muslim family
+    - attending a religious holiday meal
+  also_retrieve:
+    - طعام أهل الكتاب وذبائحهم
+    - مؤاكلة أهل الذمة ومجالستهم
+    - حضور أعياد المشركين والنيروز والمهرجان
+
+- slug: saying-merry-christmas
+  question: Can I say Merry Christmas?
+  paraphrases:
+    - greeting non-Muslims on their holidays
+    - is wishing someone happy Easter allowed
+  also_retrieve:
+    - تهنئة أهل الذمة بأعيادهم
+    - الرضا بشعائر الكفر وإقرارها
+    - شهود الزور وأعياد المشركين
+
+- slug: accepting-christmas-gifts
+  question: Can I accept a Christmas or birthday gift?
+  paraphrases:
+    - taking presents from non-Muslim family
+    - is accepting a holiday gift allowed
+  also_retrieve:
+    - قبول هدية المشرك وأهل الكتاب
+    - هدايا الكفار في أعيادهم
+    - ما ذبح لغير الله وما أهل به لغير الله
+
+- slug: giving-gifts-to-non-muslims
+  question: Can I give gifts to my non-Muslim family on their holidays?
+  paraphrases:
+    - buying Christmas presents for my parents
+    - gifts for non-Muslim relatives
+  also_retrieve:
+    - الهدية للمشركين وصلة القرابة الكافرة
+    - قصة أسماء بنت أبي بكر وأمها راغبة
+    - لا ينهاكم الله عن الذين لم يقاتلوكم في الدين
+
+- slug: celebrating-birthdays
+  question: Can Muslims celebrate birthdays?
+  paraphrases:
+    - are birthdays haram
+    - can I have a birthday party for my child
+  also_retrieve:
+    - أعياد المسلمين الفطر والأضحى لا ثالث لهما
+    - إحداث عيد لم يشرعه الله ورسوله
+    - التشبه بالأعاجم في أعيادهم
+
+- slug: mothers-day
+  question: Is Mother's Day allowed?
+  paraphrases:
+    - celebrating Mother's Day as a Muslim
+    - is Father's Day permissible
+  also_retrieve:
+    - بر الوالدين وحق الأم على ولدها
+    - أحق الناس بحسن صحابتي أمك
+    - إحداث يوم يتخذ عيدا
+
+- slug: new-year-celebrations
+  question: Can I celebrate New Year?
+  paraphrases:
+    - New Year's Eve as a Muslim
+    - is celebrating January 1st allowed
+  also_retrieve:
+    - لا يحل للمسلمين أن يتشبهوا بهم في شيء مما يختص بأعيادهم
+    - والذين لا يشهدون الزور قال مجاهد أعياد المشركين
+    - إن الله قد أبدلكم بهما خيرا منهما يوم الأضحى ويوم الفطر
+
+- slug: attending-a-non-muslim-wedding
+  question: Can I go to a non-Muslim wedding?
+  tier: B
+  paraphrases:
+    - my friend's church wedding
+    - attending a wedding in another faith
+  also_retrieve:
+    - حضور ولائم أهل الذمة وإجابة دعوتهم
+    - إجابة دعوة الكافر إلى الطعام
+    - الوليمة وحضور من فيه لهو ومنكر
+
+- slug: attending-a-non-muslim-funeral
+  question: Can I attend a non-Muslim funeral?
+  paraphrases:
+    - my grandmother's funeral in a church
+    - paying respects at a non-Muslim burial
+  also_retrieve:
+    - اتباع جنازة الكافر وحضورها
+    - قام للجنازة فقيل إنها يهودي
+    - دفن الكافر وغسله ووراثة القريب الكافر
+
+- slug: going-into-a-church
+  question: Can I go inside a church or temple?
+  tier: B
+  paraphrases:
+    - entering a place of worship of another religion
+    - visiting a cathedral as a tourist
+  also_retrieve:
+    - لا بأس بالصلاة في الكنيسة النظيفة
+    - أجاز العلماء الصلاة في الكنيسة إذا بسط فيها ثوب طاهر
+    - لا تدخلوا على المشركين في كنائسهم يوم عيدهم
+
+- slug: greeting-non-muslims
+  question: How do I greet non-Muslims?
+  paraphrases:
+    - can I say salam to a non-Muslim
+    - greetings with people of other faiths
+  also_retrieve:
+    - السلام على أهل الكتاب ورد السلام عليهم
+    - لا تبدؤوا اليهود والنصارى بالسلام
+    - إذا سلم عليكم أهل الكتاب فقولوا وعليكم
+
+- slug: talking-about-islam-to-others
+  question: How do I explain Islam to people who ask?
+  paraphrases:
+    - answering questions about my religion
+    - dawah as a new Muslim
+  also_retrieve:
+    - ادع إلى سبيل ربك بالحكمة والموعظة الحسنة
+    - ولا تجادلوا أهل الكتاب إلا بالتي هي أحسن
+    - بلغوا عني ولو آية والرفق في الدعوة
+
+- slug: what-does-islam-say-about-other-religions
+  question: What does Islam say about other religions?
+  paraphrases:
+    - Muslim view of Christianity and Judaism
+    - are other faiths respected in Islam
+  also_retrieve:
+    - لا إكراه في الدين قد تبين الرشد من الغي
+    - ومن يبتغ غير الإسلام دينا فلن يقبل منه
+    - أهل الكتاب والمجوس وأحكام الذمة
+
+- slug: dealing-with-islamophobia
+  question: How do I deal with people being hostile about my religion?
+  paraphrases:
+    - facing Islamophobia
+    - people mock my hijab
+    - abuse for being Muslim
+  also_retrieve:
+    - الصبر على الأذى في سبيل الله
+    - ادفع بالتي هي أحسن فإذا الذي بينك وبينه عداوة
+    - ولتسمعن من الذين أوتوا الكتاب من قبلكم أذى كثيرا
+
+# ─────────────────────────────────────────────────────────────
+# 20. Death and funerals
+# ─────────────────────────────────────────────────────────────
+
+- slug: what-to-do-when-someone-dies
+  question: Someone died — what am I supposed to do?
+  paraphrases:
+    - a Muslim has passed away what happens
+    - immediate steps after a death
+  also_retrieve:
+    - تلقين المحتضر لا إله إلا الله وتغميض الميت وتوجيهه إلى القبلة
+    - ما يفعل بالميت من الغسل والتكفين والصلاة عليه والدفن
+    - التعجيل بتجهيز الميت والإسراع بالجنازة
+    - قضاء دين الميت وإنفاذ وصيته قبل الميراث
+
+- slug: how-to-pray-janazah
+  question: How do I pray the funeral prayer?
+  paraphrases:
+    - salat al-janazah steps
+    - what do I say in the funeral prayer
+  also_retrieve:
+    - صفة صلاة الجنازة وعدد التكبيرات فيها
+    - ما يقرأ في صلاة الجنازة من فاتحة الكتاب والدعاء للميت
+    - اللهم اغفر لحينا وميتنا وشاهدنا وغائبنا
+    - موقف الإمام من الرجل والمرأة في الصلاة على الجنازة وصفوف المصلين
+
+- slug: how-are-muslims-buried
+  question: How are Muslims buried?
+  paraphrases:
+    - Islamic burial rites
+    - washing and shrouding the body
+  also_retrieve:
+    - غسل الميت وتكفينه في ثلاثة أثواب بيض سحولية
+    - اللحد والشق في القبر وإدخال الميت من قبل رجليه
+    - بسم الله وعلى ملة رسول الله عند وضع الميت في القبر
+    - تسنيم القبر ورفعه والنهي عن البناء عليه وتجصيصه
+
+- slug: cremation
+  question: Why can't Muslims be cremated?
+  paraphrases:
+    - is cremation forbidden in Islam
+    - my family wants to cremate me
+  also_retrieve:
+    - النهي عن التحريق بالنار لا يعذب بالنار إلا رب النار
+    - كسر عظم الميت ككسره حيا
+    - حرمة المسلم ميتا كحرمته حيا
+    - الدفن في الأرض وستر الميت والمواراة
+
+- slug: visiting-graves
+  question: Can I visit graves?
+  paraphrases:
+    - visiting the cemetery in Islam
+    - what do I say at a grave
+  also_retrieve:
+    - كنت نهيتكم عن زيارة القبور فزوروها
+    - السلام عليكم دار قوم مؤمنين وإنا إن شاء الله بكم لاحقون
+    - زيارة النساء للقبور ولعن زوارات القبور
+    - النهي عن الجلوس على القبور والمشي بين القبور بالنعال
+
+- slug: praying-for-the-dead
+  question: Can I do things that benefit someone who died?
+  paraphrases:
+    - charity on behalf of the deceased
+    - does dua reach the dead
+  also_retrieve:
+    - الاستغفار للميت والدعاء له بعد الدفن
+    - هل يصل ثواب الصدقة والدعاء إلى الميت
+    - إذا مات ابن آدم انقطع عمله إلا من ثلاث
+    - الصوم والحج عن الميت وقضاء دينه عنه
+
+- slug: offering-condolences
+  question: What do I say to someone who's grieving?
+  tier: B
+  paraphrases:
+    - Islamic condolences
+    - comforting the bereaved
+  also_retrieve:
+    - التعزية بأهل الميت وفضلها
+    - إن لله ما أخذ وله ما أعطى وكل شيء عنده بأجل مسمى
+    - اصنعوا لآل جعفر طعاما فقد أتاهم ما يشغلهم
+    - النهي عن النياحة وشق الجيوب ولطم الخدود
+
+- slug: mourning-period
+  question: How long is the mourning period?
+  paraphrases:
+    - how long does a widow mourn
+    - grieving rules in Islam
+  also_retrieve:
+    - لا يحل لامرأة تؤمن بالله واليوم الآخر أن تحد على ميت فوق ثلاث إلا على زوج
+    - عدة المتوفى عنها زوجها أربعة أشهر وعشرا
+    - ما تجتنبه الحادة من الطيب والزينة والكحل والخضاب
+    - سكنى المعتدة في بيت زوجها وخروجها لحاجتها
+
+- slug: writing-a-will
+  question: Do I need an Islamic will?
+  paraphrases:
+    - wasiyyah and civil wills
+    - do I need to write a will as a Muslim
+  also_retrieve:
+    - ما حق امرئ مسلم له شيء يوصي فيه يبيت ليلتين إلا ووصيته مكتوبة عنده
+    - الثلث والثلث كثير في الوصية
+    - لا وصية لوارث
+    - كتاب الوصايا وشروط الموصي والموصى له وإجازة الورثة
+
+- slug: inheritance-shares
+  question: How is inheritance divided in Islam?
+  expect: decline
+  paraphrases:
+    - how should my father's estate be divided
+    - inheritance shares for sons and daughters
+  note: >
+    Turns on the exact surviving relatives and often on civil law. May explain
+    that a fixed system exists; must not calculate anyone's shares.
+  also_retrieve:
+    - كتاب الفرائض وقسمة المواريث وأصحاب الفروض
+    - ألحقوا الفرائض بأهلها فما بقي فهو لأولى رجل ذكر
+    - للذكر مثل حظ الأنثيين وميراث البنات والأبوين
+    - ميراث الزوج والزوجة والإخوة والجد والعصبة
+
+- slug: organ-donation
+  question: Is organ donation allowed?
+  expect: decline
+  paraphrases:
+    - can I be on the organ donor register
+    - donating organs after death
+  also_retrieve:
+    - حرمة الآدمي وكرامته وحرمة الانتفاع بشيء من بدنه
+    - بيع عظام الميتة وشعر الآدمي والانتفاع بها
+    - من انكسر عظمه فوصله بعظم نجس
+    - التداوي بالمحرم وحال الاضطرار
+
+# ─────────────────────────────────────────────────────────────
+# 21. Du'a, dhikr and spiritual life
+# ─────────────────────────────────────────────────────────────
+
+- slug: how-do-i-make-dua
+  question: How do I make du'a properly?
+  paraphrases:
+    - how do Muslims pray for things
+    - is there a right way to ask Allah
+    - etiquette of supplication
+  also_retrieve:
+    - آداب الدعاء والثناء على الله والصلاة على النبي
+    - رفع اليدين في الدعاء ومسح الوجه
+
+- slug: can-i-make-dua-in-english
+  question: Can I make du'a in my own language?
+  paraphrases:
+    - praying to Allah in English
+    - do I have to use Arabic for dua
+  also_retrieve:
+    - الدعاء بغير العربية في الصلاة وخارجها
+    - القراءة بالفارسية في الصلاة عند أبي حنيفة
+
+- slug: when-is-dua-answered
+  question: When is du'a most likely to be answered?
+  paraphrases:
+    - best times to make dua
+    - when does Allah accept supplication
+  also_retrieve:
+    - ساعة الإجابة يوم الجمعة وثلث الليل الآخر
+    - الدعاء بين الأذان والإقامة وفي السجود
+
+- slug: why-isnt-my-dua-answered
+  question: I've been making du'a for ages and nothing's happened — why?
+  paraphrases:
+    - my prayers aren't being answered
+    - Allah isn't responding to my dua
+    - I feel ignored when I pray
+  also_retrieve:
+    - يستجاب لأحدكم ما لم يعجل فيقول دعوت فلم يستجب لي
+    - الحكمة في تأخير الإجابة وادخار الدعاء
+
+- slug: what-is-dhikr
+  question: What is dhikr and how do I do it?
+  paraphrases:
+    - remembrance of Allah
+    - what should I recite daily
+  also_retrieve:
+    - فضل الذكر وأفضل الذكر لا إله إلا الله
+    - التسبيح والتحميد والتكبير وفضلها
+
+- slug: morning-and-evening-adhkar
+  question: What should I say in the morning and evening?
+  paraphrases:
+    - daily adhkar routine
+    - morning and evening remembrance
+  also_retrieve:
+    - ما يقول إذا أصبح وإذا أمسى من الذكر
+    - آية الكرسي والمعوذات والحفظ بها
+
+- slug: what-is-tawakkul
+  question: What does it mean to trust in God?
+  paraphrases:
+    - tawakkul explained
+    - relying on Allah while still working
+  also_retrieve:
+    - لو توكلتم على الله حق توكله لرزقكم كما يرزق الطير
+    - حقيقة التوكل على الله وفعل الأسباب
+
+- slug: patience-in-hardship
+  question: What does the Qur'an say about patience during hardship?
+  paraphrases:
+    - I'm going through a really hard time
+    - what does Islam say about suffering
+    - how do I cope with difficulty
+  also_retrieve:
+    - إنما الصبر عند الصدمة الأولى
+    - ما يصيب المؤمن من نصب ووصب إلا كفر الله من خطاياه
+
+- slug: how-do-i-repent
+  question: How do I repent properly?
+  paraphrases:
+    - what is tawbah
+    - how do I ask forgiveness for a sin
+    - conditions of repentance
+  also_retrieve:
+    - شروط التوبة النصوح والندم والإقلاع عن الذنب
+    - التوبة من حقوق الآدميين وردها إلى أهلها
+
+- slug: same-sin-over-and-over
+  question: I keep repeating the same sin — is my repentance even accepted?
+  paraphrases:
+    - I keep falling back into the same sin
+    - is my tawbah sincere if I relapse
+  also_retrieve:
+    - أذنب عبدي ذنبا فعلم أن له ربا يغفر الذنب
+    - العود إلى الذنب بعد التوبة وهل تنتقض التوبة
+
+- slug: does-allah-forgive-everything
+  question: Is there anything Allah won't forgive?
+  paraphrases:
+    - can any sin be forgiven
+    - is there an unforgivable sin
+  also_retrieve:
+    - إن الله لا يغفر أن يشرك به ويغفر ما دون ذلك لمن يشاء
+    - يا عبادي الذين أسرفوا على أنفسهم لا تقنطوا من رحمة الله
+
+- slug: feeling-spiritually-empty
+  question: I feel nothing when I pray — what's wrong with me?
+  paraphrases:
+    - my prayer feels hollow
+    - I've lost my spiritual connection
+    - going through the motions in worship
+  also_retrieve:
+    - الخشوع في الصلاة وحضور القلب
+    - إن لكل عمل شرة ولكل شرة فترة والفتور في العبادة
+
+- slug: increasing-iman
+  question: How do I strengthen my faith?
+  paraphrases:
+    - my iman is low
+    - practical ways to grow spiritually
+  also_retrieve:
+    - الإيمان يزيد وينقص بالطاعة والمعصية
+    - ما يزيد به الإيمان من الأعمال
+
+- slug: dealing-with-waswas
+  question: I have constant intrusive thoughts about religion — what do I do?
+  paraphrases:
+    - blasphemous thoughts I can't stop
+    - obsessive doubts about my faith
+    - waswas is ruining my worship
+  also_retrieve:
+    - الوسوسة في الإيمان وقول الصحابة نجد في أنفسنا ما يتعاظم
+    - وسواس الشيطان في الصلاة والطهارة والشك
+
+- slug: evil-eye-protection
+  question: Is the evil eye real and how do I protect myself?
+  paraphrases:
+    - what is the evil eye in Islam
+    - protection from envy
+  also_retrieve:
+    - العين حق ولو كان شيء سابق القدر لسبقته العين
+    - الغسل من العائن والرقية من العين
+
+- slug: black-magic
+  question: Is black magic real, and how do I know if I'm affected?
+  paraphrases:
+    - is sihr real
+    - do I have a jinn problem
+  also_retrieve:
+    - السحر حقيقة وهل له تأثير وسحر النبي صلى الله عليه وسلم
+    - حد الساحر وتعلم السحر وكفر تعلمه
+
+- slug: what-is-ruqyah
+  question: What is ruqyah and how do I do it?
+  paraphrases:
+    - Islamic healing recitation
+    - self-ruqyah at home
+  also_retrieve:
+    - الرقية بالفاتحة والمعوذات والنفث
+    - لا رقية إلا من عين أو حمة
+
+- slug: amulets-and-taweez
+  question: Are amulets and taweez allowed?
+  paraphrases:
+    - wearing a taweez for protection
+    - is a talisman shirk
+  also_retrieve:
+    - إن الرقى والتمائم والتولة شرك
+    - تعليق التمائم والحروز على الصبيان
+
+- slug: astrology-and-horoscopes
+  question: What does Islam say about horoscopes?
+  paraphrases:
+    - reading my star sign
+    - is astrology haram
+  also_retrieve:
+    - من أتى كاهنا أو عرافا فصدقه بما يقول
+    - علم النجوم والأنواء والاستسقاء بالنجم
+
+- slug: dreams-and-their-meaning
+  question: Do dreams mean anything in Islam?
+  tier: B
+  paraphrases:
+    - I had a strange dream what does it mean
+    - dream interpretation in Islam
+  also_retrieve:
+    - الرؤيا الصالحة جزء من ستة وأربعين جزءا من النبوة
+    - تعبير الرؤيا وحلم من الشيطان فليتعوذ
+
+# ─────────────────────────────────────────────────────────────
+# 22. Daily adab and etiquette
+# ─────────────────────────────────────────────────────────────
+
+- slug: how-to-give-salam
+  question: How do I greet other Muslims?
+  paraphrases:
+    - what does assalamu alaikum mean
+    - how do I reply to salam
+  also_retrieve:
+    - إفشاء السلام وكيفية رد السلام
+    - باب السلام ومن أحق بالبدء بالسلام
+
+- slug: what-do-i-say-when
+  question: What am I supposed to say in everyday situations?
+  paraphrases:
+    - common Islamic phrases and when to use them
+    - what does mashallah mean
+  also_retrieve:
+    - ولا تقولن لشيء إني فاعل ذلك غدا إلا أن يشاء الله
+    - التسمية عند الطعام والحمد بعده وبسم الله في أوله
+    - أذكار الصباح والمساء وما يقول إذا أوى إلى فراشه وإذا استيقظ
+    - دعاء الركوب سبحان الذي سخر لنا هذا وما كنا له مقرنين
+    - تشميت العاطس يقول الحمد لله ويقال له يرحمك الله فيرد يهديكم الله
+
+- slug: bathroom-etiquette
+  question: Are there manners for using the toilet?
+  paraphrases:
+    - which foot do I enter the bathroom with
+    - dua for entering the toilet
+  also_retrieve:
+    - آداب قضاء الحاجة ودخول الخلاء
+    - ما يقول عند دخول الخلاء والاستنجاء
+
+- slug: sleeping-etiquette
+  question: Are there sunnah acts before sleeping?
+  paraphrases:
+    - what to recite before bed
+    - Islamic bedtime routine
+  also_retrieve:
+    - ما يقول عند النوم من الأذكار
+    - آداب النوم والاضطجاع على الشق الأيمن
+
+- slug: entering-and-leaving-home
+  question: What do I say entering and leaving the house?
+  paraphrases:
+    - dua when leaving home
+    - greeting when entering my house
+  also_retrieve:
+    - ما يقول إذا دخل بيته وإذا خرج منه
+    - ذكر الله عند دخول المنزل
+
+- slug: sneezing-and-yawning
+  question: What do I say when someone sneezes?
+  paraphrases:
+    - alhamdulillah after sneezing
+    - what to do when yawning
+  also_retrieve:
+    - تشميت العاطس الحمد لله ويرحمك الله
+    - كراهة التثاؤب وكظمه
+
+- slug: is-lying-ever-allowed
+  question: Is lying ever allowed?
+  paraphrases:
+    - white lies in Islam
+    - can I lie to protect someone
+  also_retrieve:
+    - الكذب المباح في الإصلاح بين الناس والحرب
+    - تحريم الكذب وما رخص فيه
+
+- slug: keeping-promises
+  question: How serious is breaking a promise?
+  tier: B
+  paraphrases:
+    - breaking my word in Islam
+    - I promised and couldn't deliver
+  also_retrieve:
+    - الوفاء بالوعد وإخلاف الوعد من علامات النفاق
+    - الخلف في الوعد وحكمه
+
+- slug: swearing-by-allah
+  question: What happens if I swear by Allah and break it?
+  paraphrases:
+    - I made an oath and broke it
+    - saying wallahi carelessly
+  also_retrieve:
+    - اليمين بالله والحلف وأحكام الأيمان
+    - اليمين الغموس ولغو اليمين
+
+- slug: expiation-for-broken-oath
+  question: How do I make up for a broken oath?
+  paraphrases:
+    - kaffarah for an oath
+    - what do I owe for breaking a vow
+  also_retrieve:
+    - كفارة اليمين إطعام عشرة مساكين أو كسوتهم أو تحرير رقبة
+    - صيام ثلاثة أيام في كفارة اليمين
+
+- slug: anger-management-in-islam
+  question: What does Islam say about controlling anger?
+  paraphrases:
+    - I have a temper problem
+    - dealing with rage as a Muslim
+  also_retrieve:
+    - الغضب وكظم الغيظ ولا تغضب
+    - التعوذ عند الغضب والجلوس إن كان قائما
+
+- slug: dealing-with-jealousy
+  question: How do I deal with envy?
+  paraphrases:
+    - I'm jealous of other people
+    - hasad in Islam
+  also_retrieve:
+    - الحسد وذم الحسد وحسد النعمة
+    - الغبطة والحسد المباح في اثنتين
+
+- slug: swearing-and-bad-language
+  question: Is swearing haram?
+  paraphrases:
+    - using bad language as a Muslim
+    - cursing and Islam
+  also_retrieve:
+    - الفحش والبذاء وسباب المسلم فسوق
+    - اللعن والسب وذم البذاءة
+
+- slug: keeping-a-dog
+  question: Can I keep a dog?
+  tier: B
+  paraphrases:
+    - are dogs allowed as pets
+    - I had a dog before converting
+  also_retrieve:
+    - اقتناء الكلب ينقص من أجره قيراط إلا كلب ماشية أو صيد
+    - سؤر الكلب وولوغه في الإناء
+
+- slug: keeping-pets
+  question: Can I keep pets?
+  paraphrases:
+    - are cats allowed in Islam
+    - keeping animals at home
+  also_retrieve:
+    - إن الهرة ليست بنجس إنها من الطوافين عليكم والطوافات
+    - اللعب بالنغير والعصفور وحبس الطير في القفص
+    - سؤر الهرة والسنور وما دونها في الخلقة
+
+- slug: treatment-of-animals
+  question: What are the rules about treating animals?
+  paraphrases:
+    - animal welfare in Islam
+    - is hunting allowed
+  also_retrieve:
+    - الرفق بالحيوان وإحسان الذبحة
+    - النهي عن تعذيب الحيوان واتخاذ الروح غرضا
+
+- slug: is-smoking-haram
+  question: Is smoking haram?
+  tier: B
+  paraphrases:
+    - cigarettes in Islam
+    - is shisha allowed
+  also_retrieve:
+    - ويمنع من بيع الدخان وشربه وشاربه في الصوم لا شك يفطر
+    - لو أدخل حلقه الدخان أفطر لإمكان التحرز عنه
+    - الطيبات النافعة للعقول والأخلاق والخبائث الضارة
+
+- slug: vaping
+  question: Is vaping haram?
+  expect: decline
+  paraphrases:
+    - are e-cigarettes allowed
+    - nicotine vapes in Islam
+  also_retrieve:
+    - ويمنع من بيع الدخان وشربه وشاربه في الصوم لا شك يفطر
+    - ولا تلقوا بأيديكم إلى التهلكة ولا تقتلوا أنفسكم
+    - الطيبات النافعة للعقول والأخلاق والخبائث الضارة
+
+- slug: neighbours-rights
+  question: What are my neighbours' rights over me?
+  paraphrases:
+    - how should I treat my neighbours
+    - non-Muslim neighbours in Islam
+  also_retrieve:
+    - حق الجار والوصية بالجار حتى ظننت أنه سيورثه
+    - لا يدخل الجنة من لا يأمن جاره بوائقه
+
+- slug: seeking-knowledge
+  question: How much religious knowledge do I actually need?
+  paraphrases:
+    - what must every Muslim know
+    - do I need to study Islam formally
+  also_retrieve:
+    - طلب العلم فريضة على كل مسلم
+    - فرض العين وفرض الكفاية في طلب العلم
+
+# ─────────────────────────────────────────────────────────────
+# 23. Health and medicine
+# ─────────────────────────────────────────────────────────────
+
+- slug: seeking-medical-treatment
+  question: Does Islam require me to seek medical treatment?
+  paraphrases:
+    - should I see a doctor or just make dua
+    - is medicine allowed in Islam
+  also_retrieve:
+    - التداوي وهل هو واجب أم مباح وترك الدواء توكلا
+    - تداووا فإن الله لم يضع داء إلا وضع له دواء
+    - التوكل على الله والأخذ بالأسباب في المرض
+    - عيادة المريض والرقية والدعاء عند المرض
+
+- slug: medicine-containing-alcohol
+  question: Can I take medicine that contains alcohol?
+  expect: decline
+  paraphrases:
+    - cough syrup with alcohol
+    - alcohol in prescription medication
+  also_retrieve:
+    - التداوي بالخمر إن الله لم يجعل شفاء أمتي فيما حرم عليها
+    - إنها داء وليست بدواء والنهي عن الدواء الخبيث
+    - ما أسكر كثيره فقليله حرام
+    - الاضطرار إلى المحرم للتداوي واستهلاك النجاسة في الدواء
+
+- slug: medicine-containing-gelatin
+  question: Can I take capsules made with gelatin?
+  expect: decline
+  paraphrases:
+    - gelatin capsules in medication
+    - pill casings and halal
+  also_retrieve:
+    - الانتفاع بأجزاء الميتة وعظمها وعصبها
+    - دباغ جلد الميتة وطهارته أيما إهاب دبغ فقد طهر
+    - انقلاب العين واستحالة النجس إلى طاهر كالخمر تصير خلا
+    - الضرورة تبيح المحظور في التداوي
+
+- slug: vaccines
+  question: Are vaccines allowed?
+  expect: decline
+  paraphrases:
+    - vaccine ingredients and Islam
+    - is vaccination permissible
+  also_retrieve:
+    - إذا سمعتم بالطاعون بأرض فلا تقدموا عليه وإذا وقع بأرض وأنتم بها فلا تخرجوا
+    - لا يورد ممرض على مصح والفرار من المجذوم
+    - الاحتراز من الوباء والأخذ بالأسباب مع التوكل
+    - حديث لا عدوى ولا طيرة والجمع بينه وبين أحاديث الاحتراز
+
+- slug: mental-health-and-islam
+  question: Is it okay to see a therapist or take antidepressants?
+  tier: B
+  paraphrases:
+    - therapy as a Muslim
+    - are antidepressants allowed
+    - is counselling against Islam
+  also_retrieve:
+    - اللهم إني أعوذ بك من الهم والحزن والعجز والكسل
+    - دعاء الكرب لا إله إلا الله العظيم الحليم
+    - الوسواس وحديث النفس وما تجاوز الله عنه لأمتي
+    - أمراض القلوب ومعالجتها والصبر على الضيق
+
+- slug: is-depression-weak-faith
+  question: Does being depressed mean my faith is weak?
+  paraphrases:
+    - people say I need more iman not medication
+    - is depression a spiritual failing
+  note: >
+    Answer the person, not the accusation. The premise is false and saying so
+    plainly matters more than the fiqh here.
+  also_retrieve:
+    - ما يصيب المسلم من نصب ولا وصب ولا هم ولا حزن إلا كفر الله بها من خطاياه
+    - أشد الناس بلاء الأنبياء ثم الأمثل فالأمثل
+    - إن العين تدمع والقلب يحزن ولا نقول إلا ما يرضي ربنا
+    - ابتلاء المؤمن بالمرض ورفع الدرجات به
+
+- slug: suicide-in-islam
+  question: What does Islam say about suicide?
+  paraphrases:
+    - I've been having thoughts of ending my life
+    - is suicide unforgivable
+    - I don't want to be here any more
+  # Retrieved unaided this returns three copies of the same hadith of censure
+  # and little else — the worst possible material to put in front of someone in
+  # crisis. The mercy verses are in the corpus and must be on the page too.
+  also_retrieve:
+    - despair not of the mercy of Allah who forgives all sins
+    - Allah does not burden a soul beyond what it can bear
+    - relief comes with hardship and ease follows difficulty
+  note: >
+    **Lead with help, not with a ruling.** Someone reaching this may be in
+    danger now. Direct them to immediate support first, in plain words. The
+    ruling may be mentioned but must never be the opening, and must never be
+    framed in a way that adds shame to someone already suffering.
+
+- slug: ivf-and-fertility-treatment
+  question: Is IVF allowed?
+  expect: decline
+  paraphrases:
+    - fertility treatment in Islam
+    - is IVF permissible for Muslims
+  also_retrieve:
+    - حفظ النسب وتحريم اختلاط المياه والأنساب
+    - الولد للفراش وللعاهر الحجر وإلحاق النسب
+    - سقي ماء الرجل زرع غيره والنهي عنه
+    - الدعاء بطلب الولد وحكم العقم والتداوي منه
+
+- slug: abortion-in-islam
+  question: What does Islam say about abortion?
+  expect: decline
+  paraphrases:
+    - is abortion haram
+    - termination in Islam
+  note: >
+    Turns on stage, circumstances, medical facts and law. May explain that the
+    schools distinguish stages; must not rule on anyone's situation.
+  also_retrieve:
+    - نفخ الروح في الجنين بعد أربعين يوما أو مائة وعشرين
+    - دية الجنين غرة عبد أو أمة
+    - إسقاط الحمل قبل نفخ الروح وبعده
+    - العزل ووأد الخفي وقتل النفس التي حرم الله
+
+- slug: cosmetic-surgery
+  question: Is cosmetic surgery allowed?
+  tier: B
+  paraphrases:
+    - plastic surgery in Islam
+    - is reconstructive surgery different
+  also_retrieve:
+    - لعن الله الواشمات والمستوشمات والمتنمصات والمتفلجات للحسن المغيرات خلق الله
+    - الوصل في الشعر والوشم والنمص
+    - من قطع أنفه فاتخذ أنفا من ورق فأنتن عليه فأمره أن يتخذ أنفا من ذهب
+    - إزالة العيب والتداوي مقابل التزين وتغيير الخلقة
+
+- slug: fasting-with-a-medical-condition
+  question: I have a medical condition — should I fast?
+  expect: decline
+  paraphrases:
+    - diabetes and fasting
+    - my doctor says not to fast
+  note: Route to a doctor as well as a scholar. Do not rule.
+  also_retrieve:
+    - فمن كان منكم مريضا أو على سفر فعدة من أيام أخر
+    - وعلى الذين يطيقونه فدية طعام مسكين والشيخ الكبير
+    - المريض الذي لا يرجى برؤه والإطعام عن كل يوم
+    - الحامل والمرضع إذا خافتا على أنفسهما أو ولدهما
+
+# ─────────────────────────────────────────────────────────────
+# 24. Hard questions and doubts
+# ─────────────────────────────────────────────────────────────
+
+- slug: how-do-i-know-islam-is-true
+  question: How do I know Islam is true?
+  paraphrases:
+    - why should I believe Islam
+    - evidence for Islam being true
+  also_retrieve:
+    - دلائل النبوة وأعلام نبوة محمد صلى الله عليه وسلم
+    - إعجاز القرآن والتحدي بأن يأتوا بسورة من مثله
+    - النظر في خلق السماوات والأرض والاستدلال على الصانع
+
+- slug: why-so-many-rules
+  question: Why does Islam have so many rules?
+  paraphrases:
+    - Islam feels restrictive
+    - why is everything haram
+  also_retrieve:
+    - رفع الحرج في الشريعة وما جعل عليكم في الدين من حرج
+    - المشقة تجلب التيسير ويريد الله بكم اليسر
+    - مقاصد الشريعة وحفظ الدين والنفس والعقل والنسل والمال
+
+- slug: why-are-men-and-women-treated-differently
+  question: Why are men and women treated differently in Islam?
+  paraphrases:
+    - is Islam unfair to women
+    - gender roles in Islam
+  also_retrieve:
+    - ولهن مثل الذي عليهن بالمعروف
+    - النساء شقائق الرجال
+    - شهادة المرأة ونصف شهادة الرجل والعلة فيها
+
+- slug: islam-and-slavery
+  question: What does Islam say about slavery?
+  paraphrases:
+    - why didn't Islam abolish slavery
+    - slavery in the Quran
+  also_retrieve:
+    - فك الرقبة وعتق النساء والترغيب في العتق
+    - من أعتق رقبة مؤمنة أعتق الله بكل عضو منها عضوا من النار
+    - إطعامهم مما تأكلون وإلباسهم مما تلبسون ولا تكلفوهم ما يغلبهم
+
+- slug: age-of-aisha
+  question: How do Muslims respond to questions about Aisha's age?
+  tier: B
+  paraphrases:
+    - the Prophet's marriage to Aisha
+    - people criticise Islam over this
+  also_retrieve:
+    - تزويج عائشة وهي بنت ست وبنى بها وهي بنت تسع
+    - تزويج الصغيرة وإنكاح الأب ابنته البكر
+    - بلوغ النساء بالحيض والاستئمار في النكاح
+
+- slug: violence-in-the-quran
+  question: What about the violent verses in the Quran?
+  paraphrases:
+    - the sword verse
+    - does the Quran command violence
+  also_retrieve:
+    - وقاتلوا في سبيل الله الذين يقاتلونكم ولا تعتدوا
+    - لا إكراه في الدين قد تبين الرشد من الغي
+    - النهي عن قتل النساء والصبيان والشيوخ والرهبان في الحرب
+
+- slug: what-is-jihad
+  question: What does jihad actually mean?
+  paraphrases:
+    - is jihad holy war
+    - meaning of struggle in Islam
+  also_retrieve:
+    - أفضل الجهاد كلمة عدل عند سلطان جائر
+    - جاهد نفسك وهواك
+    - الجهاد فرض على الكفاية وشروط الخروج إليه
+
+- slug: muslims-behaving-badly
+  question: Why do so many Muslims behave badly?
+  tier: B
+  paraphrases:
+    - Muslims I know are hypocrites
+    - the community put me off
+  also_retrieve:
+    - المسلم من سلم المسلمون من لسانه ويده
+    - المفلس من أمتي من يأتي يوم القيامة بصلاة وصيام وزكاة
+    - لا يحملنكم شنآن قوم على ألا تعدلوا
+
+- slug: cultural-vs-islamic
+  question: How do I tell the difference between culture and Islam?
+  paraphrases:
+    - is this from Islam or from culture
+    - cultural practices presented as religion
+  also_retrieve:
+    - العادة محكمة والعرف في الشرع له اعتبار
+    - بل نتبع ما ألفينا عليه آباءنا
+    - اختلاف الفتوى باختلاف الزمان والمكان والعوائد
+
+- slug: scholars-disagree-who-do-i-follow
+  question: Scholars disagree on everything — how do I know who's right?
+  paraphrases:
+    - conflicting fatwas online
+    - who should I trust for rulings
+  also_retrieve:
+    - اختلاف الأئمة رحمة وسعة
+    - تقليد العامي للمجتهد واستفتاء أهل الذكر
+    - إذا اجتهد الحاكم فأصاب فله أجران وإذا اجتهد فأخطأ فله أجر
+
+- slug: leaving-islam
+  question: What does Islam say about someone who leaves?
+  paraphrases:
+    - apostasy in Islam
+    - what if I stop believing
+  also_retrieve:
+    - حكم المرتد واستتابته
+    - من بدل دينه فاقتلوه
+    - لا إكراه في الدين ومن يرتدد منكم عن دينه فيمت وهو كافر
+
+- slug: fate-of-non-muslims
+  question: What happens to good non-Muslims who never heard of Islam?
+  tier: B
+  paraphrases:
+    - people who never got the message
+    - are good non-Muslims punished
+  also_retrieve:
+    - أهل الفترة ومن لم تبلغه الدعوة
+    - وما كنا معذبين حتى نبعث رسولا
+    - امتحان أطفال المشركين وأهل الفترة يوم القيامة
+
+- slug: my-parents-will-go-to-hell
+  question: Will my non-Muslim parents go to Hell?
+  paraphrases:
+    - what happens to my family who aren't Muslim
+    - I'm terrified about my mum's afterlife
+    - can I do anything for my non-Muslim parents
+  also_retrieve:
+    - أهل الفترة ومن لم تبلغه الدعوة
+    - وما كنا معذبين حتى نبعث رسولا
+    - امتحان أهل الفترة يوم القيامة ويبعث إليهم رسول في عرصة القيامة
+    - استئذان النبي في الاستغفار لأمه وفي زيارة قبرها
+  note: >
+    Emotionally loaded, and a very common revert fear. Answer with care and do
+    not overreach — judgement of a named individual belongs to God alone, and
+    the answer must say so rather than pronounce. Do not leave the reader in
+    despair about someone they love.
