@@ -71,6 +71,36 @@ const KIND_FLOOR: Record<SourceKind, number> = {
   fiqh: 3,
 };
 
+/** The floors sum to more than some budgets, which is what `scaleFloors` exists for. */
+const FLOOR_TOTAL = Object.values(KIND_FLOOR).reduce((a, b) => a + b, 0);
+
+/**
+ * Shrink the floors to fit a budget smaller than their sum.
+ *
+ * Taken literally the floors are filled in declaration order until the budget
+ * runs out, so a caller asking for fewer than {@link FLOOR_TOTAL} chunks gets
+ * Qur'an and hadith and *no tafsir or fiqh at all* — the later kinds are not
+ * squeezed, they are unreachable. `/api/ask` asks for six on the miss path,
+ * which is exactly that case: the reader was shown scripture and never the
+ * jurists, silently.
+ *
+ * Scaling proportionally keeps the intent (primary sources dominate) while
+ * leaving every kind able to appear. Each kind keeps at least one slot, since
+ * a floor of zero is the bug this replaces.
+ */
+function scaleFloors(budget: number): Record<SourceKind, number> {
+  if (budget >= FLOOR_TOTAL) return KIND_FLOOR;
+
+  const scaled = {} as Record<SourceKind, number>;
+  for (const [kind, floor] of Object.entries(KIND_FLOOR) as [
+    SourceKind,
+    number,
+  ][]) {
+    scaled[kind] = Math.max(1, Math.round((floor * budget) / FLOOR_TOTAL));
+  }
+  return scaled;
+}
+
 /**
  * node-postgres returns bigint columns as strings (to avoid silently losing
  * precision above 2^53), so `chunk_id` and `rank` arrive as text. Every arm
@@ -226,7 +256,7 @@ function balance(
   const picked: RetrievedChunk[] = [];
   const taken = new Set<number>();
 
-  for (const [kind, floor] of Object.entries(KIND_FLOOR) as [
+  for (const [kind, floor] of Object.entries(scaleFloors(budget)) as [
     SourceKind,
     number,
   ][]) {

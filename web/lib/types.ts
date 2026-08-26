@@ -43,7 +43,8 @@ export interface AnswerMeta {
   question: string;
   reviewedBy: string | null;
   reviewedAt: string | null;
-  score: number;
+  /** Absent on a conversation reopened from history, where only the answer itself was stored. */
+  score?: number;
 }
 
 export interface ChatMessage {

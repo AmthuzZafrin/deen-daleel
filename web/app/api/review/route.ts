@@ -11,6 +11,7 @@
 import type { NextRequest } from "next/server";
 
 import { query } from "@/lib/db";
+import { EMBEDDING_DIM } from "@/lib/env";
 import { REF_COLUMNS } from "@/lib/rag/refs";
 import { denyReview } from "@/lib/reviewAuth";
 import type { Citation, Source } from "@/lib/types";
@@ -214,6 +215,11 @@ export async function POST(req: NextRequest) {
     return Response.json({ error: "id and action are required" }, { status: 400 });
   }
 
+  // Every branch returns the row it changed. Without it a typo'd id answered
+  // `{ok:true}` and the reviewer had no way to know nothing had happened —
+  // the worst shape of failure on a page whose whole job is being sure.
+  let touched: { id: number }[];
+
   if (action === "publish") {
     // A reviewer's name is required, not optional: an answer published by
     // nobody in particular is exactly what this design exists to prevent, and
@@ -225,19 +231,45 @@ export async function POST(req: NextRequest) {
         { status: 400 },
       );
     }
-    await query(
+
+    // An answer is matched through its phrasings, so one whose phrasings were
+    // never embedded is reachable only by the lexical arm — it degrades to
+    // keyword search and nothing anywhere says so. Refuse rather than publish
+    // something that will quietly under-perform. `scripts/embedAnswerQuestions.ts
+    // --missing` is the fix, and the message says so.
+    const unembedded = await query<{ n: string }>(
+      `select count(*) as n
+         from answer_questions
+        where answer_id = $1
+          and (embedding is null or embedding = array_fill(0, array[$2])::vector)`,
+      [id, EMBEDDING_DIM],
+    );
+    if (Number(unembedded[0]?.n ?? 0) > 0) {
+      return Response.json(
+        {
+          error:
+            "this answer's question phrasings are not embedded yet, so it would " +
+            "only be matchable by keyword. Run: npx tsx scripts/embedAnswerQuestions.ts --missing",
+        },
+        { status: 409 },
+      );
+    }
+
+    touched = await query<{ id: number }>(
       `update answers
           set status = 'published', reviewed_by = $2, reviewed_at = now(),
               published_at = now(), review_notes = $3, updated_at = now()
-        where id = $1`,
+        where id = $1
+      returning id`,
       [id, reviewedBy, payload.notes ?? null],
     );
   } else if (action === "reject") {
-    await query(
+    touched = await query<{ id: number }>(
       `update answers
           set status = 'rejected', reviewed_by = $2, reviewed_at = now(),
               review_notes = $3, updated_at = now()
-        where id = $1`,
+        where id = $1
+      returning id`,
       [id, payload.reviewedBy?.trim() ?? null, payload.notes ?? null],
     );
   } else if (action === "save") {
@@ -246,12 +278,17 @@ export async function POST(req: NextRequest) {
     }
     // Editing does not publish. A reviewer's correction still has to be
     // approved explicitly afterwards.
-    await query(
-      `update answers set body = $2, updated_at = now() where id = $1`,
+    touched = await query<{ id: number }>(
+      `update answers set body = $2, updated_at = now() where id = $1
+      returning id`,
       [id, payload.body],
     );
   } else {
     return Response.json({ error: `unknown action: ${action}` }, { status: 400 });
+  }
+
+  if (touched.length === 0) {
+    return Response.json({ error: `no answer with id ${id}` }, { status: 404 });
   }
 
   return Response.json({ ok: true });

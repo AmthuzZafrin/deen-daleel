@@ -72,7 +72,19 @@ export async function POST(req: NextRequest) {
 
   // --- match ---------------------------------------------------------------
 
-  const result = await matchAnswer(question);
+  // A downed embedding service must degrade to the miss path, not to a 500.
+  // Both `matchAnswer` and the fallback `retrieve` below call it, and only the
+  // latter was guarded — so the one failure the honest-miss path exists for
+  // was the one that threw, after the reader's message row had already been
+  // written. Treat an unreachable matcher as "no reviewed answer", which is
+  // true, and let the fallback try for passages of its own.
+  let result: Awaited<ReturnType<typeof matchAnswer>>;
+  try {
+    result = await matchAnswer(question);
+  } catch (err) {
+    console.error("answer matching failed, falling through to miss:", err);
+    result = { answer: null, topScore: null, topAnswerId: null };
+  }
 
   // Logging is best-effort: a failure to record analytics must never cost the
   // reader their answer.
@@ -95,7 +107,7 @@ export async function POST(req: NextRequest) {
         conversationId,
         result.answer.body,
         result.answer.answerId,
-        JSON.stringify({ matchScore: result.answer.score }),
+        JSON.stringify({ matched: true, matchScore: result.answer.score }),
       ],
     );
 
@@ -167,7 +179,14 @@ export async function POST(req: NextRequest) {
       assistantMessageId,
       conversationId,
       note,
-      JSON.stringify({ matched: false, topScore: result.topScore }),
+      // The chunk ids are what let a reopened miss show its passages again.
+      // They are not citations — nothing was quoted — so they belong here
+      // rather than in `message_citations`, which drives the citation chips.
+      JSON.stringify({
+        matched: false,
+        topScore: result.topScore,
+        retrievedChunkIds: passages.map((p) => p.chunkId),
+      }),
     ],
   );
 

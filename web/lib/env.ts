@@ -29,7 +29,18 @@ export const env = {
   get voyageApiKey(): string {
     return required("VOYAGE_API_KEY");
   },
+  /**
+   * Signs the session cookie, which is the only thing scoping a reader's
+   * conversations to them.
+   *
+   * The development fallback must not survive into production: unset there, a
+   * deployed instance would sign cookies with a value published in this file,
+   * and anyone could forge one and read another reader's history. Unlike
+   * `REVIEW_TOKEN`, which fails closed, this one used to fail silently open —
+   * so it is now required, matching how the review gate already behaves.
+   */
   get sessionSecret(): string {
+    if (process.env.NODE_ENV === "production") return required("SESSION_SECRET");
     return process.env.SESSION_SECRET ?? "dev-only-insecure-secret";
   },
   /**

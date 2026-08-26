@@ -69,15 +69,11 @@ it is safe to re-run.
 
 Other commands: `./scripts/db.sh {psql|status|logs|down|reset}`.
 
-To see the app work before writing any answers, load the dev fixture — two
-answers (one published, one draft) wired to real Qur'an chunks:
-
-```bash
-docker exec -i deen-daleel-db psql -U deen -d deen_daleel \
-  < db/fixtures/answer_bank_demo.sql
-```
-
-Remove it with `delete from answers where slug like 'fixture-%';`.
+There is deliberately no seed fixture. One existed to demonstrate the app before
+any answers were written, and it inserted a row with `status='published'` and a
+reviewer name — bypassing the gate this whole design rests on. It was removed
+once the bank was real. **Nothing should ever write `status='published'` except
+a person clicking approve on `/review`.**
 
 ## Layout
 
@@ -85,7 +81,6 @@ Remove it with `delete from answers where slug like 'fixture-%';`.
 |---|---|
 | `db/migrations/` | SQL schema, applied in filename order |
 | `scripts/` | Database lifecycle helpers |
-| `db/fixtures/` | Dev-only seed data, not for production |
 | `ingest/` | Python: parse → normalise → chunk → embed → Postgres |
 | `content/questions.yaml` | The curated question list — the editorial input |
 | `web/` | Next.js app: chat UI, `/api/ask`, `/review` |
@@ -413,18 +408,15 @@ assumed: "establish prayer and give charity to the poor" returns 2:110, 24:56,
 answer at 0.999. The classical library ingests from OpenITI with page-accurate
 citations.
 
-Not yet done: **the answer bank itself** — 37 questions are curated in
-`content/questions.yaml` and none are drafted, so the app retrieves well and
-answers nothing; the eval harness under `evals/`; voice, file upload and
-screenshot capture, which are rendered in the composer but deliberately unwired;
-attribution UI for the CC BY-NC-SA obligation; and deployment.
+Not yet done: **review**. All 469 curated questions in `content/questions.yaml`
+are drafted — ~395,000 words and 4,986 citations, every quotation mechanically
+checked against the passage it claims — and **none are published**, because none
+have been read by a reviewer. Until they are, the app retrieves well and answers
+nothing. Also outstanding: the eval harness under `evals/`; voice, file upload
+and screenshot capture, rendered in the composer but deliberately unwired; and
+deployment.
 
-Two things remain unproven:
-
-- **The live Claude call has never run.** Everything around it is verified,
-  including citation reconciliation against synthetic API responses, but no
-  draft has yet been generated against Claude. Answers are instead written
-  through Claude Code, which costs nothing extra.
-- **The answer bank is nearly empty.** `content/questions.yaml` holds 37 curated
-  questions that have not been drafted or reviewed, so almost every question
-  returns source passages and an honest "no reviewed answer yet".
+One thing remains unproven: **the live Claude call has never run.** Everything
+around it is verified, including citation reconciliation against synthetic API
+responses, but no draft has been generated through the API. All 469 were written
+in Claude Code instead, which costs nothing extra.
