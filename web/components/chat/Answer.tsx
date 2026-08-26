@@ -153,22 +153,41 @@ export function Answer({
         </p>
       )}
 
-      {/* Provenance. The reviewer's approval is the reason this answer is
-          trustworthy at all, so it is stated plainly rather than buried. */}
+      {/* Provenance, stated exactly. The previous fallback here read "Reviewed
+          before publication" whenever no reviewer was recorded — which is to
+          say, it asserted a human review precisely in the case where there had
+          not been one. An answer about divorce or apostasy carrying a false
+          claim of scholarly approval is worse than the same answer carrying
+          none, so the unreviewed case now says so, and says it where the
+          reader cannot miss it rather than in grey type at the foot. */}
       {matched && answer && (
-        <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-          {answer.reviewedBy ? (
-            <>
-              Reviewed by {answer.reviewedBy}
-              {answer.reviewedAt
-                ? ` on ${new Date(answer.reviewedAt).toLocaleDateString()}`
-                : ""}
-              .
-            </>
-          ) : (
-            <>Reviewed before publication.</>
-          )}
-        </p>
+        answer.reviewedBy ? (
+          <p className="text-xs" style={{ color: "var(--text-muted)" }}>
+            Reviewed by {answer.reviewedBy}
+            {answer.reviewedAt
+              ? ` on ${new Date(answer.reviewedAt).toLocaleDateString()}`
+              : ""}
+            .
+          </p>
+        ) : (
+          <p
+            className="rounded-md border px-3 py-2 text-xs leading-5"
+            style={{
+              borderColor: "var(--border)",
+              color: "var(--text-muted)",
+              background: "var(--bg-subtle)",
+            }}
+          >
+            <strong className="font-semibold">
+              No scholar has reviewed this answer.
+            </strong>{" "}
+            It was assembled by software from the classical texts quoted above,
+            and every quotation is checked to appear verbatim in the work it is
+            attributed to — but the reasoning between the quotations is not
+            vouched for by anyone. Read the passages themselves before you act
+            on it.
+          </p>
+        )
       )}
 
       {content.length > 0 && (

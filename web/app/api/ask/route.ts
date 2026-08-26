@@ -1,7 +1,7 @@
 /**
  * The runtime lookup. **No Anthropic API call happens here.**
  *
- * A question is matched against published, human-reviewed answers. On a match,
+ * A question is matched against published answers. On a match,
  * the stored answer and its source passages are returned verbatim. On a miss,
  * relevant corpus passages are returned with an honest "not covered yet", and
  * the question is logged so it can be written and reviewed later.
@@ -167,9 +167,12 @@ export async function POST(req: NextRequest) {
 
   const note =
     passages.length > 0
-      ? "We don't have a reviewed answer for this yet. These passages came up as " +
+      // "reviewed answer" would imply the answers we *do* have were reviewed by
+      // someone. Most were not, and saying so here would be a claim about the
+      // whole bank made in passing on a page about something else.
+      ? "We don't have a written answer for this yet. These passages came up as " +
         "relevant — read them as source material, not as an answer to your question."
-      : "We don't have a reviewed answer for this yet, and nothing in the sources " +
+      : "We don't have a written answer for this yet, and nothing in the sources " +
         "we hold came up as clearly relevant. Try rephrasing, or ask a scholar directly.";
 
   await query(

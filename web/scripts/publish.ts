@@ -3,7 +3,7 @@
  *
  *   npx tsx scripts/publish.ts --reviewer "Name" --section 1
  *   npx tsx scripts/publish.ts --reviewer "Name" --slug how-do-i-become-muslim
- *   npx tsx scripts/publish.ts --reviewer "Name" --all
+ *   npx tsx scripts/publish.ts --unreviewed --all
  *   npx tsx scripts/publish.ts --unpublish --all
  *
  * `/review` publishes one answer at a time, which is right when a person is
@@ -13,13 +13,17 @@
  * It enforces the same two guards the route does, because the guards are the
  * point and a second door into the same table must not be a weaker one:
  *
- *   - a reviewer's name is required, and it is shown to readers;
+ *   - provenance must be stated, and it must be true: either `--reviewer
+ *     "Name"`, which readers see, or `--unreviewed`, which puts a notice on
+ *     every answer saying no scholar has read it. There is no unlabelled path;
+ *     silence would read as approval.
  *   - an answer whose question phrasings are not embedded is refused, because
  *     it would match by keyword only and nothing would say so.
+ *   - an answer with no citations is refused. Daleel is the whole product.
  *
- * It does *not* substitute for reading. `--all` publishes 469 answers under one
- * person's name; that name is what a reader sees under a ruling on divorce or
- * apostasy, so it should be true.
+ * It does *not* substitute for reading. `--unreviewed --all` puts 469 answers
+ * in front of readers that nobody has checked; the notice makes that honest,
+ * not harmless.
  */
 
 import "dotenv/config";
@@ -42,11 +46,20 @@ async function main() {
   const all = has("all");
   const dryRun = has("dry-run");
 
-  if (!unpublish && !reviewer) {
+  // Two honest ways to publish, and no third. Either a named person approved
+  // the answer and readers are told who, or nobody did and readers are told
+  // that instead. `--unreviewed` has to be typed out because publishing 469
+  // rulings that nobody has read is a decision, not a default.
+  const unreviewed = has("unreviewed");
+  if (!unpublish && !reviewer && !unreviewed) {
     throw new Error(
-      "--reviewer \"Your Name\" is required. It is stored on every answer and " +
-        "shown to readers as the person who approved it.",
+      "publishing needs one of:\n" +
+        '  --reviewer "Your Name"  a person approved these; readers are shown the name\n' +
+        "  --unreviewed            nobody has; readers are shown a notice saying so",
     );
+  }
+  if (reviewer && unreviewed) {
+    throw new Error("--reviewer and --unreviewed contradict each other");
   }
   if (!all && !section && !slug) {
     throw new Error("choose a scope: --all, --section N, or --slug <slug>");
@@ -125,21 +138,34 @@ async function main() {
   }
 
   if (dryRun) {
-    console.log(`would publish ${targets.length} answers as reviewed by "${reviewer}"`);
+    console.log(
+      unreviewed
+        ? `would publish ${targets.length} answers with no reviewer, each carrying the unreviewed notice`
+        : `would publish ${targets.length} answers as reviewed by "${reviewer}"`,
+    );
     for (const t of targets.slice(0, 10)) console.log(`  ${t.slug}`);
     if (targets.length > 10) console.log(`  ... and ${targets.length - 10} more`);
     await pool.end();
     return;
   }
 
+  // `reviewed_at` stays null alongside a null reviewer: a timestamp with no
+  // name is the shape of a review that happened and lost its author, which is
+  // not what this is.
   const done = await query<{ id: string }>(
     `update answers
-        set status = 'published', reviewed_by = $2, reviewed_at = now(),
+        set status = 'published',
+            reviewed_by = $2,
+            reviewed_at = case when $2::text is null then null else now() end,
             published_at = now(), updated_at = now()
       where id = any($1) returning id`,
-    [targets.map((t) => Number(t.id)), reviewer],
+    [targets.map((t) => Number(t.id)), unreviewed ? null : reviewer],
   );
-  console.log(`published ${done.length} answers, reviewed by "${reviewer}"`);
+  console.log(
+    unreviewed
+      ? `published ${done.length} answers, unreviewed and labelled as such`
+      : `published ${done.length} answers, reviewed by "${reviewer}"`,
+  );
 
   const counts = await query<{ status: string; n: string }>(
     `select status, count(*)::text as n from answers group by status order by 1`,
