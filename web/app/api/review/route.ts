@@ -10,10 +10,11 @@
 
 import type { NextRequest } from "next/server";
 
-import { query } from "@/lib/db";
+import { query, toVectorLiteral } from "@/lib/db";
 import { EMBEDDING_DIM } from "@/lib/env";
 import { REF_COLUMNS } from "@/lib/rag/refs";
 import { denyReview } from "@/lib/reviewAuth";
+import { sectionsBySlug } from "@/lib/sections";
 import type { Citation, Source } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -105,14 +106,18 @@ export async function GET(req: NextRequest) {
     phrasingsBy.set(aid, [...(phrasingsBy.get(aid) ?? []), r.text]);
   }
 
+  const sections = sectionsBySlug();
+
   return Response.json({
     counts: await counts(),
     misses: await missStats(),
+    sectionProgress: await sectionProgress(),
     answers: answers.map((a) => {
       const id = Number(a.id);
       return {
         id,
         slug: a.slug,
+        section: sections.get(String(a.slug)) ?? null,
         question: a.question,
         body: a.body,
         status: a.status,
@@ -133,6 +138,53 @@ async function counts() {
     `select status, count(*)::text as n from answers group by status`,
   );
   return Object.fromEntries(rows.map((r) => [r.status, Number(r.n)]));
+}
+
+export interface SectionProgress {
+  index: number;
+  title: string;
+  total: number;
+  published: number;
+  rejected: number;
+  remaining: number;
+}
+
+/**
+ * How far review has got, per editorial section.
+ *
+ * With a bank of tens a flat list was fine. At 469 it is a wall, and a wall is
+ * demoralising in a way that matters here — this is one person reading 395,000
+ * words, and the difference between "469 to go" and "section 1: 4 of 21" is
+ * whether the work looks finishable. It also makes it possible to publish a
+ * coherent tranche rather than a scattering.
+ */
+async function sectionProgress(): Promise<SectionProgress[]> {
+  const rows = await query<{ slug: string; status: string }>(
+    `select slug, status from answers`,
+  );
+  const sections = sectionsBySlug();
+
+  const acc = new Map<number, SectionProgress>();
+  for (const row of rows) {
+    const section = sections.get(row.slug);
+    if (!section) continue;
+
+    const entry = acc.get(section.index) ?? {
+      index: section.index,
+      title: section.title,
+      total: 0,
+      published: 0,
+      rejected: 0,
+      remaining: 0,
+    };
+    entry.total++;
+    if (row.status === "published") entry.published++;
+    else if (row.status === "rejected") entry.rejected++;
+    else entry.remaining++;
+    acc.set(section.index, entry);
+  }
+
+  return [...acc.values()].sort((a, b) => a.index - b.index);
 }
 
 /**
@@ -241,8 +293,8 @@ export async function POST(req: NextRequest) {
       `select count(*) as n
          from answer_questions
         where answer_id = $1
-          and (embedding is null or embedding = array_fill(0, array[$2])::vector)`,
-      [id, EMBEDDING_DIM],
+          and (embedding is null or embedding = $2::vector)`,
+      [id, toVectorLiteral(new Array(EMBEDDING_DIM).fill(0))],
     );
     if (Number(unembedded[0]?.n ?? 0) > 0) {
       return Response.json(

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import type { Citation, Source } from "@/lib/types";
 
@@ -12,13 +12,27 @@ import type { Citation, Source } from "@/lib/types";
  * Arabic and the translation beside the claim it supports, because that is the
  * only way to tell whether an answer is actually grounded in what it cites.
  *
- * Not authenticated — see app/api/review/route.ts. Put auth in front of this
- * before deploying.
+ * Gated on REVIEW_TOKEN — see app/api/review/route.ts and lib/reviewAuth.ts.
+ * Reads are gated as well as writes: drafts are unreviewed material and the
+ * miss log records what real people asked.
  */
+
+interface Section {
+  index: number;
+  title: string;
+}
+
+interface SectionProgress extends Section {
+  total: number;
+  published: number;
+  rejected: number;
+  remaining: number;
+}
 
 interface ReviewAnswer {
   id: number;
   slug: string;
+  section: Section | null;
   question: string;
   body: string;
   status: string;
@@ -81,6 +95,21 @@ export default function ReviewPage() {
   const [showMisses, setShowMisses] = useState(false);
   const [locked, setLocked] = useState<string | null>(null);
   const [token, setToken] = useState("");
+  const [progress, setProgress] = useState<SectionProgress[]>([]);
+  /** null means every section; otherwise the banner number from questions.yaml. */
+  const [section, setSection] = useState<number | null>(null);
+  /** Index into the filtered list — what the keyboard shortcuts act on. */
+  const [cursor, setCursor] = useState(0);
+
+  // The keydown listener is registered once, so it would otherwise close over
+  // the first render's values. These refs give it the current ones without
+  // tearing the listener down and rebuilding it on every keystroke.
+  const visibleRef = useRef<ReviewAnswer[]>([]);
+  const cursorRef = useRef(0);
+  const editsRef = useRef<Record<number, string>>({});
+  const actRef = useRef<
+    (id: number, action: "publish" | "reject" | "save", body?: string) => void
+  >(() => {});
 
   const refresh = useCallback(async () => {
     setLoading(true);
@@ -100,10 +129,12 @@ export default function ReviewPage() {
         answers: ReviewAnswer[];
         counts: Record<string, number>;
         misses: MissStats;
+        sectionProgress: SectionProgress[];
       };
       setAnswers(data.answers);
       setCounts(data.counts);
       setMisses(data.misses);
+      setProgress(data.sectionProgress ?? []);
     }
     setLoading(false);
   }, [status]);
@@ -117,6 +148,65 @@ export default function ReviewPage() {
   useEffect(() => {
     setReviewer(localStorage.getItem("deen_reviewer") ?? "");
   }, []);
+
+  /**
+   * Keyboard review.
+   *
+   * At 469 answers, reaching for the mouse between each one is most of the
+   * time cost. Shortcuts are suppressed while a field has focus, since the
+   * body editor is a textarea and `p` must type a letter there rather than
+   * publish the answer being edited.
+   */
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (locked || e.metaKey || e.ctrlKey || e.altKey) return;
+
+      const el = e.target as HTMLElement | null;
+      const tag = el?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || el?.isContentEditable) return;
+
+      const current = visibleRef.current[cursorRef.current];
+
+      if (e.key === "j") {
+        e.preventDefault();
+        setCursor((c) => Math.min(c + 1, visibleRef.current.length - 1));
+      } else if (e.key === "k") {
+        e.preventDefault();
+        setCursor((c) => Math.max(c - 1, 0));
+      } else if (e.key === "p" && current) {
+        e.preventDefault();
+        void actRef.current(current.id, "publish");
+      } else if (e.key === "r" && current) {
+        e.preventDefault();
+        void actRef.current(current.id, "reject");
+      } else if (e.key === "s" && current) {
+        e.preventDefault();
+        const edited = editsRef.current[current.id];
+        if (edited !== undefined) void actRef.current(current.id, "save", edited);
+      }
+    }
+
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [locked]);
+
+  const visible =
+    section === null
+      ? answers
+      : answers.filter((a) => a.section?.index === section);
+
+  // The filtered list shrinks as answers are published, so a cursor left at the
+  // old position would point past the end or at an unrelated answer.
+  useEffect(() => {
+    setCursor((c) => Math.min(c, Math.max(0, visible.length - 1)));
+  }, [visible.length]);
+
+  useEffect(() => {
+    visibleRef.current = visible;
+    cursorRef.current = cursor;
+    editsRef.current = edits;
+    actRef.current = act;
+  });
 
   async function act(
     id: number,
@@ -246,6 +336,53 @@ export default function ReviewPage() {
             style={{ borderColor: "var(--border)" }}
           />
         </div>
+
+        {/* Reviewing 469 answers as one list is a wall. Sectioning it turns
+            "469 to go" into "section 1: 4 of 21", and makes it possible to
+            publish a coherent tranche rather than a scattering. */}
+        {progress.length > 0 && (
+          <div className="mt-3 flex flex-wrap items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => setSection(null)}
+              className="rounded-md border px-2 py-1 text-xs"
+              style={
+                section === null
+                  ? { background: "var(--accent-soft)", color: "var(--accent)", borderColor: "var(--accent)" }
+                  : { borderColor: "var(--border)" }
+              }
+            >
+              All sections
+            </button>
+            {progress.map((p) => {
+              const done = p.published + p.rejected;
+              return (
+                <button
+                  key={p.index}
+                  type="button"
+                  onClick={() => setSection(p.index)}
+                  title={`${p.published} published, ${p.rejected} rejected, ${p.remaining} to go`}
+                  className="rounded-md border px-2 py-1 text-xs"
+                  style={
+                    section === p.index
+                      ? { background: "var(--accent-soft)", color: "var(--accent)", borderColor: "var(--accent)" }
+                      : { borderColor: "var(--border)" }
+                  }
+                >
+                  {p.index}. {p.title}{" "}
+                  <span style={{ color: "var(--text-muted)" }}>
+                    {done}/{p.total}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        <p className="mt-3 text-xs" style={{ color: "var(--text-muted)" }}>
+          Keyboard: <kbd>j</kbd>/<kbd>k</kbd> move · <kbd>p</kbd> publish ·{" "}
+          <kbd>r</kbd> reject · <kbd>s</kbd> save edit. Ignored while typing.
+        </p>
       </header>
 
       {/* The work queue. Placed above the drafts because it is what should
@@ -317,30 +454,44 @@ export default function ReviewPage() {
 
       {loading && <p className="text-sm">Loading…</p>}
 
-      {!loading && answers.length === 0 && (
+      {!loading && visible.length === 0 && (
         <p
           className="rounded-lg border px-4 py-8 text-center text-sm"
           style={{ borderColor: "var(--border)", color: "var(--text-muted)" }}
         >
-          Nothing with status &ldquo;{status}&rdquo;. Draft some with{" "}
-          <code>npx tsx scripts/generateAnswers.ts</code>.
+          {answers.length > 0
+            ? `Nothing left with status “${status}” in this section — pick another above.`
+            : `Nothing with status “${status}”.`}
         </p>
       )}
 
-      {answers.map((a) => {
+      {visible.map((a, i) => {
         const sourceByChunk = new Map(a.sources.map((s) => [s.chunkId, s]));
         const unverified = a.grounding?.unverified ?? [];
 
         return (
           <article
             key={a.id}
+            ref={(el) => {
+              // Keep the keyboard cursor in view. Without this, j/k moves a
+              // selection the reviewer cannot see once it passes the fold.
+              if (i === cursor && el) {
+                el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+              }
+            }}
+            onClick={() => setCursor(i)}
             className="mb-8 rounded-xl border p-5"
-            style={{ borderColor: "var(--border)" }}
+            style={
+              i === cursor
+                ? { borderColor: "var(--accent)", boxShadow: "0 0 0 1px var(--accent)" }
+                : { borderColor: "var(--border)" }
+            }
           >
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0">
                 <h2 className="text-base font-semibold">{a.question}</h2>
                 <p className="mt-0.5 text-xs" style={{ color: "var(--text-muted)" }}>
+                  {a.section ? `${a.section.index}. ${a.section.title} · ` : ""}
                   {a.slug} · {a.status}
                   {a.generatedBy ? ` · drafted by ${a.generatedBy}` : ""}
                   {a.reviewedBy ? ` · reviewed by ${a.reviewedBy}` : ""}
