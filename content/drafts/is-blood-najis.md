@@ -32,10 +32,10 @@ blood: if he sees it on his garment while he is praying, he continues** [5].
 
 Ahmad drew the line between blood and the other impurities explicitly — **urine
 and faeces are unlike blood, because prayer is repeated on account of them, and
-both little and much of them are washed** [12] — and Ibn Abd al-Barr records the
+both little and much of them are washed** [11] — and Ibn Abd al-Barr records the
 agreement at the bottom end: **the scholars are agreed on passing over and
 excusing the blood of fleas, so long as it is not excessive, and this is a
-foundation in this chapter.** [13] Even
+foundation in this chapter.** [12] Even
 al-Shafi'i, who holds that little and much are alike for urine and faeces, carves
 blood out: **except what is like the blood of fleas, and what people overlook —
 that does not ruin the garment and prayer is not repeated on account of it** [6].
@@ -89,8 +89,8 @@ about.
 8. passage=1 quote="لأسماء في دم الحيض: حتيه، ثم اقرصيه، ثم غسليه بالماء"
 9. passage=1 quote="فإن اقتصرت على إزالته بالماء جاز"
 10. passage=1 quote="فأصلحي من نفسك، ثم خذي إناء من ماء فاطرحي فيه ملحا، ثم اغسلي ما أصاب الحقيبة من الدم"
-12. passage=3 quote="البول والغائط غير الدم لأن البول والغائط تعاد منهما الصلاة ويغسل قليلهما وكثيرهما"
-13. passage=3 quote="قد أجمع العلماء على التجاوز والعفو عن دم البراغيث ما لم يتفاحش وهذا أصل في هذا الباب"
+11. passage=3 quote="البول والغائط غير الدم لأن البول والغائط تعاد منهما الصلاة ويغسل قليلهما وكثيرهما"
+12. passage=3 quote="قد أجمع العلماء على التجاوز والعفو عن دم البراغيث ما لم يتفاحش وهذا أصل في هذا الباب"
 
 ## Passages
 
