@@ -16,7 +16,7 @@
 import { query, toVectorLiteral } from "../db";
 import { embedQuery, rerank, OFFLINE } from "./embed";
 import { normalizeQuery } from "./normalizeAr";
-import { REF_COLUMNS } from "./refs";
+import { PASSAGE_COLUMN, REF_COLUMNS } from "./refs";
 import type { Citation, Source } from "../types";
 
 /**
@@ -234,7 +234,9 @@ async function hydrate(answerId: number): Promise<MatchedAnswer | null> {
     `select ac.ordinal, ac.cited_text,
             c.id as chunk_id, c.kind,
             ${REF_COLUMNS},
-            d.permalink, d.arabic_text, d.english_text,
+            d.permalink,
+            ${PASSAGE_COLUMN},
+            d.english_text,
             s.title as source_title, s.attribution
        from answer_citations ac
        join chunks    c on c.id = ac.chunk_id

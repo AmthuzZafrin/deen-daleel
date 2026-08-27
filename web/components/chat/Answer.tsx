@@ -147,9 +147,9 @@ export function Answer({
           }}
         >
           <p className="leading-5">
-            This was close to {alternatives.length === 1 ? "another" : "other"}{" "}
-            question we have{alternatives.length === 1 ? "" : "s"} an answer
-            for. If you meant one of these, open it instead:
+            {alternatives.length === 1
+              ? "This was close to another question we have an answer for. If you meant that one, open it instead:"
+              : "This was close to other questions we have answers for. If you meant one of these, open it instead:"}
           </p>
           <ul className="mt-1.5 flex flex-wrap gap-1.5">
             {alternatives.map((a) => (

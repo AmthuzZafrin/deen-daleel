@@ -22,3 +22,35 @@ export const REF_COLUMNS = `
             -- to the reader rather than hidden; see Source.chapterLevel.
             (c.canonical_ref <> '' and position(':' in c.canonical_ref) = 0)
               as chapter_level`;
+
+/**
+ * The passage text to show a reader, and where it really comes from.
+ *
+ * `documents.arabic_text` is the whole digitised volume and is null for most of
+ * this corpus — 1,925 of the 2,082 chunks the answer bank cites hang off a
+ * document without it. Reading only that column, the source panel rendered an
+ * attribution line and no text at all for 92% of the daleel, in an app whose
+ * whole claim is that the reader can go and check.
+ *
+ * `chunks.content` is never null, and it is the passage that was actually
+ * retrieved and cited rather than the volume it sits in — the better thing to
+ * show even where both exist. It is stored in the shape the embedder was fed:
+ *
+ *     <canonical ref> — <breadcrumb>\n\nArabic:\n<the passage>
+ *
+ * That header is scaffolding, and the reader is already looking at the
+ * reference above it, so it is cut here rather than in the component. All
+ * 140,379 chunks carry the marker and none carries an English section, so the
+ * `else` branch is defensive only.
+ *
+ * Requires the query to alias chunks as `c` and documents as `d`.
+ */
+export const PASSAGE_COLUMN = `
+            coalesce(
+              d.arabic_text,
+              case
+                when position(E'\\n\\nArabic:\\n' in c.content) > 0
+                then substring(c.content from position(E'\\n\\nArabic:\\n' in c.content) + 10)
+                else c.content
+              end
+            ) as arabic_text`;

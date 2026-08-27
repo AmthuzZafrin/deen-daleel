@@ -11,7 +11,7 @@ import { query, toVectorLiteral } from "../db";
 import { embedQuery, rerank, OFFLINE } from "./embed";
 import { glossQuery, type GlossLayers } from "./glossary";
 import { hasArabic, normalizeQuery } from "./normalizeAr";
-import { REF_COLUMNS } from "./refs";
+import { PASSAGE_COLUMN, REF_COLUMNS } from "./refs";
 
 export type SourceKind = "quran" | "hadith" | "tafsir" | "fiqh";
 
@@ -299,7 +299,7 @@ async function hydrate(chunkIds: number[]): Promise<Map<number, RetrievedChunk>>
             c.kind          as kind,
             c.content       as content,
             ${REF_COLUMNS},
-            d.arabic_text   as arabic_text,
+            ${PASSAGE_COLUMN},
             d.english_text  as english_text,
             d.permalink     as permalink,
             d.metadata      as metadata,
