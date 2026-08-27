@@ -1,0 +1,114 @@
+# Real-world phrasings against expected answer slugs.
+#
+# The bank's own `answer_questions` cannot measure the matcher: those are the
+# strings it is indexed on, so scoring against them measures nothing but that
+# the index works. These are how people actually type — lowercase, unpunctuated,
+# colloquial, often first-person — which is the only version of the question
+# the matcher will ever see in production.
+#
+# Column 2 is the acceptable answer, or several separated by `|` where more
+# than one would genuinely serve the reader. `-` means the bank has no answer
+# and an honest miss is the correct behaviour.
+#
+# Two rules keep this honest:
+#
+#   Never add one of these strings to `content/questions.yaml` as a phrasing.
+#   The bank is indexed on its phrasings, so a question copied into it stops
+#   measuring anything and starts measuring itself. Where the eval exposes a
+#   phrasing gap, fix it with a different wording of the same intent — and
+#   expect the score here to flatter the fix afterwards, which is what
+#   `heldout.tsv` is for.
+#
+#   When the eval and the bank disagree, check which one is wrong. "can i pray
+#   without covering my hair" is marked `-` because the bank holds
+#   `awrah-for-men` and nothing at all on a woman's covering in prayer — the
+#   expectation was wrong and the gap is real, and both are worth writing down.
+how do i become a muslim	how-do-i-become-muslim
+what do i say to convert	how-do-i-become-muslim|does-shahada-need-arabic
+do i have to say it in arabic	does-shahada-need-arabic
+can i keep my birth name after converting	do-i-need-a-new-name
+do i need to tell my family i converted	telling-my-family-i-converted
+my mum is christian will she go to jannah	my-parents-will-go-to-hell|fate-of-non-muslims
+how do i make wudu	how-to-make-wudu
+does bleeding break my wudu	does-bleeding-break-wudu
+i fell asleep does that break wudu	does-sleeping-break-wudu
+can i wipe over my socks	wiping-over-socks|what-kind-of-socks-count
+how long can i wipe over socks for	how-long-can-i-wipe-socks
+theres no water at work how do i pray	tayammum-no-water-at-work|how-to-do-tayammum
+how many times a day do muslims pray	what-are-the-five-prayers
+how do i pray step by step	how-to-pray-step-by-step|how-do-i-learn-to-pray
+i missed fajr again	slept-through-fajr
+i forgot a rakah what now	forgot-a-rakah|sujud-al-sahw
+can i pray sitting on a chair	praying-on-a-chair
+how do i pray janaza	how-to-pray-janazah
+my mind wanders when i pray	mind-wanders-in-prayer
+can i pray on a plane	praying-on-a-plane
+i cant take a break at work to pray	cant-take-a-break-to-pray|praying-at-work
+which way is qibla	which-direction-is-qibla
+can i pray without covering my hair	-
+is hijab actually required	is-hijab-obligatory
+im not ready to wear hijab	not-ready-to-wear-hijab
+can i wear nail polish and pray	nail-polish-and-wudu
+can men wear gold	can-men-wear-gold
+is a beard compulsory	is-the-beard-obligatory
+can i eat at mcdonalds	eating-out-at-restaurants|is-supermarket-meat-halal
+is supermarket chicken halal	is-supermarket-meat-halal
+is gelatin haram	is-gelatin-halal
+what about vanilla extract	vanilla-extract-alcohol
+can i eat prawns	is-shellfish-halal|is-seafood-halal
+i ate pork by accident	what-if-i-ate-pork-by-accident
+can i eat food my non muslim mum cooked	food-cooked-by-non-muslims|can-i-eat-at-my-parents-house
+is vaping haram	vaping
+what breaks the fast	what-breaks-the-fast
+i forgot and ate while fasting	forgot-and-ate
+can i use an inhaler while fasting	inhaler-while-fasting
+can i brush my teeth while fasting	toothpaste-and-fasting
+im on my period do i have to fast	fasting-on-period
+how do i make up missed fasts	making-up-missed-fasts|deadline-for-makeup-fasts
+im pregnant do i still fast	fasting-while-pregnant
+how much zakat do i pay on gold	zakat-on-gold-jewellery
+how much is nisab	how-much-is-nisab
+do i pay zakat on my salary	zakat-on-salary
+can i give zakat to my brother	zakat-to-family
+are stocks allowed	stocks-and-shares|zakat-on-shares-investments
+is a mortgage haram	is-a-mortgage-allowed
+what about student loans	student-loans
+is crypto halal	is-crypto-halal
+i work at a bank is that ok	working-at-a-bank|is-my-job-halal
+is insurance allowed	is-insurance-allowed
+is dating allowed in islam	is-dating-allowed
+can i talk to someone before marriage	talking-to-someone-before-marriage
+can a muslim girl marry a christian	can-a-muslim-woman-marry-non-muslim
+do i need a wali to get married	do-i-need-a-wali|revert-woman-no-muslim-wali
+what does islam say about ivf	ivf-and-fertility-treatment
+is birth control allowed	contraception|birth-control-to-delay-period
+how does divorce work	how-does-divorce-work
+i want to leave islam	leaving-islam
+i have doubts about god	can-i-question-my-faith
+my parents dont want me to pray	parents-tell-me-to-stop-praying
+is depression a sign of weak faith	is-depression-weak-faith
+what is the ruling on backbiting	backbiting-online|social-media-and-gossip
+is music haram	is-music-haram
+can i get a tattoo	getting-a-tattoo
+i had tattoos before islam	tattoos-before-islam
+is watching netflix haram	watching-films-and-tv
+are video games allowed	video-games
+can i keep a dog	keeping-a-dog
+is yoga haram	-
+what does islam say about deepfakes	-
+can women drive in islam	-
+is it okay to invest in a hedge fund shorting oil	-
+what is shirk	what-is-shirk
+what is riba	what-is-riba
+who is shaytan	who-is-shaytan
+what happens when we die	what-happens-when-we-die
+is hell forever	is-hell-forever
+what are the five pillars	what-are-the-pillars-of-islam
+how do i repent	how-do-i-repent
+i keep doing the same sin	same-sin-over-and-over
+does allah forgive everything	does-allah-forgive-everything
+whats the difference between sunni and shia	sunni-shia-difference
+which madhhab should i follow	which-madhhab-should-i-follow|do-i-have-to-follow-a-madhhab
+can i say merry christmas	saying-merry-christmas
+can i go to a church for a funeral	attending-a-non-muslim-funeral|going-into-a-church
+can i give my colleague a christmas present	giving-gifts-to-non-muslims|accepting-christmas-gifts

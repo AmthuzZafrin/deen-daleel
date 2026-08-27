@@ -56,6 +56,7 @@ export async function GET(req: NextRequest) {
       matchScore?: number;
       topScore?: number | null;
       retrievedChunkIds?: number[];
+      alternatives?: { slug: string; question: string; score: number }[];
     } | null;
     answer_slug: string | null;
     answer_question: string | null;
@@ -211,6 +212,7 @@ export async function GET(req: NextRequest) {
               score: m.metadata?.matchScore,
             }
           : undefined,
+        alternatives: m.metadata?.alternatives ?? [],
         citations: citationsByMessage.get(m.id) ?? [],
         sources: sourcesByMessage.get(m.id) ?? stored,
       };

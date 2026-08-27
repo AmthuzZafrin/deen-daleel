@@ -3,7 +3,13 @@
 import { useMemo } from "react";
 
 import { FATWA_DISCLAIMER } from "@/lib/rag/prompt";
-import type { AnswerMeta, Citation, Grounding, Source } from "@/lib/types";
+import type {
+  Alternative,
+  AnswerMeta,
+  Citation,
+  Grounding,
+  Source,
+} from "@/lib/types";
 
 /**
  * Renders an answer with its citations attached inline.
@@ -24,6 +30,10 @@ interface Props {
   /** False when no reviewed answer covered the question — see NoMatchNotice. */
   matched?: boolean;
   answer?: AnswerMeta;
+  /** Answers the matcher could not separate from this one. */
+  alternatives?: Alternative[];
+  /** Ask one of the alternatives instead. */
+  onAsk?: (question: string) => void;
 }
 
 interface Segment {
@@ -101,6 +111,8 @@ export function Answer({
   onCite,
   matched = true,
   answer,
+  alternatives = [],
+  onAsk,
 }: Props) {
   const segments = useMemo(
     () => segment(content, citations),
@@ -109,6 +121,53 @@ export function Answer({
 
   return (
     <div className="space-y-3">
+      {/* Near-ties, above the answer rather than below it.
+
+          The matcher scores an answer against each stored phrasing of its
+          question and serves the highest. Across the eval set that ordering is
+          good and the score itself is not: `wiping-over-shoes` beat
+          `wiping-over-socks` by 0.001, and the ruling for a Muslim woman
+          marrying a non-Muslim beat nothing at all because the ruling for a
+          Muslim *man* — which is the opposite ruling — came first by 0.10.
+          Served as a single confident answer, that is a coin flip the reader
+          cannot see.
+
+          So the runner-up is not hidden and not made into a blocking question:
+          the reader gets an answer immediately, and sees the question it might
+          have been instead before reading a word of it. Two questions side by
+          side is a distinction a person settles at a glance and the
+          cross-encoder could not settle at all. */}
+      {matched && alternatives.length > 0 && onAsk && (
+        <div
+          className="rounded-md border px-3 py-2 text-xs"
+          style={{
+            borderColor: "var(--border)",
+            background: "var(--bg-subtle)",
+            color: "var(--text-muted)",
+          }}
+        >
+          <p className="leading-5">
+            This was close to {alternatives.length === 1 ? "another" : "other"}{" "}
+            question we have{alternatives.length === 1 ? "" : "s"} an answer
+            for. If you meant one of these, open it instead:
+          </p>
+          <ul className="mt-1.5 flex flex-wrap gap-1.5">
+            {alternatives.map((a) => (
+              <li key={a.slug}>
+                <button
+                  type="button"
+                  onClick={() => onAsk(a.question)}
+                  className="rounded border px-2 py-1 text-left text-xs transition-colors hover:brightness-95"
+                  style={{ borderColor: "var(--border)", color: "var(--text)" }}
+                >
+                  {a.question}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <div className="whitespace-pre-wrap text-[0.9375rem] leading-7">
         {segments.map((seg, i) => (
           <span key={i}>

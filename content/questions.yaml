@@ -83,6 +83,8 @@
     - should I take an Arabic name
     - is my birth name a problem
     - do converts need a Muslim name
+    - do I keep my old name after becoming Muslim
+    - must a convert change their name
 
   # The retrieval lands on naming customs generally; these name the two
   # matters that actually decide it — being called by your father's name, and
@@ -821,6 +823,8 @@
     - names of the five daily prayers
     - how many units in each prayer
     - fajr dhuhr asr maghrib isha explained
+    - how often do Muslims pray each day
+    - how many prayers a day are obligatory
 
 
   also_retrieve:
@@ -1718,6 +1722,8 @@
     - what is the nisab threshold
     - minimum wealth for zakat
     - am I rich enough to owe zakat
+    - what is the nisab amount
+    - how much is the nisab in gold and silver
   also_retrieve:
     - نصاب الزكاة مائتا درهم وعشرون مثقالا من الذهب وحولان الحول
 
@@ -2312,6 +2318,8 @@
   paraphrases:
     - I have doubts about Islam
     - is questioning my religion a sin
+    - I'm not sure I believe in God any more
+    - struggling to believe God is real
   also_retrieve:
     - الوسوسة في الإيمان وقولهم نجد في أنفسنا ما يتعاظم أن نتكلم به
     - الشك في الإيمان والوسوسة وذاك صريح الإيمان
@@ -3033,6 +3041,8 @@
   paraphrases:
     - I converted but my fiancé hasn't
     - can a Muslim woman marry outside Islam
+    - can a Muslim woman marry a Christian man
+    - marrying a Christian or Jewish man
   also_retrieve:
     - لا تنكحوا المشركين حتى يؤمنوا ونكاح المسلمة من الكافر
 
@@ -3733,6 +3743,9 @@
   paraphrases:
     - is talking about someone in a chat gheeba
     - sharing screenshots of someone
+    - what is the ruling on gheebah
+    - is backbiting a major sin
+    - what counts as backbiting
   also_retrieve:
     - تعريف الغيبة ذكرك أخاك بما يكره
     - الأسباب المبيحة للغيبة والاستفتاء والتظلم
@@ -3862,6 +3875,8 @@
   paraphrases:
     - buying Christmas presents for my parents
     - gifts for non-Muslim relatives
+    - a Christmas gift for someone at work
+    - presents for non-Muslim colleagues
   also_retrieve:
     - الهدية للمشركين وصلة القرابة الكافرة
     - قصة أسماء بنت أبي بكر وأمها راغبة
@@ -4746,6 +4761,9 @@
   paraphrases:
     - apostasy in Islam
     - what if I stop believing
+    - I'm thinking of leaving the religion
+    - can I stop being Muslim
+    - I don't want to be Muslim any more
   also_retrieve:
     - حكم المرتد واستتابته
     - من بدل دينه فاقتلوه
@@ -4768,6 +4786,8 @@
     - what happens to my family who aren't Muslim
     - I'm terrified about my mum's afterlife
     - can I do anything for my non-Muslim parents
+    - can a non-Muslim parent enter Paradise
+    - where does my non-Muslim mother end up
   also_retrieve:
     - أهل الفترة ومن لم تبلغه الدعوة
     - وما كنا معذبين حتى نبعث رسولا

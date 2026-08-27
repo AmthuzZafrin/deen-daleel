@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
     result = await matchAnswer(question);
   } catch (err) {
     console.error("answer matching failed, falling through to miss:", err);
-    result = { answer: null, topScore: null, topAnswerId: null };
+    result = { answer: null, topScore: null, topAnswerId: null, alternatives: [] };
   }
 
   // Logging is best-effort: a failure to record analytics must never cost the
@@ -107,7 +107,14 @@ export async function POST(req: NextRequest) {
         conversationId,
         result.answer.body,
         result.answer.answerId,
-        JSON.stringify({ matched: true, matchScore: result.answer.score }),
+        // The alternatives are stored with the message, not recomputed, so a
+        // reopened conversation shows the same near-ties it showed at the
+        // time. Re-running the matcher later could quietly show different ones.
+        JSON.stringify({
+          matched: true,
+          matchScore: result.answer.score,
+          alternatives: result.alternatives,
+        }),
       ],
     );
 
@@ -138,6 +145,7 @@ export async function POST(req: NextRequest) {
         },
         citations: result.answer.citations,
         sources: result.answer.sources,
+        alternatives: result.alternatives,
       },
       { headers },
     );

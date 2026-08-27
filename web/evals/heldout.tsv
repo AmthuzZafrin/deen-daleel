@@ -1,0 +1,105 @@
+# Held out. Nothing here informed a threshold, a margin, a document form, or a
+# phrasing — so this is the number to quote.
+#
+# `questions.tsv` was used to choose all of those, and after phrasings were
+# added to fix what it exposed it scores 98%, which is the score of a set that
+# has been fitted to. This file exists to say what that fitting was actually
+# worth. Same format; same rule that a string here must never be pasted into
+# `content/questions.yaml`.
+#
+# Written against slugs the tuning set never touched, in the registers people
+# actually use: terse, first-person, misspelled, and sometimes not a question.
+whats the point of life	purpose-of-life
+i cant stop looking at porn	pornography
+how do i pray tahajjud	tahajjud-how
+what do i say when i sneeze	sneezing-and-yawning
+is it ok to celebrate my birthday	celebrating-birthdays
+my wife and i are fighting about money	financial-responsibility-in-marriage
+can i shorten my prayers on holiday	shortening-prayer-travelling|how-far-counts-as-travel
+whats witr	how-to-pray-witr
+do i have to pray in a mosque	is-congregation-obligatory
+i cant read arabic	cant-read-arabic-yet
+how do i memorise quran	how-to-start-memorising
+is it haram to listen to instruments	musical-instruments
+whats the ruling on chess	chess-and-card-games
+can i take out a car loan	car-finance
+whats buy now pay later ruling	buy-now-pay-later
+is forex trading halal	is-trading-forex-allowed
+can i work somewhere that sells beer	working-where-alcohol-is-served
+do i pay zakat if im in debt	zakat-if-i-have-debt
+when is zakat due	when-is-zakat-due
+who gets zakat	who-can-receive-zakat
+whats the difference between zakat and sadaqah	zakat-vs-sadaqah
+how do i give charity without showing off	charity-anonymously|how-to-give-charity-best
+i want to do umrah	what-is-umrah
+whats ihram	what-is-ihram
+i broke my ihram rules	broke-ihram-rules
+can i do hajj for my dead father	hajj-on-behalf-of-someone
+can a woman go hajj alone	women-hajj-without-mahram
+what is laylatul qadr	laylat-al-qadr
+whats itikaf	itikaf-what-is-it
+should i fast six days of shawwal	six-fasts-of-shawwal
+whats ashura fasting	ashura-fasting
+can i swim while fasting	swimming-while-fasting
+does mouthwash break my fast	mouthwash-fasting
+i had a wet dream do i need ghusl	wet-dream-ghusl
+how do i do ghusl	how-to-do-ghusl
+when do i need ghusl	when-is-ghusl-required
+i have discharge is my wudu broken	discharge-and-wudu-women
+how do i know my period finished	how-do-i-know-period-ended
+can i touch the quran on my phone without wudu	quran-on-phone-without-wudu
+can i read quran on my period	quran-on-period
+whats istikhara	istikhara-how
+i keep repeating my wudu	waswas-repeating-wudu
+my imam made a mistake reciting	praying-behind-someone-who-makes-mistakes
+someone walked in front of me praying	someone-walks-in-front
+can i pray with my shoes on	shoes-in-prayer-area
+what do i do if my phone rings in salah	phone-rings-during-prayer
+can i close my eyes when praying	praying-with-eyes-closed
+how do i do sujud sahw	sujud-al-sahw
+what do i recite in salah	what-to-recite-in-prayer|minimum-to-recite
+whats the least i can recite	minimum-to-recite
+can two of us pray in jamaah	two-people-congregation
+can a woman lead prayer	woman-leading-prayer
+do women have to go to jumuah	women-and-jumuah
+i talked during the khutbah	talking-during-khutbah
+i got to jumuah late	arriving-late-to-jumuah
+what is barzakh	what-is-barzakh
+who are the angels	what-are-angels
+are jinn real	what-are-jinn
+what is qadar	what-is-qadar
+whats tawakkul	what-is-tawakkul
+is jesus a prophet in islam	jesus-in-islam
+what is jihad really	what-is-jihad
+whats bidah	what-is-bidah
+what is ruqyah	what-is-ruqyah
+is black magic real	black-magic
+are amulets allowed	amulets-and-taweez
+do dreams mean anything	dreams-and-their-meaning
+what happens on judgement day	what-is-the-day-of-judgement
+can i donate my organs	organ-donation
+are vaccines halal	vaccines
+is cosmetic surgery allowed	cosmetic-surgery
+can i dye my hair	hair-dye
+can i pluck my eyebrows	trimming-eyebrows
+are piercings ok	piercings
+can i wear high heels	high-heels
+what do i do with interest money	what-do-i-do-with-interest-money
+how do i write a will	writing-a-will
+how is inheritance divided	inheritance-shares
+whats iddah	iddah-waiting-period
+what is khul	khul-woman-initiated-divorce
+who gets the kids after divorce	custody-after-divorce
+what is mahr	what-is-mahr
+do i need witnesses to marry	what-makes-a-nikah-valid
+can i marry over zoom	online-nikah
+how should i treat my neighbours	neighbours-rights
+my family is toxic can i cut them off	cutting-off-toxic-family|keeping-family-ties
+what do i say when someone dies	offering-condolences|what-to-do-when-someone-dies
+can i visit graves	visiting-graves
+is cremation allowed	cremation
+can muslims do yoga	-
+is it haram to play the lottery online	gambling-and-lottery
+what does islam say about climate change	-
+can i get a mortgage in a non muslim country	is-a-mortgage-allowed
+is nft trading halal	-

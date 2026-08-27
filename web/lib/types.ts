@@ -47,6 +47,13 @@ export interface AnswerMeta {
   score?: number;
 }
 
+/** A near-tied answer the matcher could not rule out. */
+export interface Alternative {
+  slug: string;
+  question: string;
+  score: number;
+}
+
 export interface ChatMessage {
   id: string;
   role: "user" | "assistant";
@@ -62,6 +69,11 @@ export interface ChatMessage {
    */
   matched?: boolean;
   answer?: AnswerMeta;
+  /**
+   * Answers the matcher could not separate from the one it served. Shown to the
+   * reader as questions to pick between, not as further reading.
+   */
+  alternatives?: Alternative[];
 }
 
 export interface ConversationSummary {

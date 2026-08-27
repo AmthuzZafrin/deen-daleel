@@ -186,6 +186,8 @@ export function ChatView() {
                             sources={message.sources}
                             matched={message.matched}
                             answer={message.answer}
+                            alternatives={message.alternatives}
+                            onAsk={ask}
                             onCite={openCitation}
                           />
                         )}

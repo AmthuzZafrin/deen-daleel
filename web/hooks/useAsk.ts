@@ -2,7 +2,13 @@
 
 import { useCallback, useState } from "react";
 
-import type { AnswerMeta, ChatMessage, Citation, Source } from "@/lib/types";
+import type {
+  Alternative,
+  AnswerMeta,
+  ChatMessage,
+  Citation,
+  Source,
+} from "@/lib/types";
 
 /**
  * Asks /api/ask and appends the result.
@@ -21,6 +27,7 @@ interface AskResponse {
   answer?: AnswerMeta & { body: string };
   citations: Citation[];
   sources: Source[];
+  alternatives?: Alternative[];
 }
 
 export function useAsk() {
@@ -67,6 +74,7 @@ export function useAsk() {
                   content: data.matched ? data.answer!.body : (data.note ?? ""),
                   matched: data.matched,
                   answer: data.answer,
+                  alternatives: data.alternatives ?? [],
                   citations: data.citations,
                   sources: data.sources,
                 }
