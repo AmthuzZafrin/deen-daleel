@@ -83,7 +83,13 @@ export async function POST(req: NextRequest) {
     result = await matchAnswer(question);
   } catch (err) {
     console.error("answer matching failed, falling through to miss:", err);
-    result = { answer: null, topScore: null, topAnswerId: null, alternatives: [] };
+    result = {
+      answer: null,
+      topScore: null,
+      topAnswerId: null,
+      alternatives: [],
+      confident: true,
+    };
   }
 
   // Logging is best-effort: a failure to record analytics must never cost the
@@ -114,6 +120,7 @@ export async function POST(req: NextRequest) {
           matched: true,
           matchScore: result.answer.score,
           alternatives: result.alternatives,
+          confident: result.confident,
         }),
       ],
     );
@@ -146,6 +153,7 @@ export async function POST(req: NextRequest) {
         citations: result.answer.citations,
         sources: result.answer.sources,
         alternatives: result.alternatives,
+        confident: result.confident,
       },
       { headers },
     );

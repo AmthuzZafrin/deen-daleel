@@ -16,6 +16,39 @@ interface Row {
 }
 
 const problems: { slug: string; kind: string; detail: string }[] = [];
+/**
+ * Words too common across the bank to mean anything in a slug. Not a general
+ * stopword list — these are the ones that recur in dozens of slugs here.
+ */
+const SLUG_STOPWORDS = new Set([
+  "what", "when", "where", "which", "does", "with", "from", "have", "that",
+  "this", "islam", "islamic", "muslim", "muslims", "allowed", "haram", "halal",
+  "should", "must", "need", "about", "there", "into", "before", "after",
+  "someone", "something", "still", "many", "much", "make", "makes", "made",
+  "will", "would", "count", "counts", "prayer", "pray", "praying",
+  "arent", "cant", "cannot", "dont", "isnt", "wont", "past", "long", "kind",
+  "area", "purpose", "take", "behind", "work", "necessary", "replace", "over",
+  "during", "before", "after", "under", "like", "just", "only", "also", "even",
+  "back", "forth", "them", "they", "your", "mine", "ours", "some", "same",
+  "other", "another", "every", "each", "more", "most", "less", "least", "than",
+  "then", "very", "really", "actually", "explained", "rejected", "missed",
+]);
+
+/**
+ * Crude suffix stripping, enough to stop "wiping" and "wipe" reading as
+ * different words. Not linguistics — the check only needs to tell a genuine
+ * vocabulary gap ("najis" nowhere in the phrasings) from a grammatical one.
+ */
+const PHRASING_GAPS = process.argv.includes("--phrasing-gaps");
+
+function stem(w: string): string {
+  return w
+    .replace(/(ies)$/, "y")
+    .replace(/(ing|ed|es|s)$/, "")
+    .replace(/(.)\1$/, "$1")
+    .replace(/e$/, "");
+}
+
 function flag(slug: string, kind: string, detail: string) {
   problems.push({ slug, kind, detail });
 }
@@ -65,10 +98,12 @@ async function main() {
   );
   const unembeddedBy = new Map(unembedded.map((r) => [Number(r.answer_id), Number(r.n)]));
 
-  const phrasingCount = await query<{ answer_id: string; n: string }>(
-    `select answer_id, count(*) as n from answer_questions group by answer_id`,
+  const phrasingCount = await query<{ answer_id: string; n: string; joined: string }>(
+    `select answer_id, count(*) as n, string_agg(text, ' ') as joined
+       from answer_questions group by answer_id`,
   );
   const phrasingsBy = new Map(phrasingCount.map((r) => [Number(r.answer_id), Number(r.n)]));
+  const phrasingTextBy = new Map(phrasingCount.map((r) => [Number(r.answer_id), r.joined ?? ""]));
 
   // Allowed: ASCII, Arabic block, Arabic supplement/extended, presentation forms,
   // and the handful of typographic marks the drafts legitimately use.
@@ -134,6 +169,41 @@ async function main() {
     if (un > 0) flag(a.slug, "unembedded", `${un} phrasing(s) not embedded — would publish as keyword-only`);
     const np = phrasingsBy.get(aid(a)) ?? 0;
     if (np === 0) flag(a.slug, "no-phrasings", "no question phrasings — unreachable by search");
+
+    // 8b. The answer's own subject word appears in none of its phrasings.
+    //
+    // Found by eval rather than reasoning: `what-is-qadar` carried three good
+    // phrasings and not one of them contained the word *qadar*, so "what is
+    // qadar" retrieved Laylat al-Qadr and missed. `deepfakes-and-impersonation`
+    // said "deepfake" throughout and scored 0.02 against a query saying
+    // "deepfakes" — the reranker treats the plural as a different word.
+    //
+    // The slug is the cheapest available statement of what an answer is about,
+    // so any distinctive word in it that no phrasing carries is a term readers
+    // will type and the matcher will not find. Stopwords and the words that
+    // appear in half the bank are skipped; they carry no signal either way.
+    const slugTerms = a.slug.split("-").filter((w) => w.length > 3 && !SLUG_STOPWORDS.has(w));
+    const phrasingStems = new Set(
+      (phrasingTextBy.get(aid(a)) ?? "")
+        .toLowerCase()
+        .replace(/['\u2019]/g, "")
+        .split(/[^a-z]+/)
+        .filter(Boolean)
+        .map(stem),
+    );
+    const stems = [...phrasingStems];
+    const absent = slugTerms.filter((w) => {
+      const t = stem(w);
+      if (t.length < 3) return false;
+      return !stems.some((ps) => ps.includes(t) || (ps.length >= 4 && t.includes(ps)));
+    });
+    // Advisory rather than a defect: the bank is sound without it, but a
+    // reader typing that word will not find the answer. Off by default so the
+    // 97 it currently reports do not bury the checks that mean the data is
+    // wrong. `--phrasing-gaps` turns it on when doing editorial work.
+    if (PHRASING_GAPS && absent.length > 0 && np > 0) {
+      flag(a.slug, "slug-term-unsearchable", `no phrasing contains: ${absent.join(", ")}`);
+    }
 
     // 9. substance
     const wc = a.body.trim().split(/\s+/).length;

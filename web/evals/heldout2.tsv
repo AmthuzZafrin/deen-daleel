@@ -1,0 +1,114 @@
+# Second held-out set. Written after the phrasing repairs, against questions
+# neither `questions.tsv` nor `heldout.tsv` contains, so it measures the bank
+# as it now stands rather than the repairs made to it.
+#
+# `heldout.tsv` stopped being fully clean once its failures were used to fix
+# `what-is-qadar`, `writing-a-will`, `chess-and-card-games` and
+# `financial-responsibility-in-marriage`. Those were real defects and worth
+# fixing; the cost is that its number now flatters them, and this file is what
+# replaces it. Same rules: nothing here may be pasted into questions.yaml, and
+# `-` rows must be rechecked whenever answers are added.
+im scared to tell my parents im muslim now	telling-my-family-i-converted
+does my old marriage still count now im muslim	was-my-old-marriage-valid
+do i have to make up prayers from before i converted	do-i-owe-missed-prayers-before-islam
+i cant pronounce the arabic properly	making-mistakes-in-recitation|cant-read-arabic-yet
+what do i read after fatihah	what-to-recite-in-prayer
+i moved during salah by accident	moving-during-prayer
+someone was talking in the prayer row	talking-during-prayer
+is a prayer mat required	prayer-mat-necessary
+i prayed facing the wrong way	wrong-qibla-direction
+can i pray lying down when im ill	praying-lying-down
+what do i do about years of missed salah	years-of-missed-prayers
+i skipped a prayer deliberately	missed-prayer-on-purpose
+when cant i pray nafl	times-you-cannot-pray-nafl
+whats the duha prayer	duha-prayer
+how do i pray tarawih	taraweeh-what-is-it
+can i join a prayer thats already started	praying-behind-imam-joining-late
+my nose bled while praying	does-bleeding-break-wudu
+i touched my wife does wudu break	does-touching-spouse-break-wudu
+i laughed in salah	does-laughing-break-wudu
+does throwing up break my wudu	does-vomiting-break-wudu
+i changed my clothes do i redo wudu	does-changing-clothes-break-wudu
+how much water should i use for wudu	how-much-water-for-wudu
+i have a cast on my arm how do i do wudu	wudu-with-a-cast-or-bandage
+i have incontinence how do i pray	incontinence-and-prayer
+my baby weed on my clothes	baby-urine-on-clothes
+how do i clean najasa off my clothes	how-to-clean-najasa-from-clothes
+is toilet paper enough	is-toilet-paper-enough
+what do i say entering the bathroom	bathroom-etiquette
+a dog licked my hand	dog-saliva
+can i keep fish or birds	keeping-pets
+is it haram to draw people	drawing-and-art
+can i post my photo online	posting-photos-on-social-media
+is singing allowed	is-singing-allowed
+can i dance at a wedding	dancing
+is it haram to swear	swearing-and-bad-language
+i swore by allah and broke it	expiation-for-broken-oath|swearing-by-allah
+someone owes me money and wont pay	someone-owes-me-money
+is bribery ever allowed	bribery-vs-gift
+can i buy something in instalments	buying-on-instalments
+what do i do with haram money	haram-income-what-do-i-do
+is my salary zakatable	zakat-on-salary
+do i pay zakat on my house	zakat-on-property
+can i give zakat to a non muslim	zakat-to-non-muslims
+what is zakat al fitr	zakat-al-fitr
+i cant afford hajj	hajj-if-i-cant-afford
+is hajj obligatory for me yet	is-hajj-obligatory-on-me
+what actually happens at hajj	what-happens-at-hajj
+my period started during hajj	period-during-hajj
+can i fast on mondays and thursdays	fasting-mondays-thursdays
+i vomited while fasting	does-vomiting-break-fast
+does smoking break my fast	does-smoking-break-fast
+can i kiss my wife while fasting	kissing-while-fasting
+i missed suhoor can i still fast	missed-suhoor
+what do i say when i break my fast	what-to-say-when-breaking-fast
+i have a medical condition and cant fast	fasting-with-a-medical-condition|fidyah-when-cannot-fast
+when do children start fasting	when-do-children-start-praying|who-must-fast
+whats itikaf	itikaf-what-is-it
+can i shorten prayers when travelling	shortening-prayer-travelling
+how far is travelling	how-far-counts-as-travel
+can i combine prayers when travelling	combining-prayers-travelling
+im spotting after my period ends	spotting-after-period
+i had a miscarriage and im bleeding	miscarriage-bleeding
+how long is bleeding after childbirth	bleeding-after-childbirth
+i have irregular bleeding	irregular-bleeding-istihada
+can i go to the mosque on my period	mosque-on-period
+can i make dhikr on my period	dhikr-and-dua-on-period
+how long is the mourning period	mourning-period
+what do i say to someone who lost a relative	offering-condolences
+can i pray for someone who died	praying-for-the-dead
+how are muslims buried	how-are-muslims-buried
+what is an aqiqah	aqiqah-what-is-it
+how do i name my baby	naming-a-baby
+should my son be circumcised	do-i-have-to-be-circumcised
+can i adopt a child	adoption-in-islam
+how do i raise my kids muslim	raising-children-muslim
+what are the rights of a husband and wife	rights-of-husband-and-wife
+does my wife have to do housework	does-wife-have-to-do-housework
+what is polygamy in islam	polygamy-in-islam
+can i marry someone my family hates	marrying-someone-my-family-hates
+does my divorce count	did-my-divorce-count
+what is halal food exactly	what-does-halal-mean
+is seafood halal	is-seafood-halal
+are e numbers halal	e-numbers-additives
+is there alcohol in my medicine	medicine-containing-alcohol
+does gelatin in tablets matter	medicine-containing-gelatin
+is halal certification reliable	halal-certification-labels
+can i cook pork for my job	cooking-pork-for-family|working-in-a-supermarket-selling-pork
+my kitchen has pork in it	cross-contamination-kitchen
+is it haram to be vegetarian	vegetarianism-in-islam
+is wasting food a sin	is-it-wrong-to-waste-food
+what is the evil eye	evil-eye-protection
+are horoscopes haram	astrology-and-horoscopes
+what is ruqyah for	what-is-ruqyah
+how do i increase my iman	increasing-iman
+i feel spiritually empty	feeling-spiritually-empty
+does faith go up and down	does-faith-go-up-and-down
+what is tawbah salah	salat-al-tawbah
+how do i seek knowledge	seeking-knowledge
+what does islam say about deepfakes	deepfakes-and-impersonation
+can i pray without covering my hair	what-must-a-woman-cover-in-prayer
+is it haram to use ai to write my essay	is-ai-use-allowed
+can muslims do yoga	-
+is it halal to sell my kidney	-
+what does islam say about time travel	-

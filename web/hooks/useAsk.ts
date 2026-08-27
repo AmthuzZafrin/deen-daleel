@@ -28,6 +28,7 @@ interface AskResponse {
   citations: Citation[];
   sources: Source[];
   alternatives?: Alternative[];
+  confident?: boolean;
 }
 
 export function useAsk() {
@@ -75,6 +76,7 @@ export function useAsk() {
                   matched: data.matched,
                   answer: data.answer,
                   alternatives: data.alternatives ?? [],
+                  confident: data.confident ?? true,
                   citations: data.citations,
                   sources: data.sources,
                 }

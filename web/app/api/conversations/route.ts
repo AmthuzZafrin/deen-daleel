@@ -57,6 +57,7 @@ export async function GET(req: NextRequest) {
       topScore?: number | null;
       retrievedChunkIds?: number[];
       alternatives?: { slug: string; question: string; score: number }[];
+      confident?: boolean;
     } | null;
     answer_slug: string | null;
     answer_question: string | null;
@@ -213,6 +214,7 @@ export async function GET(req: NextRequest) {
             }
           : undefined,
         alternatives: m.metadata?.alternatives ?? [],
+        confident: m.metadata?.confident ?? true,
         citations: citationsByMessage.get(m.id) ?? [],
         sources: sourcesByMessage.get(m.id) ?? stored,
       };

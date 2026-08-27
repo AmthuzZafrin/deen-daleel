@@ -32,6 +32,8 @@ interface Props {
   answer?: AnswerMeta;
   /** Answers the matcher could not separate from this one. */
   alternatives?: Alternative[];
+  /** False when the match was weak — shown to the reader, not hidden. */
+  confident?: boolean;
   /** Ask one of the alternatives instead. */
   onAsk?: (question: string) => void;
 }
@@ -112,6 +114,7 @@ export function Answer({
   matched = true,
   answer,
   alternatives = [],
+  confident = true,
   onAsk,
 }: Props) {
   const segments = useMemo(
@@ -137,6 +140,32 @@ export function Answer({
           have been instead before reading a word of it. Two questions side by
           side is a distinction a person settles at a glance and the
           cross-encoder could not settle at all. */}
+      {/* A weak match, said out loud.
+
+          The matcher serves anything clearing a low bar, because measuring
+          showed that raising the bar lost more right answers than it prevented
+          wrong ones. What it must not do is present a 0.2 match in the same
+          voice as a 0.99 one — on a fresh eval set most of the wrong answers
+          arrived below 0.5, and every one of them looked, on the page, exactly
+          like a confident ruling. */}
+      {matched && !confident && (
+        <p
+          className="rounded-md border px-3 py-2 text-xs leading-5"
+          style={{
+            borderColor: "var(--border)",
+            background: "var(--bg-subtle)",
+            color: "var(--text-muted)",
+          }}
+        >
+          <strong className="font-semibold">
+            This may not be the question you asked.
+          </strong>{" "}
+          Nothing in the bank matched closely, and this was the nearest. Check
+          that it is about your question before relying on it
+          {alternatives.length > 0 ? ", and see the alternatives below" : ""}.
+        </p>
+      )}
+
       {matched && alternatives.length > 0 && onAsk && (
         <div
           className="rounded-md border px-3 py-2 text-xs"

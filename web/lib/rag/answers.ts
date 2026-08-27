@@ -95,6 +95,27 @@ const DISTANCE_OVERRIDE_SCORE = Number(process.env.DEEN_DISTANCE_OVERRIDE ?? 0.9
  */
 export const MATCH_MARGIN = Number(process.env.DEEN_MATCH_MARGIN ?? 0.05);
 
+/**
+ * Below this the answer is served, but not as a settled one.
+ *
+ * The reranker's score is a poor absolute confidence — the note on
+ * MAX_MATCH_DISTANCE sets out why — but it is not *nothing*, and treating a
+ * 0.2 match and a 0.99 match as the same claim is the part that was wrong. On
+ * a fresh eval set, most of the wrong answers served arrived below 0.5:
+ * "is bribery ever allowed" at 0.424 got the answer on lying, "my nose bled
+ * while praying" at 0.266 got the one on irregular bleeding.
+ *
+ * Raising MATCH_THRESHOLD to suppress those was measured and rejected: it
+ * removed four wrong answers and eleven right ones across the three sets. So
+ * the answer is still shown, and the reader is told plainly that the match was
+ * weak and given more alternatives to pick from — which costs a hit nothing
+ * and stops a guess being read as a ruling.
+ */
+export const LOW_CONFIDENCE = Number(process.env.DEEN_LOW_CONFIDENCE ?? 0.5);
+
+/** How wide the near-tie band opens when the top match is weak. */
+const LOW_CONFIDENCE_MARGIN = 0.35;
+
 /** At most this many near-ties are offered; past three it is a list, not a choice. */
 const MAX_ALTERNATIVES = 3;
 
@@ -133,6 +154,12 @@ export interface Alternative {
 
 export interface MatchResult {
   answer: MatchedAnswer | null;
+  /**
+   * False when the answer cleared the threshold but only just. The answer is
+   * still served; the reader is told the match was weak rather than left to
+   * read a guess as a ruling.
+   */
+  confident: boolean;
   /** Best score seen, even when below threshold — logged to measure near-misses. */
   topScore: number | null;
   topAnswerId: number | null;
@@ -440,7 +467,13 @@ export async function rankAnswers(userQuery: string): Promise<Ranking | null> {
 }
 
 export async function matchAnswer(userQuery: string): Promise<MatchResult> {
-  const none = { answer: null, topScore: null, topAnswerId: null, alternatives: [] };
+  const none = {
+    answer: null,
+    topScore: null,
+    topAnswerId: null,
+    alternatives: [],
+    confident: true,
+  };
 
   const ranking = await rankAnswers(userQuery);
   if (!ranking || ranking.answers.length === 0) return none;
@@ -473,9 +506,13 @@ export async function matchAnswer(userQuery: string): Promise<MatchResult> {
   // Everything the matcher could not separate from the answer it chose. These
   // are not "related reading" — they are the questions it might have meant
   // instead, and the reader is the one equipped to tell.
+  // A weak top match opens the band wider: when the matcher is unsure which
+  // question was meant, the useful response is more candidates, not fewer.
+  const confident = top.score >= LOW_CONFIDENCE;
+  const margin = confident ? MATCH_MARGIN : LOW_CONFIDENCE_MARGIN;
   const near = ranking.answers
     .slice(1)
-    .filter((a) => top.score - a.score < MATCH_MARGIN)
+    .filter((a) => top.score - a.score < margin)
     .slice(0, MAX_ALTERNATIVES);
 
   let alternatives: Alternative[] = [];
@@ -497,6 +534,7 @@ export async function matchAnswer(userQuery: string): Promise<MatchResult> {
     topScore: top.score,
     topAnswerId: top.answerId,
     alternatives,
+    confident,
   };
 }
 

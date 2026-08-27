@@ -243,6 +243,7 @@
     - I keep falling off and returning
     - is it normal to struggle with consistency
     - I stopped praying then started again
+    - I keep reverting and falling away
 
 # ─────────────────────────────────────────────────────────────
 # 2. Purity — wudu
@@ -269,6 +270,8 @@
     - what is obligatory in wudu
     - which bits of wudu can I skip
     - what's the minimum valid wudu
+    - what is fard in wudu
+    - obligatory parts of wudu
 
   also_retrieve:
     # Both earlier attempts drifted into ghusl. Naming the four limbs is what
@@ -459,6 +462,7 @@
     - I redo wudu over and over
     - obsessive thoughts about whether my wudu counted
     - I can't stop doubting my purity
+    - waswas about my wudu
 
   also_retrieve:
     - الوسوسة في الطهارة وتكرار الوضوء ومن ابتلي بالوسواس
@@ -567,6 +571,7 @@
   paraphrases:
     - a small amount of blood on my clothes
     - does blood invalidate my prayer clothes
+    - is blood najis
 
 - slug: dog-saliva
   question: What do I do if a dog licks me or my clothes?
@@ -646,6 +651,7 @@
   paraphrases:
     - can I wear perfume with alcohol in it
     - does deodorant with alcohol affect prayer
+    - is perfume with alcohol najis
 
 # ─────────────────────────────────────────────────────────────
 # 4. Menstruation and women's purity
@@ -715,6 +721,7 @@
   paraphrases:
     - how do I tell my period is over
     - signs my bleeding has stopped
+    - how do I know my period has ended
   also_retrieve:
     - القصة البيضاء والجفوف وعلامة انقطاع الحيض
 
@@ -780,6 +787,7 @@
   paraphrases:
     - pills to postpone my period for Ramadan
     - delaying menstruation for Hajj
+    - birth control to delay a period for hajj
   also_retrieve:
     - شرب دواء لقطع الحيض أو منع الدم
 
@@ -789,6 +797,7 @@
   paraphrases:
     - can we be intimate while I'm bleeding
     - what is permitted during menstruation
+    - intimacy with my wife during her period
   also_retrieve:
     - مباشرة الحائض فيما دون الفرج والاستمتاع بها
 
@@ -798,6 +807,7 @@
   paraphrases:
     - my period ended but I haven't showered yet
     - intimacy before the post-period bath
+    - intercourse before she has done ghusl
 
 # ─────────────────────────────────────────────────────────────
 # 5. Prayer — mechanics
@@ -857,6 +867,7 @@
     - shortest valid prayer
     - what must I memorise before I can pray
     - bare minimum for salah
+    - the minimum I must recite in prayer
 
 - slug: what-invalidates-prayer
   question: What breaks my prayer?
@@ -888,6 +899,7 @@
   paraphrases:
     - can I turn off my phone during salah
     - my alarm went off while praying
+    - my phone rang while I was praying
 
 
   also_retrieve:
@@ -1139,6 +1151,7 @@
   paraphrases:
     - is jamaah compulsory
     - can I always pray at home
+    - is praying in congregation obligatory
 
 
   also_retrieve:
@@ -1263,6 +1276,7 @@
   paraphrases:
     - is Jumuah compulsory for men
     - what if I can't get to Friday prayer
+    - is Jumuah obligatory for me
   also_retrieve:
     - الجمعة واجبة على كل مسلم في جماعة ومن تجب عليه
     - من ترك الجمعة ثلاث مرات تهاونا طبع الله على قلبه
@@ -1452,6 +1466,7 @@
   paraphrases:
     - I take daily pills can I fast
     - prescription medicine during Ramadan
+    - taking tablets while fasting
   note: >
     Turns on the medication, the condition and medical advice. Explain what it
     turns on; route to a doctor as well as a scholar. Do not rule.
@@ -1465,6 +1480,7 @@
   paraphrases:
     - can we be intimate in Ramadan
     - marital relations while fasting
+    - intimacy with my spouse while fasting
   also_retrieve:
     - القبلة للصائم ومباشرة الصائم لامرأته
 
@@ -1570,6 +1586,7 @@
   paraphrases:
     - can I make up fasts after the next Ramadan
     - how long do I have to repay fasts
+    - how long do I have for makeup fasts
   also_retrieve:
     - تأخير قضاء رمضان حتى يدخل رمضان آخر فعليه الفدية
 
@@ -1849,6 +1866,7 @@
   paraphrases:
     - back-paying missed zakat
     - I never paid zakat as a new Muslim
+    - I forgot to pay zakat for years
   also_retrieve:
     - من مضت عليه سنون لم يؤد الزكاة وجب عليه إخراج ما مضى
 
@@ -1867,6 +1885,7 @@
   paraphrases:
     - should I hide my donations
     - giving charity in public versus private
+    - giving charity anonymously
   also_retrieve:
     - إخفاء الصدقة أفضل من إظهارها ورجل تصدق بصدقة فأخفاها
 
@@ -1929,6 +1948,7 @@
   paraphrases:
     - Hajj without a mahram
     - can I travel for Hajj as a woman alone
+    - can women go to hajj without a mahram
   also_retrieve:
     - حج المرأة بغير محرم وسفرها مع النساء الثقات
 
@@ -1938,6 +1958,7 @@
   paraphrases:
     - performing Hajj for someone else
     - proxy Hajj for the deceased
+    - performing hajj on behalf of someone
   also_retrieve:
     - الحج عن الميت والنيابة في الحج وحج المعضوب
 
@@ -1967,6 +1988,7 @@
   paraphrases:
     - qurbani explained
     - is the Eid animal sacrifice obligatory
+    - what is udhiyah
 
 # ─────────────────────────────────────────────────────────────
 # 11. Qur'an
@@ -2207,6 +2229,9 @@
   paraphrases:
     - predestination in Islam
     - if it's written why am I judged
+    - what does qadar mean
+    - belief in divine decree
+    - qadar and free will explained
   also_retrieve:
     - الإيمان بالقدر خيره وشره وكل ميسر لما خلق له
     - كتب الله مقادير الخلائق والاحتجاج بالقدر على المعصية
@@ -2997,6 +3022,9 @@
   paraphrases:
     - requirements of an Islamic marriage
     - what do I need for a nikah
+    - are witnesses required for a nikah
+    - conditions of a valid marriage contract
+    - what makes a nikah invalid
   also_retrieve:
     - أركان النكاح الإيجاب والقبول والشهود والولي
     - لا نكاح إلا بولي وشاهدي عدل والإعلان بالنكاح
@@ -3015,6 +3043,7 @@
   paraphrases:
     - wali for a convert woman
     - my father isn't Muslim who gives me away
+    - I am a revert woman with no Muslim wali
   also_retrieve:
     - لا نكاح إلا بولي والمرأة تزوج نفسها
     - السلطان ولي من لا ولي له والقاضي يزوج من لا ولي لها
@@ -3102,6 +3131,8 @@
   paraphrases:
     - is the husband responsible for all expenses
     - does a wife have to contribute financially
+    - arguing with my spouse about money
+    - who should pay the household bills
   also_retrieve:
     - نفقة الزوجة على الزوج الطعام والكسوة والسكنى وحق الزوج عليها
 
@@ -3802,6 +3833,8 @@
   paraphrases:
     - is chess haram
     - playing cards without betting
+    - ruling on playing chess
+    - are board games allowed
   also_retrieve:
     - حكم اللعب بالشطرنج
     - من لعب بالنردشير فكأنما صبغ يده في لحم خنزير
@@ -4083,6 +4116,8 @@
   paraphrases:
     - wasiyyah and civil wills
     - do I need to write a will as a Muslim
+    - how should a Muslim write a will
+    - what goes into an Islamic will
   also_retrieve:
     - ما حق امرئ مسلم له شيء يوصي فيه يبيت ليلتين إلا ووصيته مكتوبة عنده
     - الثلث والثلث كثير في الوصية
@@ -4788,6 +4823,8 @@
     - can I do anything for my non-Muslim parents
     - can a non-Muslim parent enter Paradise
     - where does my non-Muslim mother end up
+    - my mother is not Muslim what happens to her
+    - will a non-Muslim relative be forgiven
   also_retrieve:
     - أهل الفترة ومن لم تبلغه الدعوة
     - وما كنا معذبين حتى نبعث رسولا
@@ -4841,6 +4878,8 @@
     - putting someone's face in a video they weren't in
     - cloning a person's voice with AI
     - is a deepfake of a real person allowed
+    - deepfakes in Islam
+    - the ruling on deepfakes
   note: >
     Falls under false witness, forgery and slander long before it touches the
     image rules. The harm is that it puts words and acts on a person that were
@@ -5092,3 +5131,23 @@
     - إن الله كتب الإحسان على كل شيء فإذا قتلتم فأحسنوا القتلة
     - دخلت امرأة النار في هرة حبستها
     - اتقوا الله في هذه البهائم المعجمة
+
+- slug: what-must-a-woman-cover-in-prayer
+  question: What must a woman cover in prayer?
+  paraphrases:
+    - do I have to cover my hair to pray
+    - can I pray with my arms uncovered
+    - what counts as covered for salah
+    - is my prayer valid if some hair shows
+  note: >
+    A gap found by the eval: the bank had awrah-for-men and nothing on the
+    woman's covering in salah, so "can i pray without covering my hair" was
+    being served an unrelated answer. Distinct from the hijab answers, which
+    are about dress before non-mahrams; satr al-awrah is a condition of the
+    prayer itself and the scope differs. Give the dispute over the feet, and
+    what happens if something slips mid-prayer.
+  also_retrieve:
+    - عورة المرأة في الصلاة وستر العورة شرط
+    - لا يقبل الله صلاة حائض إلا بخمار
+    - المرأة كلها عورة إلا وجهها وكفيها في الصلاة
+    - انكشاف العورة في الصلاة يسيرا

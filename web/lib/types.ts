@@ -74,6 +74,8 @@ export interface ChatMessage {
    * reader as questions to pick between, not as further reading.
    */
   alternatives?: Alternative[];
+  /** False when the match cleared the threshold only just — see LOW_CONFIDENCE. */
+  confident?: boolean;
 }
 
 export interface ConversationSummary {
