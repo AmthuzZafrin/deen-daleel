@@ -4798,3 +4798,297 @@
     not overreach — judgement of a named individual belongs to God alone, and
     the answer must say so rather than pronounce. Do not leave the reader in
     despair about someone they love.
+
+# --- Modern questions -------------------------------------------------------
+#
+# Added because a reader asked "can i generate AI humans" and got an honest
+# miss. The bank was already reasonably modern — crypto, IVF, BNPL, video
+# games, AI use — but it had nothing on making images of people, which is a
+# question the corpus is dense on rather than silent about.
+#
+# That is the distinction these entries are chosen around. Some modern
+# questions only *look* new: an AI image of a person is the tasweer chapter, a
+# loot box is maysir, a deepfake is shahadat al-zur, dropshipping is selling
+# what you do not have. Those get answered, with daleel. Others are genuinely
+# outside anything the authors could have considered, and those carry
+# `expect: decline` so the draft says what the tradition reaches, what it does
+# not, and what to ask a scholar — the pattern is-ai-use-allowed already uses.
+# Marking the second kind as answerable is how a bank starts inventing rulings.
+
+- slug: ai-generated-images-of-people
+  question: Can I create AI images of people?
+  paraphrases:
+    - can I generate AI humans
+    - is AI art of people haram
+    - making pictures of faces with AI
+    - AI generated portraits in Islam
+  note: >
+    This is the tasweer chapter, not a new question. The material is dense and
+    disputed — the severity reports, the "breathe a spirit into it" hadith, the
+    angels-and-images reports, and the later distinction some drew between a
+    made image and a captured one. Set out the dispute; note that AI makes an
+    image of a person who does not exist, which is a fact the reader should
+    take to a scholar rather than one this page can rule on.
+  also_retrieve:
+    - أشد الناس عذابا يوم القيامة المصورون
+    - من صور صورة في الدنيا كلف أن ينفخ فيها الروح
+    - الملائكة لا تدخل بيتا فيه صورة ولا كلب
+    - حكم التصوير وما يستثنى منه
+
+- slug: deepfakes-and-impersonation
+  question: Is making a deepfake of someone haram?
+  paraphrases:
+    - putting someone's face in a video they weren't in
+    - cloning a person's voice with AI
+    - is a deepfake of a real person allowed
+  note: >
+    Falls under false witness, forgery and slander long before it touches the
+    image rules. The harm is that it puts words and acts on a person that were
+    not theirs.
+  also_retrieve:
+    - شهادة الزور من أكبر الكبائر
+    - ومن أظلم ممن افترى على الله كذبا
+    - والذين يؤذون المؤمنين والمؤمنات بغير ما اكتسبوا
+    - من كذب علي متعمدا فليتبوأ مقعده من النار
+
+- slug: ai-companions-and-chatbots
+  question: Is an AI girlfriend or companion app haram?
+  expect: decline
+  paraphrases:
+    - talking romantically to a chatbot
+    - is an AI boyfriend allowed
+    - AI companion app in Islam
+  note: >
+    No author here imagined it. What is citable is the material on where desire
+    is directed and on what a marriage is for; none of it addresses a
+    correspondent who does not exist. Explain what it turns on; do not rule.
+  also_retrieve:
+    - قل للمؤمنين يغضوا من أبصارهم
+    - ومن آياته أن خلق لكم من أنفسكم أزواجا
+    - النظرة سهم من سهام إبليس
+
+- slug: nfts-and-digital-collectibles
+  question: Is buying and selling NFTs allowed?
+  paraphrases:
+    - are NFTs halal
+    - trading digital collectibles
+    - is an NFT a real asset in Islam
+  note: >
+    The classical levers are gharar and whether the thing sold is property at
+    all — mal mutaqawwam — and whether it can be delivered.
+  also_retrieve:
+    - نهى رسول الله عن بيع الغرر
+    - لا تبع ما ليس عندك
+    - بيع المعدوم وما لا يقدر على تسليمه
+
+- slug: loot-boxes-and-in-game-purchases
+  question: Are loot boxes and in-game purchases gambling?
+  paraphrases:
+    - is spending money on game chests haram
+    - gacha pulls in Islam
+    - paying for a random reward in a game
+  note: >
+    Maysir turns on paying for an unknown outcome. Say what the definition
+    catches and what it does not — a straightforward purchase of a known item
+    is not the same transaction.
+  also_retrieve:
+    - إنما الخمر والميسر والأنصاب والأزلام رجس من عمل الشيطان
+    - تعريف الميسر والقمار
+    - نهى عن بيع الغرر
+
+- slug: day-trading-and-options
+  question: Is day trading or options trading allowed?
+  paraphrases:
+    - are options halal
+    - short selling in Islam
+    - is leveraged trading allowed
+  note: >
+    Distinct from the stocks-and-shares answer, which is about owning a
+    company. Here the levers are selling what you do not possess, gharar, and
+    interest on margin.
+  also_retrieve:
+    - لا تبع ما ليس عندك
+    - نهى عن ربح ما لم يضمن
+    - من ابتاع طعاما فلا يبعه حتى يستوفيه
+
+- slug: dropshipping-and-affiliate-selling
+  question: Is dropshipping allowed?
+  paraphrases:
+    - selling something I don't own yet
+    - is affiliate marketing halal
+    - taking orders before I have stock
+  note: >
+    Turns on possession and on salam, which is the classical exception for
+    paying now against later delivery — and on its conditions.
+  also_retrieve:
+    - لا تبع ما ليس عندك
+    - من أسلف في شيء فليسلف في كيل معلوم ووزن معلوم إلى أجل معلوم
+    - النهي عن بيع ما لم يقبض
+
+- slug: fake-reviews-and-bought-followers
+  question: Is buying followers or writing fake reviews haram?
+  paraphrases:
+    - paying for fake reviews
+    - buying likes and followers
+    - inflating my ratings online
+  also_retrieve:
+    - من غشنا فليس منا
+    - شهادة الزور
+    - النجش في البيع
+    - المتشبع بما لم يعط كلابس ثوبي زور
+
+- slug: pirated-films-and-software
+  question: Is downloading pirated films, music or software haram?
+  paraphrases:
+    - watching a movie on a piracy site
+    - using cracked software
+    - is torrenting haram
+  note: >
+    Turns on whether the classical concept of mal extends to this, which is a
+    live question, and on the rights of the maker. Give the material on taking
+    property without consent and on honouring conditions.
+  also_retrieve:
+    - لا يحل مال امرئ مسلم إلا بطيب نفس منه
+    - المسلمون على شروطهم
+    - أكل أموال الناس بالباطل
+
+- slug: online-privacy-and-snooping
+  question: Is it haram to read someone's messages or track them?
+  paraphrases:
+    - going through my spouse's phone
+    - tracking my child's location
+    - reading someone's texts without asking
+  note: >
+    Tajassus is explicit and the reports on looking into a house without
+    permission are unusually blunt. Note that a parent's duty of care is a real
+    consideration the reader should raise with a scholar.
+  also_retrieve:
+    - ولا تجسسوا ولا يغتب بعضكم بعضا
+    - من اطلع في بيت قوم بغير إذنهم فقد حل لهم أن يفقئوا عينه
+    - من ستر مسلما ستره الله يوم القيامة
+
+- slug: surrogacy
+  question: Is surrogacy allowed?
+  paraphrases:
+    - can another woman carry our baby
+    - is a surrogate mother permitted
+    - gestational carrier in Islam
+  expect: decline
+  note: >
+    No author considered it. What the corpus is dense on is nasab and on
+    milk-kinship, both of which bear on who the child's mother is. Set out that
+    material and what it makes the hard question; do not rule.
+  also_retrieve:
+    - الولد للفراش وللعاهر الحجر
+    - إن أمهاتهم اللائي ولدنهم
+    - يحرم من الرضاع ما يحرم من النسب
+    - أمر النسب مبني على الاحتياط
+
+- slug: sperm-and-egg-donation
+  question: Is using a donor's sperm or egg allowed?
+  paraphrases:
+    - donor eggs in Islam
+    - using donor sperm for IVF
+    - third party gametes
+  note: >
+    The IVF answer names this as the hard part and stops. Here the nasab
+    material can be given properly — lineage as a legal relation attached to
+    the marriage, and the affinity rules that hang off it.
+  also_retrieve:
+    - الولد للفراش وللعاهر الحجر
+    - ادعوهم لآبائهم هو أقسط عند الله
+    - من ادعى إلى غير أبيه فالجنة عليه حرام
+    - أمر النسب مبني على الاحتياط
+
+- slug: assisted-dying
+  question: What does Islam say about assisted dying?
+  paraphrases:
+    - is euthanasia allowed in Islam
+    - helping someone end their life
+    - is assisted suicide haram
+  note: >
+    The material on taking a life, including one's own, is explicit. Handle the
+    reader gently — someone asking may be watching a relative suffer — and
+    separate it from withdrawing futile treatment, which is a different
+    question and is not settled here.
+  also_retrieve:
+    - ولا تقتلوا أنفسكم إن الله كان بكم رحيما
+    - من قتل نفسه بحديدة فحديدته في يده
+    - كان فيمن كان قبلكم رجل به جرح فجزع
+
+- slug: withdrawing-life-support
+  question: Can life support be withdrawn?
+  expect: decline
+  paraphrases:
+    - turning off a ventilator
+    - stopping treatment for a dying relative
+    - is it allowed to stop machines
+  note: >
+    Turns on a medical determination the corpus has no notion of. What is
+    citable is the duty to seek treatment and its limits, and the material on
+    accepting a decree. Explain what it turns on; route to a scholar and the
+    treating doctors. Do not rule.
+  also_retrieve:
+    - تداووا عباد الله فإن الله لم يضع داء إلا وضع له دواء
+    - وما كان لنفس أن تموت إلا بإذن الله كتابا مؤجلا
+    - الأخذ بالأسباب والتوكل
+
+- slug: cannabis-where-it-is-legal
+  question: Is cannabis haram if it's legal where I live?
+  paraphrases:
+    - is weed haram
+    - smoking marijuana in Islam
+    - legal cannabis for a Muslim
+  note: >
+    The muskir definition does not turn on the law of the land. The classical
+    discussion of hashish is directly on point and worth quoting rather than
+    reasoning around.
+  also_retrieve:
+    - كل مسكر خمر وكل خمر حرام
+    - ما أسكر كثيره فقليله حرام
+    - حكم الحشيشة والبنج
+
+- slug: hair-transplants-and-implants
+  question: Is a hair transplant allowed?
+  paraphrases:
+    - hair implants in Islam
+    - is treating baldness haram
+    - is a hair transplant changing creation
+  note: >
+    Sits between the wasl reports and the accepted permission to remove a
+    defect. The distinction the jurists drew — restoring what was lost against
+    altering what was given — is the useful thing here.
+  also_retrieve:
+    - لعن الله الواصلة والمستوصلة
+    - فليغيرن خلق الله
+    - من قطع أنفه يوم الكلاب فاتخذ أنفا من ورق
+
+- slug: climate-and-the-environment
+  question: Does Islam say anything about the environment?
+  paraphrases:
+    - climate change in Islam
+    - is wasting resources haram
+    - Muslim duty to the planet
+  note: >
+    Israf, fasad fil-ard and the khalifa material are all citable, along with
+    the reports on not wasting water even at a running river, and on planting.
+  also_retrieve:
+    - ولا تفسدوا في الأرض بعد إصلاحها
+    - إن المبذرين كانوا إخوان الشياطين
+    - ما من مسلم يغرس غرسا فيأكل منه إنسان أو دابة إلا كان له صدقة
+    - لا تسرف ولو كنت على نهر جار
+
+- slug: factory-farming-and-meat
+  question: Is meat from factory farms still halal?
+  paraphrases:
+    - intensive farming in Islam
+    - is cruelly raised meat halal
+    - animal welfare and halal meat
+  note: >
+    Distinct from the slaughter answers: the question is the animal's life, not
+    its death. The ihsan-in-slaughter report and the reports on starving and
+    burdening animals are the material.
+  also_retrieve:
+    - إن الله كتب الإحسان على كل شيء فإذا قتلتم فأحسنوا القتلة
+    - دخلت امرأة النار في هرة حبستها
+    - اتقوا الله في هذه البهائم المعجمة

@@ -7,6 +7,13 @@
 # worth. Same format; same rule that a string here must never be pasted into
 # `content/questions.yaml`.
 #
+# A `-` expectation goes stale the moment the bank grows. Two rows here read
+# `-` because nothing covered them when this was written; answers were later
+# added for exactly those questions, and the probe scored the correct new
+# answers as failures until these lines were corrected. Re-check the `-` rows
+# whenever answers are added, and correct them as a factual fix — that is not
+# tuning, but silently leaving them wrong would make the number meaningless.
+#
 # Written against slugs the tuning set never touched, in the registers people
 # actually use: terse, first-person, misspelled, and sometimes not a question.
 whats the point of life	purpose-of-life
@@ -100,6 +107,6 @@ can i visit graves	visiting-graves
 is cremation allowed	cremation
 can muslims do yoga	-
 is it haram to play the lottery online	gambling-and-lottery
-what does islam say about climate change	-
+what does islam say about climate change	climate-and-the-environment
 can i get a mortgage in a non muslim country	is-a-mortgage-allowed
-is nft trading halal	-
+is nft trading halal	nfts-and-digital-collectibles
