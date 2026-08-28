@@ -32,12 +32,19 @@
   --text: #0b0b0b;
   --text-muted: #52514e;
 
-  /* Clay. Claude fills with the deeper tone and *lightens* on hover, which is
-     the opposite of the usual convention -- keep it that way round. */
-  --accent: #c6613f;
-  --accent-hover: #d97757;
-  --accent-soft: rgba(217, 119, 87, 0.1);
-  --accent-text: #c6613f;
+  /* Violet. Claude's own accent is clay; this app's is purple, but it keeps
+     Claude's direction of travel: fill with the deeper tone and *lighten* on
+     hover, which is the opposite of the usual convention -- keep it that way
+     round.
+
+     `--accent-glow` is the tint that bleeds past the edge of an accent
+     surface. It is the hover tone at low alpha, so the glow is the same
+     colour the button becomes when you reach it. */
+  --accent: #6d4bd8;
+  --accent-hover: #8b6df0;
+  --accent-soft: rgba(139, 109, 240, 0.1);
+  --accent-text: #6d4bd8;
+  --accent-glow: rgba(109, 75, 216, 0.28);
   --on-accent: #ffffff;
 
   /* Claude's neutral fills: the same ink as the text, at low alpha, so a
@@ -60,12 +67,15 @@
     --text: #f0efec;
     --text-muted: #c3c2b7;
 
-    --accent: #c6613f;
-    --accent-hover: #d97757;
-    --accent-soft: rgba(217, 119, 87, 0.16);
-    /* The fill tone is too dark to read as text on a dark ground; the hover
-       tone is the one that carries. */
-    --accent-text: #d97757;
+    --accent: #6d4bd8;
+    --accent-hover: #8b6df0;
+    --accent-soft: rgba(139, 109, 240, 0.18);
+    /* The fill tone is too dark to read as text on a dark ground; a lighter
+       violet again is the one that carries. */
+    --accent-text: #b7a2ff;
+    /* Stronger on dark: a glow is the only thing separating the button from
+       the ground, where in light the page itself does that work. */
+    --accent-glow: rgba(139, 109, 240, 0.42);
     --on-accent: #ffffff;
 
     --hover-fill: rgba(255, 255, 255, 0.05);
@@ -87,13 +97,37 @@
   box-shadow: inset 0 0 0 999px var(--hover-fill);
 }
 
+/* The glow. A blurred, spread shadow in the accent's own hue rather than
+   black, so the button sits in a pool of its own colour instead of casting a
+   drop shadow. It tightens and brightens on hover -- reaching a control should
+   feel like it lit up, not like it moved.
+
+   Disabled buttons lose it entirely: a glow reads as "live", and the send
+   button spends most of its life disabled with an empty box. */
 .btn-accent {
   background: var(--accent);
   color: var(--on-accent);
-  transition: background-color 120ms ease;
+  box-shadow: 0 0 0 1px var(--accent-glow), 0 2px 12px -2px var(--accent-glow);
+  transition: background-color 120ms ease, box-shadow 120ms ease;
 }
-/* Claude lightens its clay on hover rather than darkening it. */
-.btn-accent:hover:not(:disabled) { background: var(--accent-hover); }
+/* Lighten on hover rather than darken, as Claude does with its clay. */
+.btn-accent:hover:not(:disabled) {
+  background: var(--accent-hover);
+  box-shadow: 0 0 0 1px var(--accent-glow), 0 2px 16px 0 var(--accent-glow);
+}
+.btn-accent:disabled { box-shadow: none; }
+
+/* The same glow for something that is not a button: a focused composer, a
+   selected citation. Border colour alone is too quiet to notice in dark. */
+.accent-glow { box-shadow: 0 0 0 1px var(--accent-glow), 0 0 18px -4px var(--accent-glow); }
+
+/* The composer, while the reader is typing in it. A ring alone said "focused"
+   in the flattest possible way; the glow says it without a hard edge, and it
+   is the one piece of chrome on screen for most of a session. */
+.composer-shell { transition: box-shadow 150ms ease; }
+.composer-shell:focus-within {
+  box-shadow: 0 0 0 1px var(--accent), 0 0 26px -6px var(--accent-glow);
+}
 
 html, body { height: 100%; }
 body {
@@ -110,4 +144,37 @@ body {
   text-align: right;
   line-height: 2.1;
   font-size: 1.375rem;
+}
+
+/* Arabic set *inside* an English paragraph, which is how every answer quotes
+   its daleel.
+
+   `unicode-bidi: isolate` is the load-bearing declaration. Without it the
+   bidirectional algorithm treats the quotation and the English around it as one
+   run, so the colon introducing the quotation, the citation marker after it and
+   any neighbouring punctuation get pulled to the wrong end of the line and the
+   sentence appears to reorder itself. Isolation makes the run a self-contained
+   island that lays out right-to-left inside and takes up one position outside. */
+.arabic-inline {
+  font-family: var(--font-arabic, "Amiri", "Scheherazade New", serif);
+  direction: rtl;
+  unicode-bidi: isolate;
+  font-size: 1.15em;
+  line-height: 1.9;
+}
+
+/* A long quotation is the passage the citation points at, not a term in a
+   sentence, so it gets its own block. Inlining a two-hundred-character
+   right-to-left run leaves the English wrapped around it in fragments. */
+.arabic-block {
+  display: block;
+  font-family: var(--font-arabic, "Amiri", "Scheherazade New", serif);
+  direction: rtl;
+  unicode-bidi: isolate;
+  text-align: right;
+  font-size: 1.25rem;
+  line-height: 2.1;
+  margin: 0.65rem 0;
+  padding-right: 0.9rem;
+  border-right: 2px solid var(--accent-glow);
 }

@@ -29,7 +29,27 @@ export interface Citation {
   ordinal: number;
   chunkId: number;
   canonicalRef: string;
+  /**
+   * The exact words of the passage the answer leaned on -- Arabic for
+   * everything but the Qur'an, which is the only part of the corpus that
+   * carries a translation.
+   */
   citedText: string;
+}
+
+/**
+ * One use of a passage by an answer: the span quoted, and the answer's own
+ * paragraphs around the marker.
+ *
+ * Derived on the client from the message and its citations rather than stored,
+ * so a reopened conversation reconstructs it from exactly the same two fields
+ * a live one does.
+ */
+export interface CitedIn {
+  ordinal: number;
+  quote: string;
+  /** Markdown paragraphs from the answer body, in the order they appear. */
+  context: string[];
 }
 
 export interface Grounding {

@@ -7,7 +7,13 @@ import { Composer } from "@/components/chat/Composer";
 import { SourcePanel } from "@/components/chat/SourcePanel";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { useAsk } from "@/hooks/useAsk";
-import type { ChatMessage, ConversationSummary, Source } from "@/lib/types";
+import { citationParagraphs } from "@/lib/answerText";
+import type {
+  ChatMessage,
+  CitedIn,
+  ConversationSummary,
+  Source,
+} from "@/lib/types";
 
 const EXAMPLES = [
   "Is fasting during Ramadan obligatory, and who is excused?",
@@ -21,7 +27,8 @@ export function ChatView() {
 
   const [conversations, setConversations] = useState<ConversationSummary[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [openSource, setOpenSource] = useState<Source | null>(null);
+  const [openSource, setOpenSource] =
+    useState<{ source: Source; cited: CitedIn[] } | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -59,10 +66,35 @@ export function ChatView() {
     return map;
   }, [visible]);
 
+  /**
+   * Open a passage with the answer it was cited from.
+   *
+   * Keyed on the message rather than the chunk. A thread often asks two
+   * related questions whose answers cite the same chunk -- `Al-Minhaj 11:9`
+   * turns up in most of the riba bank -- and a chunk-keyed lookup would show
+   * the reader both answers' paragraphs about it, one of which they never
+   * opened. The handler is built per message so the drawer shows what the
+   * answer they clicked in said, and nothing else.
+   *
+   * Assembled on the client rather than the server because everything it needs
+   * is already here: the message content *is* the answer body, markers and all,
+   * and its citations carry the ordinal and the quoted span. That also makes a
+   * reopened conversation behave identically to a live one -- both rebuild from
+   * the same two fields, so neither needs the answer row.
+   */
   const openCitation = useCallback(
-    (chunkId: number) => {
-      const source = sourcesByChunk.get(chunkId);
-      if (source) setOpenSource(source);
+    (message: ChatMessage, chunkId: number) => {
+      const source = (message.sources ?? []).find((s) => s.chunkId === chunkId)
+        ?? sourcesByChunk.get(chunkId);
+      if (!source) return;
+      const cited: CitedIn[] = (message.citations ?? [])
+        .filter((c) => c.chunkId === chunkId)
+        .map((c) => ({
+          ordinal: c.ordinal,
+          quote: c.citedText,
+          context: citationParagraphs(message.content, c.ordinal),
+        }));
+      setOpenSource({ source, cited });
     },
     [sourcesByChunk],
   );
@@ -189,7 +221,7 @@ export function ChatView() {
                             alternatives={message.alternatives}
                             confident={message.confident}
                             onAsk={ask}
-                            onCite={openCitation}
+                            onCite={(chunkId) => openCitation(message, chunkId)}
                           />
                         )}
 
@@ -208,7 +240,7 @@ export function ChatView() {
                                   <li key={s.chunkId}>
                                     <button
                                       type="button"
-                                      onClick={() => setOpenSource(s)}
+                                      onClick={() => setOpenSource({ source: s, cited: [] })}
                                       className="rounded border px-2 py-1 text-xs surface-hover"
                                       style={{ borderColor: "var(--border)" }}
                                     >
@@ -232,7 +264,11 @@ export function ChatView() {
         <Composer onSend={ask} isLoading={isLoading} />
       </main>
 
-      <SourcePanel source={openSource} onClose={() => setOpenSource(null)} />
+      <SourcePanel
+        source={openSource?.source ?? null}
+        cited={openSource?.cited ?? []}
+        onClose={() => setOpenSource(null)}
+      />
     </div>
   );
 }

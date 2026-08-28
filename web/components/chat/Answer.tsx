@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 
+import { RichText } from "@/components/chat/RichText";
 import { FATWA_DISCLAIMER } from "@/lib/rag/prompt";
 import type {
   Alternative,
@@ -14,11 +15,19 @@ import type {
 /**
  * Renders an answer with its citations attached inline.
  *
- * Citations come back as exact spans of text the model quoted, so rather than
- * asking the model to write `[1]` markers (which it could get wrong, or
- * fabricate), the spans are located in the prose and a marker is inserted at
- * the end of each. The number is therefore always attached to text the API
- * itself vouched for.
+ * The marker is the one the answer was drafted with. This used to work the
+ * other way round -- `citedText` was searched for in the prose and a marker
+ * inserted where it was found -- on the assumption that a quoted span is
+ * English text lifted from the answer. It is not: `answer_citations.cited_text`
+ * holds the *Arabic* of the passage, straight out of the chunk, and outside the
+ * Qur'an it never appears in an English answer body at all. Measured across the
+ * bank, 4,163 of 5,149 citations failed to locate and rendered no marker, while
+ * the 986 that matched drew a second marker beside the `[n]` already written in
+ * the text -- so the reader saw `...وتفاريعه1 [1]`.
+ *
+ * Every one of the 488 published answers carries its own markers and every
+ * ordinal resolves, so they are simply rendered as buttons where they stand. An
+ * ordinal with no citation behind it is dropped rather than drawn dead.
  */
 
 interface Props {
@@ -38,74 +47,6 @@ interface Props {
   onAsk?: (question: string) => void;
 }
 
-interface Segment {
-  text: string;
-  citation?: Citation;
-}
-
-/**
- * Split the answer so each cited span ends with its marker.
- *
- * Spans are matched by exact substring — the same text the API reported — and
- * a span that cannot be located is skipped rather than guessed at, so a marker
- * never lands on unrelated prose.
- */
-/**
- * Closing punctuation a marker should sit outside of.
- *
- * A cited span usually stops at the last word of the quotation, while the
- * closing quote mark belongs to the sentence around it. Without this, a marker
- * lands between the two and strands the quote — `…ward off (evil). [1] "`.
- */
-const CLOSERS = new Set(['"', "'", "”", "’", ")", "]", "»"]);
-
-function segment(content: string, citations: Citation[]): Segment[] {
-  if (citations.length === 0) return [{ text: content }];
-
-  const marks: { end: number; citation: Citation }[] = [];
-  for (const citation of citations) {
-    const needle = citation.citedText.trim();
-    if (!needle) continue;
-    const at = content.indexOf(needle);
-    if (at === -1) continue;
-
-    let end = at + needle.length;
-    while (end < content.length && CLOSERS.has(content[end])) end++;
-
-    marks.push({ end, citation });
-  }
-
-  if (marks.length === 0) return [{ text: content }];
-  marks.sort((a, b) => a.end - b.end);
-
-  const segments: Segment[] = [];
-  let cursor = 0;
-  for (const mark of marks) {
-    if (mark.end <= cursor) continue;
-    segments.push({
-      text: content.slice(cursor, mark.end),
-      citation: mark.citation,
-    });
-    cursor = mark.end;
-  }
-  if (cursor < content.length) segments.push({ text: content.slice(cursor) });
-  return segments;
-}
-
-/** Minimal inline formatting. Deliberately not a full markdown engine. */
-function renderInline(text: string, keyPrefix: string) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
-  return parts.map((part, i) =>
-    part.startsWith("**") && part.endsWith("**") ? (
-      <strong key={`${keyPrefix}-${i}`} className="font-semibold">
-        {part.slice(2, -2)}
-      </strong>
-    ) : (
-      <span key={`${keyPrefix}-${i}`}>{part}</span>
-    ),
-  );
-}
-
 export function Answer({
   content,
   citations = [],
@@ -117,9 +58,9 @@ export function Answer({
   confident = true,
   onAsk,
 }: Props) {
-  const segments = useMemo(
-    () => segment(content, citations),
-    [content, citations],
+  const byOrdinal = useMemo(
+    () => new Map(citations.map((c) => [c.ordinal, c])),
+    [citations],
   );
 
   return (
@@ -198,15 +139,18 @@ export function Answer({
       )}
 
       <div className="whitespace-pre-wrap text-[0.9375rem] leading-7">
-        {segments.map((seg, i) => (
-          <span key={i}>
-            {renderInline(seg.text, `s${i}`)}
-            {seg.citation && (
+        <RichText
+          text={content}
+          renderCite={(ordinal, key) => {
+            const citation = byOrdinal.get(ordinal);
+            if (!citation) return null;
+            return (
               <button
+                key={key}
                 type="button"
-                onClick={() => onCite(seg.citation!.chunkId)}
-                title={seg.citation.canonicalRef}
-                aria-label={`Source ${seg.citation.ordinal}: ${seg.citation.canonicalRef}`}
+                onClick={() => onCite(citation.chunkId)}
+                title={citation.canonicalRef}
+                aria-label={`Source ${ordinal}: ${citation.canonicalRef}`}
                 className="mx-0.5 inline-flex h-[1.15rem] min-w-[1.15rem] translate-y-[-0.15rem] items-center
                            justify-center rounded px-1 align-middle text-[0.6875rem] font-semibold
                            surface-hover"
@@ -215,11 +159,11 @@ export function Answer({
                   color: "var(--accent-text)",
                 }}
               >
-                {seg.citation.ordinal}
+                {ordinal}
               </button>
-            )}
-          </span>
-        ))}
+            );
+          }}
+        />
       </div>
 
       {/* The guardrail catches references named in prose that carry no citation

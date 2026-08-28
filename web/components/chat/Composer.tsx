@@ -169,11 +169,10 @@ export function Composer({ onSend, isLoading }: Props) {
   return (
     <div className="px-4 pb-4 pt-2">
       <div
-        className="mx-auto max-w-3xl rounded-2xl border shadow-sm focus-within:ring-1"
+        className="composer-shell mx-auto max-w-3xl rounded-2xl border shadow-sm"
         style={{
           borderColor: "var(--border)",
           background: "var(--bg-raised)",
-          ["--tw-ring-color" as string]: "var(--accent)",
         }}
       >
         {(busy || listening || notice) && (
