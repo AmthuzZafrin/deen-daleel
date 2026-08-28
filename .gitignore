@@ -34,3 +34,6 @@ ingest/data/raw/
 web/public/tesseract/
 web/public/tessdata/
 web/public/pdf.worker.min.mjs
+
+# runtime logs from scripts/start.sh
+.logs/

@@ -62,6 +62,21 @@ python3 -m venv .venv && .venv/bin/pip install -e . torch sentence-transformers
 .venv/bin/python -m serve_embeddings &
 ```
 
+## Running it
+
+```bash
+./scripts/start.sh        # database, embeddings, web app — then opens a browser
+./scripts/stop.sh         # stops the app; --all stops the database too
+```
+
+Three processes have to be up before a question can be answered, and the
+failure when one is missing is not obvious from the page: without Postgres
+nothing loads, but without the embedding service the site looks entirely normal
+and **every question misses**, which reads as an empty answer bank rather than a
+service that is down. `start.sh` waits for each to answer and prints the log of
+whichever did not. Re-running it is safe. Cold start is about fifteen seconds,
+nearly all of it BGE-M3 loading onto the GPU. Logs land in `.logs/`.
+
 `scripts/db.sh` uses plain `docker run` so it works without the compose plugin.
 If you do have compose, `docker compose up -d` produces an identical container.
 `migrate` records what it has applied in `schema_migrations` and skips those, so
