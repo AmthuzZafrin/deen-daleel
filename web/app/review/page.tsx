@@ -291,7 +291,7 @@ export default function ReviewPage() {
           <button
             type="submit"
             className="rounded-lg px-4 py-2 text-sm font-medium"
-            style={{ background: "var(--accent)", color: "var(--bg)" }}
+            style={{ background: "var(--accent)", color: "var(--on-accent)" }}
           >
             Unlock
           </button>
@@ -318,7 +318,7 @@ export default function ReviewPage() {
               className="rounded-lg border px-3 py-1.5 text-sm capitalize"
               style={
                 s === status
-                  ? { background: "var(--accent-soft)", color: "var(--accent)", borderColor: "var(--accent)" }
+                  ? { background: "var(--accent-soft)", color: "var(--accent-text)", borderColor: "var(--accent)" }
                   : { borderColor: "var(--border)" }
               }
             >
@@ -348,7 +348,7 @@ export default function ReviewPage() {
               className="rounded-md border px-2 py-1 text-xs"
               style={
                 section === null
-                  ? { background: "var(--accent-soft)", color: "var(--accent)", borderColor: "var(--accent)" }
+                  ? { background: "var(--accent-soft)", color: "var(--accent-text)", borderColor: "var(--accent)" }
                   : { borderColor: "var(--border)" }
               }
             >
@@ -365,7 +365,7 @@ export default function ReviewPage() {
                   className="rounded-md border px-2 py-1 text-xs"
                   style={
                     section === p.index
-                      ? { background: "var(--accent-soft)", color: "var(--accent)", borderColor: "var(--accent)" }
+                      ? { background: "var(--accent-soft)", color: "var(--accent-text)", borderColor: "var(--accent)" }
                       : { borderColor: "var(--border)" }
                   }
                 >
@@ -405,7 +405,7 @@ export default function ReviewPage() {
                 type="button"
                 onClick={() => setShowMisses((v) => !v)}
                 className="ml-auto text-xs hover:underline"
-                style={{ color: "var(--accent)" }}
+                style={{ color: "var(--accent-text)" }}
               >
                 {showMisses ? "Hide" : `Show ${misses.unmatched.length} unanswered`}
               </button>
@@ -432,7 +432,7 @@ export default function ReviewPage() {
                       </span>
                     )}
                     {near && m.topSlug ? (
-                      <span className="text-xs" style={{ color: "var(--accent)" }}>
+                      <span className="text-xs" style={{ color: "var(--accent-text)" }}>
                         near miss ({m.bestScore?.toFixed(2)}) — consider adding
                         this phrasing to {m.topSlug}
                       </span>
@@ -504,7 +504,7 @@ export default function ReviewPage() {
             {(unverified.length > 0 || a.grounding?.uncited) && (
               <p
                 className="mt-3 rounded-md border px-3 py-2 text-xs"
-                style={{ borderColor: "var(--accent)", color: "var(--accent)" }}
+                style={{ borderColor: "var(--accent)", color: "var(--accent-text)" }}
               >
                 <strong>Check carefully.</strong>{" "}
                 {unverified.length > 0 &&
@@ -555,7 +555,7 @@ export default function ReviewPage() {
                       className="rounded-lg border p-3"
                       style={{ borderColor: "var(--border)" }}
                     >
-                      <p className="text-xs font-semibold" style={{ color: "var(--accent)" }}>
+                      <p className="text-xs font-semibold" style={{ color: "var(--accent-text)" }}>
                         [{c.ordinal}] {c.canonicalRef}
                       </p>
                       <p className="mt-1 text-sm italic">&ldquo;{c.citedText}&rdquo;</p>
@@ -575,7 +575,7 @@ export default function ReviewPage() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="mt-1 inline-block text-xs hover:underline"
-                          style={{ color: "var(--accent)" }}
+                          style={{ color: "var(--accent-text)" }}
                         >
                           Verify at source &rarr;
                         </a>
@@ -600,8 +600,7 @@ export default function ReviewPage() {
                 type="button"
                 disabled={busy === a.id || a.status === "published"}
                 onClick={() => act(a.id, "publish")}
-                className="rounded-lg px-3 py-1.5 text-sm font-medium text-white disabled:opacity-40"
-                style={{ background: "var(--accent)" }}
+                className="btn-accent rounded-lg px-3 py-1.5 text-sm font-medium disabled:opacity-40"
               >
                 {a.status === "published" ? "Published" : "Approve & publish"}
               </button>
@@ -620,7 +619,7 @@ export default function ReviewPage() {
               <p
                 role="alert"
                 className="mt-2 text-sm"
-                style={{ color: "var(--accent)" }}
+                style={{ color: "var(--accent-text)" }}
               >
                 {notice[a.id]}
               </p>

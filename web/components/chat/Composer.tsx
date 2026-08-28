@@ -172,7 +172,7 @@ export function Composer({ onSend, isLoading }: Props) {
         className="mx-auto max-w-3xl rounded-2xl border shadow-sm focus-within:ring-1"
         style={{
           borderColor: "var(--border)",
-          background: "var(--bg)",
+          background: "var(--bg-raised)",
           ["--tw-ring-color" as string]: "var(--accent)",
         }}
       >
@@ -261,9 +261,8 @@ export function Composer({ onSend, isLoading }: Props) {
             onClick={submit}
             disabled={!value.trim() || isLoading || busy}
             aria-label="Send"
-            className="mb-0.5 rounded-lg px-3 py-1.5 text-sm font-medium text-white
-                       transition-opacity disabled:opacity-30"
-            style={{ background: "var(--accent)" }}
+            className="btn-accent mb-0.5 rounded-lg px-3 py-1.5 text-sm font-medium
+                       disabled:opacity-30"
           >
             {isLoading ? "…" : "Send"}
           </button>
@@ -305,7 +304,7 @@ function Status({
         <span className="flex items-center gap-2">
           <span
             className="inline-block h-2 w-2 animate-pulse rounded-full"
-            style={{ background: "#dc2626" }}
+            style={{ background: "var(--danger)" }}
           />
           <span>Listening — speak your question, then press the mic again.</span>
         </span>
@@ -319,7 +318,7 @@ function Status({
           </span>
           <span
             className="h-1 flex-1 overflow-hidden rounded-full"
-            style={{ background: "var(--bg-subtle)" }}
+            style={{ background: "var(--bg-sunken)" }}
           >
             <span
               className="block h-full transition-[width]"
@@ -342,7 +341,7 @@ function Status({
       {notice && (
         <span
           className="flex items-start gap-2"
-          style={{ color: notice.kind === "error" ? "#b91c1c" : "var(--text-muted)" }}
+          style={{ color: notice.kind === "error" ? "var(--danger)" : "var(--text-muted)" }}
         >
           <span className="flex-1">{notice.text}</span>
           <button
@@ -384,7 +383,7 @@ function IconButton({
       aria-pressed={active}
       className="rounded-lg p-1.5 transition-opacity hover:opacity-100 disabled:opacity-30"
       style={{
-        color: active ? "#dc2626" : "var(--text-muted)",
+        color: active ? "var(--danger)" : "var(--text-muted)",
         opacity: active ? 1 : 0.65,
       }}
     >

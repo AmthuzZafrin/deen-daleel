@@ -153,7 +153,7 @@ export function Answer({
           className="rounded-md border px-3 py-2 text-xs leading-5"
           style={{
             borderColor: "var(--border)",
-            background: "var(--bg-subtle)",
+            background: "var(--bg-raised)",
             color: "var(--text-muted)",
           }}
         >
@@ -171,7 +171,7 @@ export function Answer({
           className="rounded-md border px-3 py-2 text-xs"
           style={{
             borderColor: "var(--border)",
-            background: "var(--bg-subtle)",
+            background: "var(--bg-raised)",
             color: "var(--text-muted)",
           }}
         >
@@ -186,7 +186,7 @@ export function Answer({
                 <button
                   type="button"
                   onClick={() => onAsk(a.question)}
-                  className="rounded border px-2 py-1 text-left text-xs transition-colors hover:brightness-95"
+                  className="rounded border px-2 py-1 text-left text-xs surface-hover"
                   style={{ borderColor: "var(--border)", color: "var(--text)" }}
                 >
                   {a.question}
@@ -209,10 +209,10 @@ export function Answer({
                 aria-label={`Source ${seg.citation.ordinal}: ${seg.citation.canonicalRef}`}
                 className="mx-0.5 inline-flex h-[1.15rem] min-w-[1.15rem] translate-y-[-0.15rem] items-center
                            justify-center rounded px-1 align-middle text-[0.6875rem] font-semibold
-                           transition-colors hover:brightness-110"
+                           surface-hover"
                 style={{
                   background: "var(--accent-soft)",
-                  color: "var(--accent)",
+                  color: "var(--accent-text)",
                 }}
               >
                 {seg.citation.ordinal}
@@ -231,7 +231,7 @@ export function Answer({
           style={{
             borderColor: "var(--border)",
             color: "var(--text-muted)",
-            background: "var(--bg-subtle)",
+            background: "var(--bg-raised)",
           }}
         >
           <strong className="font-semibold">Unverified reference:</strong>{" "}
@@ -263,7 +263,7 @@ export function Answer({
             style={{
               borderColor: "var(--border)",
               color: "var(--text-muted)",
-              background: "var(--bg-subtle)",
+              background: "var(--bg-raised)",
             }}
           >
             <strong className="font-semibold">
@@ -298,7 +298,7 @@ export function NoMatchNotice({ note }: { note: string }) {
   return (
     <div
       className="rounded-lg border px-4 py-3"
-      style={{ borderColor: "var(--border)", background: "var(--bg-subtle)" }}
+      style={{ borderColor: "var(--border)", background: "var(--bg-raised)" }}
     >
       <p className="text-sm font-medium">No reviewed answer yet</p>
       <p className="mt-1 text-sm leading-6" style={{ color: "var(--text-muted)" }}>

@@ -2,27 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
+/**
+ * Claude's palette.
+ *
+ * Every value below was read off claude.ai's own design tokens rather than
+ * matched by eye: its `.cds-root` scale in light, its `[data-mode=dark]`
+ * override in dark. The names here are ours -- the app had its own three-token
+ * scheme already -- but the colours are theirs exactly.
+ *
+ * The surface scale is the part worth understanding, because it does not run
+ * the same way in both themes. Claude has a page surface, one step *down* from
+ * it for the sidebar, and one step *up* for anything that floats on the page:
+ * the composer, cards, panels, the reader's own messages. In light the raised
+ * surface is brighter than the page and the sidebar duller; in dark both
+ * invert. A single `--bg-subtle` could not express that, which is why it split
+ * into `--bg-sunken` and `--bg-raised`.
+ */
+
 :root {
-  --bg: #ffffff;
-  --bg-subtle: #f7f7f5;
-  --border: #e5e5e0;
-  --text: #1a1a19;
-  --text-muted: #6b6b66;
-  --accent: #1c6a5e;
-  --accent-soft: #e6f0ee;
+  --bg: #fcfcfb;        /* the page */
+  --bg-sunken: #f9f9f7; /* the sidebar */
+  --bg-raised: #ffffff; /* composer, cards, panels, the reader's messages */
+
+  /* Translucent, as Claude's are: a border over a raised surface should pick
+     up what is behind it rather than hold one fixed grey. */
+  --border: rgba(11, 11, 11, 0.1);
+  --border-strong: rgba(11, 11, 11, 0.2);
+
+  --text: #0b0b0b;
+  --text-muted: #52514e;
+
+  /* Clay. Claude fills with the deeper tone and *lightens* on hover, which is
+     the opposite of the usual convention -- keep it that way round. */
+  --accent: #c6613f;
+  --accent-hover: #d97757;
+  --accent-soft: rgba(217, 119, 87, 0.1);
+  --accent-text: #c6613f;
+  --on-accent: #ffffff;
+
+  /* Claude's neutral fills: the same ink as the text, at low alpha, so a
+     hover reads on every surface without a colour per surface. */
+  --hover-fill: rgba(11, 11, 11, 0.05);
+  --hover-fill-strong: rgba(11, 11, 11, 0.1);
+
+  --danger: #8e2626;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1a1a19;
-    --bg-subtle: #232322;
-    --border: #34342f;
-    --text: #ecece8;
-    --text-muted: #9a9a93;
-    --accent: #4fb3a0;
-    --accent-soft: #1e332f;
+    --bg: #151515;
+    --bg-sunken: #111111;
+    --bg-raised: #20201f;
+
+    --border: rgba(255, 255, 255, 0.1);
+    --border-strong: rgba(255, 255, 255, 0.2);
+
+    --text: #f0efec;
+    --text-muted: #c3c2b7;
+
+    --accent: #c6613f;
+    --accent-hover: #d97757;
+    --accent-soft: rgba(217, 119, 87, 0.16);
+    /* The fill tone is too dark to read as text on a dark ground; the hover
+       tone is the one that carries. */
+    --accent-text: #d97757;
+    --on-accent: #ffffff;
+
+    --hover-fill: rgba(255, 255, 255, 0.05);
+    --hover-fill-strong: rgba(255, 255, 255, 0.1);
+
+    --danger: #ec7e7e;
   }
 }
+
+/* `brightness()` was doing this job, and it cannot: it darkens a light
+   surface and darkens a dark one too, so hover was invisible in dark mode.
+   A translucent overlay of the text colour moves both the right way.
+
+   An inset shadow rather than a background: every one of these surfaces sets
+   its own `background` inline, and an inline shorthand beats any stylesheet
+   rule. The shadow tints whatever is already there and follows the radius. */
+.surface-hover { transition: box-shadow 120ms ease; }
+.surface-hover:hover:not(:disabled) {
+  box-shadow: inset 0 0 0 999px var(--hover-fill);
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: var(--on-accent);
+  transition: background-color 120ms ease;
+}
+/* Claude lightens its clay on hover rather than darkening it. */
+.btn-accent:hover:not(:disabled) { background: var(--accent-hover); }
 
 html, body { height: 100%; }
 body {

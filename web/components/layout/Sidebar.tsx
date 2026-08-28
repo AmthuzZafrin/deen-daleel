@@ -73,7 +73,7 @@ export function Sidebar({
       <nav
         className={`fixed z-40 flex h-full w-[260px] flex-col border-r transition-transform
                     md:static md:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}
-        style={{ background: "var(--bg-subtle)", borderColor: "var(--border)" }}
+        style={{ background: "var(--bg-sunken)", borderColor: "var(--border)" }}
         aria-label="Conversations"
       >
         <div className="p-3">
@@ -81,8 +81,8 @@ export function Sidebar({
             type="button"
             onClick={onNewChat}
             className="flex w-full items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium
-                       transition-colors hover:brightness-95"
-            style={{ borderColor: "var(--border)", background: "var(--bg)" }}
+                       surface-hover"
+            style={{ borderColor: "var(--border)", background: "var(--bg-raised)" }}
           >
             <span className="text-base leading-none">+</span> New chat
           </button>
@@ -127,10 +127,10 @@ export function Sidebar({
                       type="button"
                       onClick={() => onSelect(c.id)}
                       title={c.title}
-                      className="w-full truncate rounded-lg px-2 py-1.5 text-left text-sm transition-colors"
+                      className="surface-hover w-full truncate rounded-lg px-2 py-1.5 text-left text-sm"
                       style={
                         c.id === activeId
-                          ? { background: "var(--accent-soft)", color: "var(--accent)" }
+                          ? { background: "var(--accent-soft)", color: "var(--accent-text)" }
                           : undefined
                       }
                     >

@@ -50,7 +50,7 @@ export function SourcePanel({ source, onClose }: Props) {
       />
       <aside
         className="fixed right-0 top-0 z-50 flex h-full w-full flex-col border-l md:w-[420px]"
-        style={{ background: "var(--bg)", borderColor: "var(--border)" }}
+        style={{ background: "var(--bg-raised)", borderColor: "var(--border)" }}
         aria-label="Source detail"
       >
         <header
@@ -60,7 +60,7 @@ export function SourcePanel({ source, onClose }: Props) {
           <div className="min-w-0">
             <span
               className="inline-block rounded px-1.5 py-0.5 text-[0.6875rem] font-medium uppercase tracking-wide"
-              style={{ background: "var(--accent-soft)", color: "var(--accent)" }}
+              style={{ background: "var(--accent-soft)", color: "var(--accent-text)" }}
             >
               {KIND_LABEL[source.kind]}
             </span>
@@ -158,7 +158,7 @@ export function SourcePanel({ source, onClose }: Props) {
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium hover:underline"
-              style={{ color: "var(--accent)" }}
+              style={{ color: "var(--accent-text)" }}
             >
               Verify on the source site &rarr;
             </a>
