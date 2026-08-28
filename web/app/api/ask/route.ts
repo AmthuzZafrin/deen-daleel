@@ -15,6 +15,7 @@ import { randomUUID } from "node:crypto";
 import type { NextRequest } from "next/server";
 
 import { query } from "@/lib/db";
+import { MAX_QUESTION_CHARS } from "@/lib/limits";
 import { logQuery, matchAnswer } from "@/lib/rag/answers";
 import { retrieve } from "@/lib/rag/retrieve";
 import { getOrCreateSessionId } from "@/lib/session";
@@ -40,7 +41,7 @@ export async function POST(req: NextRequest) {
   if (!question) {
     return Response.json({ error: "question is required" }, { status: 400 });
   }
-  if (question.length > 1000) {
+  if (question.length > MAX_QUESTION_CHARS) {
     return Response.json({ error: "question is too long" }, { status: 400 });
   }
 

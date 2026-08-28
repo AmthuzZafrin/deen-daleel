@@ -29,3 +29,8 @@ ingest/data/raw/
 .DS_Store
 .idea/
 .vscode/
+
+# vendored client-side OCR / PDF assets (rebuilt by scripts/vendorInputAssets.mjs)
+web/public/tesseract/
+web/public/tessdata/
+web/public/pdf.worker.min.mjs

@@ -15,16 +15,20 @@
     "test:offline": "tsx scripts/checkNormalizerParity.ts && tsx scripts/testDraftFormat.ts && tsx scripts/testGlossary.ts",
     "draft": "tsx scripts/draft.ts",
     "rebind": "tsx scripts/rebindCitations.ts",
-    "stub": "tsx scripts/voyageStub.ts"
+    "stub": "tsx scripts/voyageStub.ts",
+    "vendor:input": "node scripts/vendorInputAssets.mjs",
+    "postinstall": "node scripts/vendorInputAssets.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.70.0",
     "clsx": "^2.1.1",
     "next": "^15.5.0",
+    "pdfjs-dist": "^5.7.284",
     "pg": "^8.13.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^2.6.0",
+    "tesseract.js": "^7.0.0",
     "yaml": "^2.9.0"
   },
   "devDependencies": {
