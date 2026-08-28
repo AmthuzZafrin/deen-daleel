@@ -9,6 +9,7 @@ import type { NextRequest } from "next/server";
 
 import { query } from "@/lib/db";
 import { REF_COLUMNS } from "@/lib/rag/refs";
+import { attachTranslations } from "@/lib/rag/translations";
 import { readSessionId } from "@/lib/session";
 import type { Citation, Source } from "@/lib/types";
 
@@ -133,10 +134,15 @@ export async function GET(req: NextRequest) {
         englishText: row.english_text,
         attribution: row.attribution,
         chapterLevel: row.chapter_level,
+        translations: [],
       });
     }
     sourcesByMessage.set(row.message_id, sources);
   }
+
+  // One pass over every chunk in the thread rather than one per message: a
+  // reloaded conversation must come back with the same English a live one had.
+  await attachTranslations([...sourcesByMessage.values()].flat());
 
   // A miss quotes nothing, so it has no `message_citations` rows and its
   // passages would come back empty. They are recorded on the message metadata
@@ -179,8 +185,10 @@ export async function GET(req: NextRequest) {
         englishText: row.english_text,
         attribution: row.attribution,
         chapterLevel: row.chapter_level,
+        translations: [],
       });
     }
+    await attachTranslations([...missSources.values()]);
   }
 
   return Response.json({

@@ -100,6 +100,25 @@ Two details worth knowing:
 - **`message_citations` persists citation spans.** Without it, reopening an old
   conversation from the sidebar would render an answer whose daleel no longer
   resolves.
+- **`chunk_translations` holds published English for hadith.** The corpus
+  arrived with a translation for the Qur'an and nothing else, which left 93% of
+  the cited passages as Arabic a reader could not check. Machine translation was
+  tested and rejected — `opus-mt-ar-en` rendered *rak'a* as "knees" and inverted
+  a ruling in Al-Mabsut — so these rows are published human translations, and a
+  row exists only where the Arabic it translates was found *in that chunk*, word
+  for word. Cited passages carrying English went from 158 to 617 of 2,134;
+  hadith specifically from none to 459 of 905. Fiqh and tafsir stay at zero,
+  because no freely licensed English edition of those works exists.
+
+  ```bash
+  cd ingest && .venv/bin/python -m pipelines.hadith_english   # rebuild
+  cd web   && npx tsx scripts/testTranslations.ts             # re-verify
+  ```
+
+  `testTranslations.ts` re-checks the pairing against the database rather than
+  trusting the pipeline that wrote it: a re-ingest that moves chunk text would
+  otherwise leave a translation attached to a passage it no longer describes,
+  which is a mistranslation by another route.
 
 The answer bank sits alongside it: `answers` (the reviewed text and its status)
 → `answer_questions` (several phrasings per answer, each independently embedded)

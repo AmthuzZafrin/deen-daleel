@@ -24,12 +24,23 @@ import { KIND_LABEL, type CitedIn, type Source } from "@/lib/types";
  *      is verified verbatim against the chunk -- but it is the answer's
  *      rendering of the part it quoted, not a translation of the whole, and it
  *      is labelled as exactly that.
- *   2. The published translation is shown when one exists, which means the
- *      Qur'an.
- *   3. The Arabic is shown with the quoted span marked, so a reader who does
+ *   2. The Arabic is shown with the quoted span marked, so a reader who does
  *      read Arabic can see which words the answer leaned on without hunting,
  *      and a reader who does not can at least see how much of the passage was
  *      used.
+ *   3. English follows the Arabic, from two places and never from a model. For
+ *      the Qur'an it is the published translation the corpus already carried.
+ *      For hadith it is a published translation attached to this chunk by
+ *      `ingest/pipelines/hadith_english.py`, which pairs the two only where the
+ *      translated Arabic was found in the chunk word for word. That lifts the
+ *      cited passages carrying English from 158 to 617 of 2,134, and hadith
+ *      specifically from none to 459 of 905.
+ *
+ * The third is a claim about part of a page and is worded as one. A page of
+ * Fath al-Bari quotes the hadith it comments on and then discusses it: the
+ * hadith gets its English, al-Asqalani's own words do not, and where the page
+ * carries only a fragment the panel says the passage quotes part of the hadith
+ * rather than letting the full translation stand in for the passage.
  *
  * What is deliberately absent is machine translation. Running the passages
  * through a local Arabic-English model was tried and the output was not fit to
@@ -205,20 +216,6 @@ export function SourcePanel({ source, cited, onClose }: Props) {
             </section>
           )}
 
-          {source.englishText && (
-            <section>
-              <Heading>Translation</Heading>
-              {/* Marked here as well as in the Arabic. A Qur'an citation quotes
-                  the *English*, because the Qur'an is the one part of the
-                  corpus with a translation to quote, so the span the answer
-                  leaned on is findable in this block and not in the Arabic
-                  one. Passing the quotes to both lets each mark what it can. */}
-              <p className="text-[0.9375rem] leading-7">
-                {markQuotes(source.englishText, cited.map((c) => c.quote))}
-              </p>
-            </section>
-          )}
-
           {source.arabicText && (
             <section>
               <Heading>
@@ -230,18 +227,86 @@ export function SourcePanel({ source, cited, onClose }: Props) {
               <p className="arabic" lang="ar" dir="rtl">
                 {markQuotes(source.arabicText, cited.map((c) => c.quote))}
               </p>
-              {/* Said plainly rather than left as an unexplained absence. A
-                  reader looking at Arabic with no translation should know that
-                  none exists, not assume the page failed to load one. */}
-              {!source.englishText && (
-                <p className="mt-3 text-xs leading-5" style={{ color: "var(--text-muted)" }}>
-                  No English translation of this work is held here — the Qur&rsquo;an
-                  is the only part of the corpus that carries one. Nothing on this
-                  page is machine-translated.
-                </p>
-              )}
             </section>
           )}
+
+          {/* Below the Arabic, because that is the order a reader works in:
+              the passage is the daleel, the English is how they get at it. */}
+          {source.englishText && (
+            <section>
+              <Heading>Translation</Heading>
+              {/* Marked here as well as in the Arabic. A Qur'an citation quotes
+                  the *English*, because the Qur'an is the one part of the
+                  corpus that arrived with a translation, so the span the answer
+                  leaned on is findable in this block and not in the Arabic
+                  one. Passing the quotes to both lets each mark what it can. */}
+              <p className="text-[0.9375rem] leading-7">
+                {markQuotes(source.englishText, cited.map((c) => c.quote))}
+              </p>
+            </section>
+          )}
+
+          {source.translations.length > 0 && (
+            <section>
+              <Heading>English — the hadith quoted here</Heading>
+              <div className="space-y-4">
+                {source.translations.map((t) => (
+                  <div key={`${t.edition}-${t.hadithNumber}`}>
+                    <p
+                      className="mb-1 text-xs font-medium"
+                      style={{ color: "var(--accent-text)" }}
+                    >
+                      {t.collection} {t.hadithNumber}
+                    </p>
+                    {/* The distinction that keeps this honest. Above ~95% the
+                        page carries the hadith; below it the page quotes a
+                        piece and the translation is of the whole, so saying
+                        nothing would let the English stand in for words that
+                        are not on the page. */}
+                    {t.coverage < 0.95 && (
+                      <p
+                        className="mb-1 text-xs leading-5"
+                        style={{ color: "var(--text-muted)" }}
+                      >
+                        The passage above quotes part of this hadith. It is given
+                        here in full.
+                      </p>
+                    )}
+                    <p className="text-[0.9375rem] leading-7">{t.englishText}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-xs leading-5" style={{ color: "var(--text-muted)" }}>
+                A published translation, attached to this passage only because the
+                Arabic it translates was found in it word for word. Only the hadith
+                is translated — any commentary or chapter heading around it is not.
+                Nothing here is machine-translated. Text from the public-domain{" "}
+                <a
+                  href="https://github.com/fawazahmed0/hadith-api"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                >
+                  hadith-api
+                </a>{" "}
+                collection.
+              </p>
+            </section>
+          )}
+
+          {/* Said plainly rather than left as an unexplained absence. A reader
+              looking at Arabic with no English should know that none is held,
+              not assume the page failed to load it. */}
+          {source.arabicText &&
+            !source.englishText &&
+            source.translations.length === 0 && (
+              <p className="text-xs leading-5" style={{ color: "var(--text-muted)" }}>
+                No English translation of this work is held here. The corpus carries
+                one for the Qur&rsquo;an, and published translations for the hadith
+                collections — the fiqh manuals and tafsir have never been translated
+                in full, and nothing on this page is machine-translated.
+              </p>
+            )}
 
           {source.attribution && (
             <p

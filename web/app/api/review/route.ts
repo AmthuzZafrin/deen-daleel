@@ -13,6 +13,7 @@ import type { NextRequest } from "next/server";
 import { query, toVectorLiteral } from "@/lib/db";
 import { EMBEDDING_DIM } from "@/lib/env";
 import { REF_COLUMNS } from "@/lib/rag/refs";
+import { attachTranslations } from "@/lib/rag/translations";
 import { denyReview } from "@/lib/reviewAuth";
 import { sectionsBySlug } from "@/lib/sections";
 import type { Citation, Source } from "@/lib/types";
@@ -95,10 +96,16 @@ export async function GET(req: NextRequest) {
         englishText: (r.english_text as string) ?? null,
         attribution: (r.attribution as string) ?? null,
         chapterLevel: Boolean(r.chapter_level),
+        translations: [],
       });
     }
     sourcesBy.set(aid, ss);
   }
+
+  // A reviewer should see exactly the English the reader will, and on the same
+  // page as the Arabic it is paired with -- checking the pairing is part of
+  // what there is to review.
+  await attachTranslations([...sourcesBy.values()].flat());
 
   const phrasingsBy = new Map<number, string[]>();
   for (const r of phrasingRows) {

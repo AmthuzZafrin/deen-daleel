@@ -18,6 +18,7 @@ import { query } from "@/lib/db";
 import { MAX_QUESTION_CHARS } from "@/lib/limits";
 import { logQuery, matchAnswer } from "@/lib/rag/answers";
 import { retrieve } from "@/lib/rag/retrieve";
+import { attachTranslations } from "@/lib/rag/translations";
 import { getOrCreateSessionId } from "@/lib/session";
 import type { Source } from "@/lib/types";
 
@@ -177,7 +178,9 @@ export async function POST(req: NextRequest) {
       englishText: c.englishText,
       attribution: c.attribution,
       chapterLevel: c.chapterLevel,
+      translations: [],
     }));
+    await attachTranslations(passages);
   } catch (err) {
     console.error("fallback retrieval failed:", err);
   }

@@ -23,6 +23,35 @@ export interface Source {
    * distinction is shown rather than smoothed over.
    */
   chapterLevel: boolean;
+  /**
+   * Published English for the hadith found inside this passage, in the order
+   * they appear on the page. Empty for almost everything: it exists only where
+   * a translated hadith's Arabic was located in the chunk word for word, so a
+   * commentary page carries English for the matn it quotes and none for the
+   * commentary itself. Never machine translated — see `lib/rag/translations.ts`.
+   */
+  translations: HadithTranslation[];
+}
+
+/**
+ * One published translation, and enough provenance for the panel to name it
+ * rather than assert it.
+ */
+export interface HadithTranslation {
+  /** 'Sahih al-Bukhari' — the collection the translation is of. */
+  collection: string;
+  hadithNumber: number;
+  /** Dataset edition id, e.g. 'eng-bukhari'. */
+  edition: string;
+  /** The Arabic as the translated edition prints it, for comparison. */
+  arabicText: string;
+  englishText: string;
+  /**
+   * Fraction of the hadith's words located in this chunk. 1 means the whole
+   * hadith is on the page; less means the page carries part of it, and the
+   * panel says so rather than implying the passage and the hadith are the same.
+   */
+  coverage: number;
 }
 
 export interface Citation {

@@ -17,6 +17,7 @@ import { query, toVectorLiteral } from "../db";
 import { embedQuery, rerank, OFFLINE } from "./embed";
 import { normalizeQuery } from "./normalizeAr";
 import { PASSAGE_COLUMN, REF_COLUMNS } from "./refs";
+import { attachTranslations } from "./translations";
 import type { Citation, Source } from "../types";
 
 /**
@@ -296,9 +297,12 @@ async function hydrate(answerId: number): Promise<MatchedAnswer | null> {
         englishText: (r.english_text as string) ?? null,
         attribution: (r.attribution as string) ?? null,
         chapterLevel: Boolean(r.chapter_level),
+        translations: [],
       });
     }
   }
+
+  await attachTranslations(sources);
 
   const asIso = (v: unknown) => (v instanceof Date ? v.toISOString() : null);
 
