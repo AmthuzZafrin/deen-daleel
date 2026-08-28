@@ -1,9 +1,9 @@
 /
 
-## Nothing reaches a reader unreviewed
+## No answer is written while you wait
 
-**No answer is generated while a user waits.** Answers are drafted offline in
-batch, a human approves each one, and only then can it be served. At runtime a
+**Nothing is generated in the request path.** Answers are drafted offline in
+batch, pass a publication gate, and only then can be served. At runtime a
 question is matched against the questions attached to *published* answers, and
 the stored answer is returned with its citations. The request path makes no
 Anthropic API call at all.
@@ -371,8 +371,15 @@ quotation. Matching ignores case and punctuation, which is where a citation and
 its source drift apart without either being wrong. Anything it cannot resolve
 uniquely is reported rather than guessed, with published answers named first.
 
-Publishing requires a reviewer name, and that name is shown to readers. An answer
-published by nobody in particular is exactly what this design exists to prevent.
+**Publishing takes a named human reviewer, and that name is shown to readers.**
+The one alternative is `--unreviewed`, which publishes without a name and puts
+*"No scholar has reviewed this answer"* on every answer it publishes. There is no
+third path and no unlabelled one, because silence would read as approval.
+
+**Everything currently in this repository was published that way.** All 488
+answers are `--unreviewed`; `reviewed_by` is null on every row; every one of them
+carries the notice. Read them as a research aid pointing at its sources, not as
+anyone's ruling.
 
 Both the page and the API are gated on `REVIEW_TOKEN`, a shared secret checked
 in constant time on every request — reads included, since drafts are unreviewed
@@ -442,15 +449,29 @@ assumed: "establish prayer and give charity to the poor" returns 2:110, 24:56,
 answer at 0.999. The classical library ingests from OpenITI with page-accurate
 citations.
 
-Not yet done: **review**. All 469 curated questions in `content/questions.yaml`
-are drafted — ~395,000 words and 4,986 citations, every quotation mechanically
-checked against the passage it claims — and **none are published**, because none
-have been read by a reviewer. Until they are, the app retrieves well and answers
-nothing. Also outstanding: the eval harness under `evals/`; voice, file upload
-and screenshot capture, rendered in the composer but deliberately unwired; and
-deployment.
+Not yet done: **review**. All 488 curated questions in `content/questions.yaml`
+are drafted — ~412,000 words and 5,149 citations across 2,134 passages, every
+quotation mechanically checked against the passage it claims — and all 488 are
+published **unreviewed and labelled as such**, so the app answers, and says on
+every answer that no scholar has read it. Turning that notice off is one column
+per answer and a person willing to put their name to it.
+
+Also outstanding: the eval harness under `evals/`; answer permalinks; rate
+limiting on `/api/ask`; and deployment. Voice input, file upload and screenshot
+capture are wired and working.
 
 One thing remains unproven: **the live Claude call has never run.** Everything
 around it is verified, including citation reconciliation against synthetic API
-responses, but no draft has been generated through the API. All 469 were written
+responses, but no draft has been generated through the API. All 488 were written
 in Claude Code instead, which costs nothing extra.
+
+## Licence
+
+**CC BY-NC-SA 4.0** — see [LICENSE](LICENSE).
+
+Not a free choice: the corpus is OpenITI's and is CC BY-NC-SA, so ShareAlike
+carries to everything built on it. **This project cannot be monetised without
+removing the corpus**, and that is stated here rather than discovered later.
+
+The licence grants permission to copy. It says nothing about whether the answers
+are right — and all 488 of them are unreviewed, which each one says on its face.
