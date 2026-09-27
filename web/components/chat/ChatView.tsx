@@ -2,10 +2,10 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { Answer, NoMatchNotice } from "@/components/chat/Answer";
 import { Composer } from "@/components/chat/Composer";
 import { SourcePanel } from "@/components/chat/SourcePanel";
-import { Sidebar } from "@/components/layout/Sidebar";
+import { Thread } from "@/components/chat/Thread";
+import { Sidebar, SidebarToggle } from "@/components/layout/Sidebar";
 import { useAsk } from "@/hooks/useAsk";
 import { citationParagraphs } from "@/lib/answerText";
 import type {
@@ -30,6 +30,8 @@ export function ChatView() {
   const [openSource, setOpenSource] =
     useState<{ source: Source; cited: CitedIn[] } | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+  const [toast, setToast] = useState<{ title: string; body: string } | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const refreshConversations = useCallback(async () => {
@@ -42,6 +44,39 @@ export function ChatView() {
   useEffect(() => {
     void refreshConversations();
   }, [refreshConversations]);
+
+  // Remember a collapsed sidebar across reloads. A per-browser convenience, so
+  // local storage, and a failure to read it just means the sidebar starts open.
+  useEffect(() => {
+    try {
+      setCollapsed(localStorage.getItem("sidebar-collapsed") === "1");
+    } catch {}
+  }, []);
+
+  function setSidebarCollapsed(value: boolean) {
+    setCollapsed(value);
+    try {
+      localStorage.setItem("sidebar-collapsed", value ? "1" : "0");
+    } catch {}
+  }
+
+  const isDesktop = () => window.matchMedia("(min-width: 768px)").matches;
+
+  function closeSidebar() {
+    if (isDesktop()) setSidebarCollapsed(true);
+    else setSidebarOpen(false);
+  }
+
+  function openSidebar() {
+    if (isDesktop()) setSidebarCollapsed(false);
+    else setSidebarOpen(true);
+  }
+
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(null), 4000);
+    return () => clearTimeout(t);
+  }, [toast]);
 
   // A finished turn is what changes the sidebar (new title, new ordering).
   useEffect(() => {
@@ -108,6 +143,49 @@ export function ChatView() {
     setActiveId(id);
   }
 
+  async function deleteConversation(id: string) {
+    const resp = await fetch(`/api/conversations?id=${encodeURIComponent(id)}`, {
+      method: "DELETE",
+    });
+    if (!resp.ok) return;
+    if (id === activeId) newChat();
+    await refreshConversations();
+  }
+
+  async function pinConversation(id: string, pinned: boolean) {
+    const resp = await fetch(`/api/conversations?id=${encodeURIComponent(id)}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ pinned }),
+    });
+    if (resp.ok) await refreshConversations();
+  }
+
+  async function shareConversation() {
+    if (!activeId) return;
+    const resp = await fetch("/api/share", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ id: activeId }),
+    });
+    if (!resp.ok) {
+      setToast({ title: "Couldn't create a link", body: "Please try again." });
+      return;
+    }
+    const { token } = (await resp.json()) as { token: string };
+    const url = `${window.location.origin}/share/${token}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setToast({
+        title: "Public link copied to your clipboard",
+        body: "Anyone with this link can see this conversation.",
+      });
+    } catch {
+      // Clipboard access can be refused; show the link so it can be copied by hand.
+      setToast({ title: "Public link created", body: url });
+    }
+  }
+
   function newChat() {
     reset();
     setActiveId(null);
@@ -124,26 +202,55 @@ export function ChatView() {
         activeId={activeId}
         onNewChat={newChat}
         onSelect={selectConversation}
+        onDelete={deleteConversation}
+        onPin={pinConversation}
         open={sidebarOpen}
         onToggle={() => setSidebarOpen((v) => !v)}
+        collapsed={collapsed}
+        onClose={closeSidebar}
       />
 
       <main className="flex min-w-0 flex-1 flex-col">
-        <header
-          className="flex items-center gap-3 border-b px-4 py-3 md:hidden"
-          style={{ borderColor: "var(--border)" }}
-        >
-          <button
-            type="button"
-            onClick={() => setSidebarOpen((v) => !v)}
-            aria-label="Toggle conversations"
-            className="rounded p-1"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-              <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" />
-            </svg>
-          </button>
-          <span className="font-semibold">Deen &amp; Daleel</span>
+        <header className="relative flex h-14 shrink-0 items-center gap-2 px-3">
+          {/* On a phone the sidebar is a drawer and this is the only way to it;
+              on a desktop it shows only once the sidebar has been closed. */}
+          <div className={collapsed ? "flex items-center gap-2" : "flex items-center gap-2 md:hidden"}>
+            <SidebarToggle onClick={openSidebar} label="Open sidebar" />
+            <span className="font-semibold">Deen &amp; Daleel</span>
+          </div>
+
+          {activeId && !empty && (
+            <button
+              type="button"
+              onClick={() => void shareConversation()}
+              className="surface-hover ml-auto flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" />
+              </svg>
+              Share
+            </button>
+          )}
+
+          {toast && (
+            <div
+              role="status"
+              className="absolute left-1/2 top-2 z-50 flex max-w-[calc(100%-2rem)] -translate-x-1/2 gap-3
+                         rounded-xl border px-4 py-3 text-sm shadow-lg"
+              style={{ background: "var(--bg-raised)", borderColor: "var(--border)" }}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)"
+                   strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0" aria-hidden>
+                <circle cx="12" cy="12" r="9" />
+                <path d="M8 12l3 3 5-6" />
+              </svg>
+              <div className="min-w-0">
+                <p className="font-semibold">{toast.title}</p>
+                <p className="break-all" style={{ color: "var(--text-muted)" }}>{toast.body}</p>
+              </div>
+            </div>
+          )}
         </header>
 
         <div className="flex-1 overflow-y-auto">
@@ -177,85 +284,12 @@ export function ChatView() {
             </div>
           ) : (
             <div className="mx-auto max-w-3xl px-4 py-6">
-              {visible.map((message) =>
-                message.role === "user" ? (
-                  <div key={message.id} className="mb-6 flex justify-end">
-                    <div
-                      className="max-w-[85%] rounded-2xl px-4 py-2.5 text-[0.9375rem] leading-6"
-                      style={{ background: "var(--bg-raised)" }}
-                    >
-                      {message.content}
-                    </div>
-                  </div>
-                ) : (
-                  <div key={message.id} className="mb-8">
-                    {message.pending ? (
-                      <p
-                        className="animate-pulse text-sm"
-                        style={{ color: "var(--text-muted)" }}
-                      >
-                        Searching the sources…
-                      </p>
-                    ) : message.error ? (
-                      <p
-                        className="rounded-lg border px-3 py-2 text-sm"
-                        style={{
-                          borderColor: "var(--border)",
-                          color: "var(--text-muted)",
-                        }}
-                      >
-                        {message.error}
-                      </p>
-                    ) : (
-                      <>
-                        {message.matched === false ? (
-                          <NoMatchNotice note={message.content} />
-                        ) : (
-                          <Answer
-                            content={message.content}
-                            citations={message.citations}
-                            grounding={message.grounding}
-                            sources={message.sources}
-                            matched={message.matched}
-                            answer={message.answer}
-                            alternatives={message.alternatives}
-                            confident={message.confident}
-                            onAsk={ask}
-                            onCite={(chunkId) => openCitation(message, chunkId)}
-                          />
-                        )}
-
-                        {(message.sources?.length ?? 0) > 0 && (
-                            <details className="mt-3">
-                              <summary
-                                className="cursor-pointer text-xs"
-                                style={{ color: "var(--text-muted)" }}
-                              >
-                                {message.matched === false
-                                  ? `${message.sources!.length} possibly relevant passages`
-                                  : `${message.sources!.length} sources consulted`}
-                              </summary>
-                              <ul className="mt-2 flex flex-wrap gap-1.5">
-                                {message.sources!.map((s) => (
-                                  <li key={s.chunkId}>
-                                    <button
-                                      type="button"
-                                      onClick={() => setOpenSource({ source: s, cited: [] })}
-                                      className="rounded border px-2 py-1 text-xs surface-hover"
-                                      style={{ borderColor: "var(--border)" }}
-                                    >
-                                      {s.canonicalRef}
-                                    </button>
-                                  </li>
-                                ))}
-                              </ul>
-                            </details>
-                          )}
-                      </>
-                    )}
-                  </div>
-                ),
-              )}
+              <Thread
+                messages={visible}
+                onAsk={ask}
+                onCite={openCitation}
+                onOpenSource={(source) => setOpenSource({ source, cited: [] })}
+              />
               <div ref={bottomRef} />
             </div>
           )}

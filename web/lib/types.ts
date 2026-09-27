@@ -131,6 +131,8 @@ export interface ConversationSummary {
   id: string;
   title: string;
   updatedAt: string;
+  /** Set when the reader pinned it; pinned chats list above the rest. */
+  pinnedAt: string | null;
 }
 
 export const KIND_LABEL: Record<SourceKind, string> = {
