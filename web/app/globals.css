@@ -32,7 +32,7 @@
   --text: #0b0b0b;
   --text-muted: #52514e;
 
-  /* Violet. Claude's own accent is clay; this app's is purple, but it keeps
+  /* Green. Claude's own accent is clay; this app's is green, but it keeps
      Claude's direction of travel: fill with the deeper tone and *lighten* on
      hover, which is the opposite of the usual convention -- keep it that way
      round.
@@ -40,12 +40,17 @@
      `--accent-glow` is the tint that bleeds past the edge of an accent
      surface. It is the hover tone at low alpha, so the glow is the same
      colour the button becomes when you reach it. */
-  --accent: #6d4bd8;
-  --accent-hover: #8b6df0;
-  --accent-soft: rgba(139, 109, 240, 0.1);
-  --accent-text: #6d4bd8;
-  --accent-glow: rgba(109, 75, 216, 0.28);
+  --accent: #15803d;
+  --accent-hover: #22a355;
+  --accent-soft: rgba(34, 163, 85, 0.1);
+  --accent-text: #15803d;
+  --accent-glow: rgba(21, 128, 61, 0.28);
   --on-accent: #ffffff;
+
+  /* Scrollbars: a grey thumb on a quiet track, never the browser's white. */
+  --scroll-track: #f1f1ef;
+  --scroll-thumb: #9a9a96;
+  --scroll-thumb-hover: #7a7a76;
 
   /* Claude's neutral fills: the same ink as the text, at low alpha, so a
      hover reads on every surface without a colour per surface. */
@@ -67,16 +72,21 @@
     --text: #f0efec;
     --text-muted: #c3c2b7;
 
-    --accent: #6d4bd8;
-    --accent-hover: #8b6df0;
-    --accent-soft: rgba(139, 109, 240, 0.18);
+    --accent: #15803d;
+    --accent-hover: #22a355;
+    --accent-soft: rgba(34, 163, 85, 0.18);
     /* The fill tone is too dark to read as text on a dark ground; a lighter
-       violet again is the one that carries. */
-    --accent-text: #b7a2ff;
+       green again is the one that carries. */
+    --accent-text: #6fdc98;
     /* Stronger on dark: a glow is the only thing separating the button from
        the ground, where in light the page itself does that work. */
-    --accent-glow: rgba(139, 109, 240, 0.42);
+    --accent-glow: rgba(34, 163, 85, 0.42);
     --on-accent: #ffffff;
+
+    /* Black track, grey thumb. */
+    --scroll-track: #000000;
+    --scroll-thumb: #4a4a48;
+    --scroll-thumb-hover: #6a6a67;
 
     --hover-fill: rgba(255, 255, 255, 0.05);
     --hover-fill-strong: rgba(255, 255, 255, 0.1);
@@ -128,6 +138,19 @@
 .composer-shell:focus-within {
   box-shadow: 0 0 0 1px var(--accent), 0 0 26px -6px var(--accent-glow);
 }
+
+/* Every scrolling area, not just the page. `scrollbar-color` covers Chrome
+   121+ and Firefox; the -webkit- rules cover older Chromium and Safari. */
+* { scrollbar-color: var(--scroll-thumb) var(--scroll-track); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--scroll-track); }
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: 999px;
+  border: 2px solid var(--scroll-track);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--scroll-thumb-hover); }
+::-webkit-scrollbar-corner { background: var(--scroll-track); }
 
 html, body { height: 100%; }
 body {
